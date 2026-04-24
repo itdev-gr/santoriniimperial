@@ -1,0 +1,22 @@
+{
+  "home": {
+    "hero": {
+      "kicker": "PRIVATE TRANSFERS · CURATED TOURS",
+      "headline": "Santorini, Without the Logistics.",
+      "sub": "Mercedes-Benz transfers and curated tours of the island. Fixed prices, meet-and-greet service, available 24/7.",
+      "cta_primary": "Book Your Transfer",
+      "cta_secondary": "Call Now"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "fleet": "Fleet",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "book": "Book Now"
+  }
+}
