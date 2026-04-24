@@ -44,5 +44,25 @@
       { "model": "[el] Mercedes-Benz Sprinter 12", "capacity": "[el] Up to 12 passengers", "luggage": "[el] 10+ large pieces", "ideal": "[el] Wedding groups, corporate arrivals, friend trips.", "note": "[el] Leather captain seats, air-conditioning, Wi-Fi available." },
       { "model": "[el] Mercedes-Benz Sprinter 20", "capacity": "[el] Up to 20 passengers", "luggage": "[el] Full group capacity", "ideal": "[el] Extended families, events, conference shuttles.", "note": "[el] Our largest. Fleet-maintained, backed by a second vehicle if needed." }
     ]
+  },
+  "about": {
+    "hero": {
+      "kicker": "[el] ABOUT US",
+      "headline": "[el] Built on the Island. Run by Locals.",
+      "sub": "[el] Santorini Imperial is a small team of licensed operators who happen to love the island enough to show up at 3am so you don't have to worry about your ride."
+    },
+    "pillars": [
+      { "title": "[el] Local", "body": "[el] We live here. Every driver, every guide, every booking confirmation. You are never routed through a foreign call centre." },
+      { "title": "[el] Mercedes only", "body": "[el] A single, maintained fleet — because consistency is what separates a ride from a transfer." },
+      { "title": "[el] Fixed-price, always", "body": "[el] The quote is the price. No surge hours, no surprise luggage fees, no change at the door." }
+    ]
+  },
+  "contact": {
+    "hero": {
+      "kicker": "[el] GET IN TOUCH",
+      "headline": "[el] Tell Us Your Plan.",
+      "sub": "[el] Fill the form or reach us directly — we reply within the hour during daylight and within four hours overnight."
+    },
+    "channels": { "phone": "[el] Phone / WhatsApp / Viber", "email": "[el] Email", "socials": "[el] Socials" }
   }
 }

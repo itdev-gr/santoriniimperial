@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import KickerHeading from '../components/KickerHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { createT } from '../lib/i18n';
+import en from '../content/i18n/en.json';
+import gr from '../content/i18n/gr.json';
+const t = createT('en', { en, gr });
+const pillars = en.about.pillars;
+---
+<BaseLayout title="About — Santorini Imperial" locale="en" pathname="/about/">
+  <Header slot="header" locale="en" pathname="/about/" />
+  <Hero image="/images/hero/hero-about.jpg" kicker={t('about.hero.kicker')} headline={t('about.hero.headline')} sub={t('about.hero.sub')}
+    ctaPrimary={{ label: 'Meet Us', href: '/contact/' }} minHeight="60vh" />
+  <section class="bg-white py-section">
+    <div class="container-page max-w-3xl font-sans text-lead text-ink/80 leading-relaxed space-y-6">
+      <p>Santorini is a small island with a big reputation. We started running transfers because the two options — big faceless buses or last-minute taxi scrambles — both felt like bad openings to a trip that often represents months of saving and planning.</p>
+      <p>So we put a Mercedes E-Class at the airport, started tracking flights, and refused to charge more if someone was late. A few years later we have a fleet of four and a small team of drivers who've all lived here their whole lives.</p>
+      <p>What we don't do: own a hotel, run a restaurant, push you into side commissions. What we do: drive you, guide you if you want a guide, and get out of the way otherwise.</p>
+    </div>
+  </section>
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker="WHAT WE STAND FOR" heading="Three commitments" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {pillars.map(p => (
+          <div class="bg-white rounded-card border border-warm-border p-8 shadow-card">
+            <h3 class="font-display text-2xl text-ink">{p.title}</h3>
+            <p class="mt-3 text-ink/70 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand headline="Good. Let's plan your trip." cta={{ label: 'Start Here', href: '/contact/' }} />
+  <Footer slot="footer" locale="en" />
+</BaseLayout>

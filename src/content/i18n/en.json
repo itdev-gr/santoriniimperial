@@ -70,5 +70,25 @@
       { "model": "Mercedes-Benz Sprinter 12", "capacity": "Up to 12 passengers", "luggage": "10+ large pieces", "ideal": "Wedding groups, corporate arrivals, friend trips.", "note": "Leather captain seats, air-conditioning, Wi-Fi available." },
       { "model": "Mercedes-Benz Sprinter 20", "capacity": "Up to 20 passengers", "luggage": "Full group capacity", "ideal": "Extended families, events, conference shuttles.", "note": "Our largest. Fleet-maintained, backed by a second vehicle if needed." }
     ]
+  },
+  "about": {
+    "hero": {
+      "kicker": "ABOUT US",
+      "headline": "Built on the Island. Run by Locals.",
+      "sub": "Santorini Imperial is a small team of licensed operators who happen to love the island enough to show up at 3am so you don't have to worry about your ride."
+    },
+    "pillars": [
+      { "title": "Local", "body": "We live here. Every driver, every guide, every booking confirmation. You are never routed through a foreign call centre." },
+      { "title": "Mercedes only", "body": "A single, maintained fleet — because consistency is what separates a ride from a transfer." },
+      { "title": "Fixed-price, always", "body": "The quote is the price. No surge hours, no surprise luggage fees, no change at the door." }
+    ]
+  },
+  "contact": {
+    "hero": {
+      "kicker": "GET IN TOUCH",
+      "headline": "Tell Us Your Plan.",
+      "sub": "Fill the form or reach us directly — we reply within the hour during daylight and within four hours overnight."
+    },
+    "channels": { "phone": "Phone / WhatsApp / Viber", "email": "Email", "socials": "Socials" }
   }
 }
