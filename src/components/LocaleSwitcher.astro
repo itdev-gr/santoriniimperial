@@ -1,0 +1,16 @@
+---
+import { switchLocale } from '../lib/routing';
+import type { Locale } from '../lib/i18n';
+
+export interface Props { currentLocale: Locale; pathname: string; }
+const { currentLocale, pathname } = Astro.props;
+const otherLocale: Locale = currentLocale === 'en' ? 'el' : 'en';
+const otherHref = switchLocale(pathname, currentLocale, otherLocale);
+const labelThis = currentLocale === 'en' ? 'EN' : 'GR';
+const labelOther = otherLocale === 'en' ? 'EN' : 'GR';
+---
+<div class="flex items-center gap-2 text-sm font-medium">
+  <span aria-current="true" class="text-gold">{labelThis}</span>
+  <span class="text-ink/40" aria-hidden="true">/</span>
+  <a href={otherHref} class="text-ink/60 hover:text-ink transition-colors" aria-label={`Switch to ${labelOther}`}>{labelOther}</a>
+</div>

@@ -1,0 +1,71 @@
+---
+import { createT, localePath, type Locale } from '../lib/i18n';
+import en from '../content/i18n/en.json';
+import gr from '../content/i18n/gr.json';
+import LocaleSwitcher from './LocaleSwitcher.astro';
+
+export interface Props { locale?: Locale; pathname?: string; }
+const { locale = 'en', pathname = Astro.url.pathname } = Astro.props;
+const t = createT(locale, { en, gr });
+const lp = (p: string) => localePath(locale, p);
+
+const links = [
+  { href: lp('/'), label: t('nav.home') },
+  { href: lp('/tours/'), label: t('nav.tours') },
+  { href: lp('/transfers/'), label: t('nav.transfers') },
+  { href: lp('/fleet/'), label: t('nav.fleet') },
+  { href: lp('/gallery/'), label: t('nav.gallery') },
+  { href: lp('/about/'), label: t('nav.about') },
+  { href: lp('/contact/'), label: t('nav.contact') },
+  { href: lp('/blog/'), label: t('nav.blog') },
+];
+---
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-30 h-[88px] flex items-center transition-[background-color,box-shadow] duration-500"
+  data-transparent="true"
+>
+  <div class="container-page flex w-full items-center justify-between gap-8">
+    <a href={lp('/')} class="flex items-center gap-2 font-display text-lg tracking-wide">
+      <span class="site-logo transition-colors">SANTORINI <span class="text-gold">IMPERIAL</span></span>
+    </a>
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
+      {links.map(l => (
+        <a href={l.href} class="nav-link relative text-sm font-medium text-ink/80 hover:text-ink transition-colors"
+           data-active={pathname === l.href ? 'true' : 'false'}>
+          {l.label}
+          <span class="underline-fx absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300"></span>
+        </a>
+      ))}
+    </nav>
+    <div class="flex items-center gap-4">
+      <LocaleSwitcher currentLocale={locale} pathname={pathname} />
+      <a href={lp('/contact/')} class="btn-primary text-sm !py-2 !px-4">{t('nav.book')}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  header[data-transparent="true"] { background-color: transparent; }
+  header[data-transparent="true"] .site-logo { color: #FFFFFF; }
+  header[data-transparent="true"] .nav-link { color: rgba(255,255,255,0.85); }
+  header[data-transparent="true"] .nav-link:hover { color: #FFFFFF; }
+  header[data-transparent="false"] {
+    background-color: rgba(248,245,240,0.96);
+    backdrop-filter: saturate(1.1) blur(8px);
+    box-shadow: 0 1px 0 #E5E0D6;
+  }
+  header[data-transparent="false"] .site-logo { color: #0A0A0A; }
+  header[data-transparent="false"] .nav-link { color: rgba(10,10,10,0.8); }
+  .nav-link:hover .underline-fx { transform: scaleX(1); }
+  .nav-link[data-active="true"] .underline-fx { transform: scaleX(1); }
+</style>
+
+<script>
+  const h = document.getElementById('site-header');
+  if (h) {
+    const update = () => h.setAttribute('data-transparent', String(window.scrollY < 16));
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+</script>
