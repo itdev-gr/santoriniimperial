@@ -1,1 +1,78 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/700.css';
+
 @import "tailwindcss";
+
+/* DESIGN.md tokens — single source of truth */
+@theme {
+  /* Colors */
+  --color-ink: #0A0A0A;
+  --color-obsidian: #000000;
+  --color-gold: #C9A84C;
+  --color-gold-wash: rgba(201, 168, 76, 0.08);
+  --color-gold-halo: rgba(201, 168, 76, 0.235);
+  --color-warm: #F8F5F0;
+  --color-warm-border: #E5E0D6;
+  --color-charcoal: #1A1A1A;
+  --color-footer-bg: #0F0F0F;
+  --color-whatsapp: #25D366;
+
+  /* Fonts */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: Inter, system-ui, sans-serif;
+
+  /* Font sizes + line-heights */
+  --text-display-xl: 60px;
+  --text-display-xl--line-height: 60px;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 48px;
+  --text-lead: 18px;
+  --text-lead--line-height: 29.25px;
+  --text-kicker: 13px;
+  --text-kicker--line-height: 16px;
+  --text-kicker--letter-spacing: 0.12em;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgb(0 0 0 / 0.04), 0 6px 16px rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 4px 8px rgb(0 0 0 / 0.05), 0 12px 28px rgb(0 0 0 / 0.08);
+  --shadow-gold-halo: 0 0 0 7.5px rgba(201, 168, 76, 0.235);
+
+  /* Radii */
+  --radius-card: 16px;
+  --radius-pill: 9999px;
+
+  /* Layout */
+  --container-container: 1280px;
+  --container-measure: 576px;
+  --spacing-section: 96px;
+  --spacing-section-cta: 80px;
+}
+
+@layer base {
+  html { font-family: var(--font-sans); color: var(--color-ink); }
+  body { background: #FFFFFF; }
+  h1, h2, h3 { font-family: var(--font-display); }
+  ::selection { background: var(--color-gold); color: #FFFFFF; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-gold text-white font-medium px-6 py-3 rounded-pill transition-all duration-300;
+    @apply hover:shadow-gold-halo focus-visible:outline-none focus-visible:shadow-gold-halo;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-charcoal text-white font-medium px-6 py-3 rounded-pill transition-all duration-300;
+    @apply hover:opacity-90 focus-visible:outline-none focus-visible:shadow-gold-halo;
+  }
+  .kicker {
+    @apply text-kicker uppercase text-gold font-medium;
+    letter-spacing: 0.12em;
+  }
+  .container-page {
+    @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
