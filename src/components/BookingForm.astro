@@ -1,0 +1,80 @@
+---
+import type { Locale } from '../lib/i18n';
+export interface Props { locale?: Locale; }
+---
+<form id="booking-form" novalidate class="grid gap-5 md:grid-cols-2">
+  <label class="flex flex-col gap-1 md:col-span-2">
+    <span class="text-sm font-medium text-ink">Name</span>
+    <input name="name" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo" />
+    <span class="error text-xs text-red-600" data-for="name"></span>
+  </label>
+  <label class="flex flex-col gap-1">
+    <span class="text-sm font-medium text-ink">Email</span>
+    <input name="email" type="email" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo" />
+    <span class="error text-xs text-red-600" data-for="email"></span>
+  </label>
+  <label class="flex flex-col gap-1">
+    <span class="text-sm font-medium text-ink">Phone</span>
+    <input name="phone" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo" />
+    <span class="error text-xs text-red-600" data-for="phone"></span>
+  </label>
+  <label class="flex flex-col gap-1">
+    <span class="text-sm font-medium text-ink">Service</span>
+    <select name="service" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo">
+      <option value="">Choose…</option>
+      <option value="transfer">Transfer</option>
+      <option value="wine">Wine Experience</option>
+      <option value="sightseeing">Sightseeing Tour</option>
+      <option value="fullday">Full Day</option>
+      <option value="photo">Luxe Photo Tour</option>
+    </select>
+    <span class="error text-xs text-red-600" data-for="service"></span>
+  </label>
+  <label class="flex flex-col gap-1">
+    <span class="text-sm font-medium text-ink">Date</span>
+    <input name="date" type="date" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo" />
+    <span class="error text-xs text-red-600" data-for="date"></span>
+  </label>
+  <label class="flex flex-col gap-1">
+    <span class="text-sm font-medium text-ink">Passengers</span>
+    <input name="pax" type="number" min="1" required class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo" />
+    <span class="error text-xs text-red-600" data-for="pax"></span>
+  </label>
+  <label class="flex flex-col gap-1 md:col-span-2">
+    <span class="text-sm font-medium text-ink">Message (optional)</span>
+    <textarea name="message" rows="4" class="rounded-lg border border-warm-border px-4 py-3 bg-white focus:outline-none focus:shadow-gold-halo"></textarea>
+  </label>
+  <div class="md:col-span-2 flex items-center gap-3">
+    <button type="submit" class="btn-primary">Send Inquiry →</button>
+    <a href="https://wa.me/306940355016" class="text-sm text-ink/70 hover:text-ink">or chat on WhatsApp</a>
+  </div>
+  <div id="booking-success" hidden class="md:col-span-2 bg-gold-wash border border-gold/30 text-ink rounded-card p-6">
+    <div class="kicker">INQUIRY RECEIVED</div>
+    <h3 class="font-display text-2xl mt-2">Thank you — we'll reply within the hour.</h3>
+    <p class="text-sm mt-2 text-ink/70">(Demonstration form — no message was actually sent.)</p>
+  </div>
+</form>
+<script>
+  import { validateBooking } from '../lib/validation';
+  const form = document.getElementById('booking-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const payload: any = {};
+    for (const k of ['name','email','phone','service','date','pax','message']) {
+      payload[k] = String(fd.get(k) ?? '');
+    }
+    form.querySelectorAll<HTMLElement>('.error').forEach(el => el.textContent = '');
+    const result = validateBooking(payload);
+    if (!result.ok) {
+      for (const [k, v] of Object.entries(result.errors)) {
+        const el = form.querySelector<HTMLElement>(`.error[data-for="${k}"]`);
+        if (el) el.textContent = v as string;
+      }
+      return;
+    }
+    form.querySelectorAll<HTMLElement>('input,select,textarea,button').forEach(el => { (el as any).disabled = true; });
+    const success = document.getElementById('booking-success');
+    if (success) success.hidden = false;
+  });
+</script>

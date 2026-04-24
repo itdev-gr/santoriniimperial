@@ -1,0 +1,34 @@
+---
+export interface Props { images: Array<{ src: string; alt: string }>; }
+const { images } = Astro.props;
+---
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" id="gallery-grid">
+  {images.map((img, i) => (
+    <button type="button" class="group relative overflow-hidden rounded-card focus-visible:shadow-gold-halo" data-index={i} data-src={img.src} data-alt={img.alt}>
+      <img src={img.src} alt={img.alt} loading="lazy" class="aspect-square h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+    </button>
+  ))}
+</div>
+
+<dialog id="lightbox" class="bg-transparent p-0 max-w-5xl w-full backdrop:bg-black/80">
+  <div class="relative">
+    <img id="lightbox-img" alt="" class="w-full h-auto rounded-card" />
+    <button type="button" id="lightbox-close" class="absolute top-3 right-3 bg-white/90 rounded-full h-10 w-10" aria-label="Close">×</button>
+  </div>
+</dialog>
+
+<script>
+  const grid = document.getElementById('gallery-grid');
+  const dlg = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const lightImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+  const closeBtn = document.getElementById('lightbox-close');
+  grid?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('[data-src]') as HTMLElement | null;
+    if (!btn || !dlg || !lightImg) return;
+    lightImg.src = btn.dataset.src!;
+    lightImg.alt = btn.dataset.alt ?? '';
+    dlg.showModal();
+  });
+  closeBtn?.addEventListener('click', () => dlg?.close());
+  dlg?.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+</script>
