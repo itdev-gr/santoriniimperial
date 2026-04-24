@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 <BaseLayout title="Santorini Imperial" locale="en" pathname="/">
   <Header slot="header" locale="en" pathname="/" />
   <div style="height:100vh; background:linear-gradient(180deg,#0A0A0A,#1A1A1A);"></div>
   <div class="container-page py-section">
-    <h2 class="font-display text-display-lg">Scroll me — header should morph from transparent to solid.</h2>
+    <h2 class="font-display text-display-lg">Smoke test — Header + Footer.</h2>
   </div>
+  <Footer slot="footer" locale="en" />
 </BaseLayout>
