@@ -1,4 +1,20 @@
 {
-  "home": { "hero": { "kicker": "[el] PRIVATE TRANSFERS · CURATED TOURS", "headline": "[el] Santorini, Without the Logistics.", "sub": "[el] Mercedes-Benz transfers and curated tours of the island. Fixed prices, meet-and-greet service, available 24/7.", "cta_primary": "[el] Book Your Transfer", "cta_secondary": "[el] Call Now" } },
+  "home": {
+    "hero": { "kicker": "[el] PRIVATE TRANSFERS · CURATED TOURS", "headline": "[el] Santorini, Without the Logistics.", "sub": "[el] Mercedes-Benz transfers and curated tours of the island. Fixed prices, meet-and-greet service, available 24/7.", "cta_primary": "[el] Book Your Transfer", "cta_secondary": "[el] Call Now" },
+    "why": {
+      "kicker": "[el] WHY CHOOSE US",
+      "heading": "[el] Fixed Prices. Mercedes Fleet. Every Day of the Year.",
+      "items": [
+        { "title": "[el] Fixed Prices", "body": "[el] The price you're quoted is the price you pay." },
+        { "title": "[el] 24/7 Service", "body": "[el] Late-night ferry, 5am flight — we dispatch anytime." },
+        { "title": "[el] Licensed Drivers", "body": "[el] Professionally licensed, insured, fluent English." },
+        { "title": "[el] Card Payments", "body": "[el] All major cards accepted. No processing fees." }
+      ]
+    },
+    "tours": { "kicker": "[el] CURATED EXPERIENCES", "heading": "[el] Four Ways to See the Island", "sub": "[el] Pair any of these with a transfer and we handle the day.", "cta": "[el] See all tours" },
+    "fleet": { "kicker": "[el] PREMIUM VEHICLES", "heading": "[el] Our Mercedes-Benz Lineup", "sub": "[el] Every vehicle climate-controlled and newly maintained.", "cta": "[el] View the full fleet" },
+    "testimonials": { "kicker": "[el] CLIENT VOICES", "heading": "[el] What Travellers Say" },
+    "cta_band": { "headline": "[el] Book Your Santorini Transfer Today", "cta": "[el] Start Your Booking" }
+  },
   "nav": { "home": "[el] Home", "tours": "[el] Tours", "transfers": "[el] Transfers", "fleet": "[el] Fleet", "gallery": "[el] Gallery", "about": "[el] About", "contact": "[el] Contact", "blog": "[el] Blog", "book": "[el] Book Now" }
 }

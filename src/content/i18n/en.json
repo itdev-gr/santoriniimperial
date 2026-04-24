@@ -6,7 +6,31 @@
       "sub": "Mercedes-Benz transfers and curated tours of the island. Fixed prices, meet-and-greet service, available 24/7.",
       "cta_primary": "Book Your Transfer",
       "cta_secondary": "Call Now"
-    }
+    },
+    "why": {
+      "kicker": "WHY CHOOSE US",
+      "heading": "Fixed Prices. Mercedes Fleet. Every Day of the Year.",
+      "items": [
+        { "title": "Fixed Prices", "body": "The price you're quoted is the price you pay. No surge pricing, no luggage surcharges." },
+        { "title": "24/7 Service", "body": "Late-night ferry, 5am flight, 2pm nap-time pickup — we dispatch whenever you need us." },
+        { "title": "Licensed Drivers", "body": "Every driver is professionally licensed, insured, and speaks fluent English." },
+        { "title": "Card Payments", "body": "All major cards accepted. No processing fees. Invoice on request." }
+      ]
+    },
+    "tours": {
+      "kicker": "CURATED EXPERIENCES",
+      "heading": "Four Ways to See the Island",
+      "sub": "Pair any of these with a transfer and we handle the day end-to-end.",
+      "cta": "See all tours"
+    },
+    "fleet": {
+      "kicker": "PREMIUM VEHICLES",
+      "heading": "Our Mercedes-Benz Lineup",
+      "sub": "Every vehicle climate-controlled, newly maintained, and fitted for comfort on Santorini's narrow roads.",
+      "cta": "View the full fleet"
+    },
+    "testimonials": { "kicker": "CLIENT VOICES", "heading": "What Travellers Say" },
+    "cta_band": { "headline": "Book Your Santorini Transfer Today", "cta": "Start Your Booking" }
   },
   "nav": {
     "home": "Home",
