@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import TourCard from '../../components/TourCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+
+const tours = (await getCollection('tours', (e) => e.data.locale === 'en')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Curated Tours — Santorini Imperial" locale="en" pathname="/tours/">
+  <Header slot="header" locale="en" pathname="/tours/" />
+  <Hero
+    image="/images/hero/hero-tours.jpg"
+    kicker="CURATED EXPERIENCES"
+    headline="Four Ways to See the Island"
+    sub="Each tour is private or semi-private, paired with a Mercedes-Benz vehicle and a licensed guide where relevant."
+    ctaPrimary={{ label: 'Plan Your Day', href: '/contact/' }}
+    minHeight="70vh"
+  />
+  <section class="bg-white py-section">
+    <div class="container-page grid gap-6 md:grid-cols-2">
+      {tours.map(tt => (
+        <TourCard
+          href={`/tours/${tt.data.slug}/`}
+          image={tt.data.hero_image}
+          title={tt.data.title}
+          duration={`${tt.data.duration_hours} hours · ${tt.data.format}`}
+          summary={(tt.body ?? '').split('\n')[0] ?? ''}
+          priceFrom={tt.data.price_from_eur ? `From €${tt.data.price_from_eur}` : 'By request'}
+        />
+      ))}
+    </div>
+  </section>
+  <CtaBand headline="Plan your day, end to end." cta={{ label: 'Start Planning', href: '/contact/' }} />
+  <Footer slot="footer" locale="en" />
+</BaseLayout>
