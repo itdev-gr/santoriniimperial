@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import KickerHeading from '../../components/KickerHeading.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { createT } from '../../lib/i18n';
+import en from '../../content/i18n/en.json';
+import gr from '../../content/i18n/gr.json';
+const t = createT('el', { en, gr });
+const pillars = gr.about.pillars;
+---
+<BaseLayout title="Η εταιρεία — Santorini Imperial" locale="el" pathname="/el/about/">
+  <Header slot="header" locale="el" pathname="/el/about/" />
+  <Hero image="/images/hero/hero-about.jpg" kicker={t('about.hero.kicker')} headline={t('about.hero.headline')} sub={t('about.hero.sub')}
+    ctaPrimary={{ label: 'Γνώρισέ μας', href: '/el/contact/' }} minHeight="60vh" />
+  <section class="bg-white py-section">
+    <div class="container-page max-w-3xl font-sans text-lead text-ink/80 leading-relaxed space-y-6">
+      <p>Η Σαντορίνη είναι μικρό νησί με μεγάλη φήμη. Ξεκινήσαμε τις μεταφορές γιατί οι δύο επιλογές που υπήρχαν — τα μεγάλα απρόσωπα πούλμαν ή το ψάξιμο ταξί της τελευταίας στιγμής — είναι κι οι δύο κακή αρχή για ένα ταξίδι που συνήθως αντιπροσωπεύει μήνες αποταμίευσης και σχεδιασμού.</p>
+      <p>Έτσι βάλαμε μια Mercedes E-Class στο αεροδρόμιο, ξεκινήσαμε να παρακολουθούμε τις πτήσεις, κι αρνηθήκαμε να χρεώσουμε παραπάνω αν κάποιος καθυστέρησε. Λίγα χρόνια μετά, έχουμε στόλο από τέσσερα αυτοκίνητα και μια μικρή ομάδα οδηγών που έχουν ζήσει εδώ όλη τους τη ζωή.</p>
+      <p>Τι δεν κάνουμε: δεν έχουμε ξενοδοχείο, δεν έχουμε εστιατόριο, δεν σε σπρώχνουμε σε προμήθειες από τρίτους. Τι κάνουμε: σε μεταφέρουμε, σε ξεναγούμε αν θες ξεναγό, και σε αφήνουμε στην ησυχία σου αν δεν θες.</p>
+    </div>
+  </section>
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker="ΤΙ ΥΠΟΣΤΗΡΙΖΟΥΜΕ" heading="Τρεις δεσμεύσεις" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {pillars.map(p => (
+          <div class="bg-white rounded-card border border-warm-border p-8 shadow-card">
+            <h3 class="font-display text-2xl text-ink">{p.title}</h3>
+            <p class="mt-3 text-ink/70 leading-relaxed">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand headline="Ωραία. Ας σχεδιάσουμε το ταξίδι σου." cta={{ label: 'Ξεκίνα εδώ', href: '/el/contact/' }} />
+  <Footer slot="footer" locale="el" />
+</BaseLayout>

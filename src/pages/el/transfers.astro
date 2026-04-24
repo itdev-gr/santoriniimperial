@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { createT } from '../../lib/i18n';
+import en from '../../content/i18n/en.json';
+import gr from '../../content/i18n/gr.json';
+const t = createT('el', { en, gr });
+const services = gr.transfers.services;
+---
+<BaseLayout title="Μεταφορές — Santorini Imperial" locale="el" pathname="/el/transfers/">
+  <Header slot="header" locale="el" pathname="/el/transfers/" />
+
+  <Hero image="/images/hero/hero-transfers.jpg" kicker={t('transfers.hero.kicker')} headline={t('transfers.hero.headline')} sub={t('transfers.hero.sub')}
+    ctaPrimary={{ label: 'Κλείσε τη μεταφορά σου', href: '/el/contact/' }} minHeight="70vh" />
+
+  <section class="bg-white py-section">
+    <div class="container-page grid gap-12 md:grid-cols-2">
+      {services.map((s, i) => (
+        <article class="flex flex-col gap-3">
+          <div class="kicker">0{i + 1}</div>
+          <h3 class="font-display text-3xl text-ink">{s.title}</h3>
+          <p class="text-ink/70 leading-relaxed">{s.body}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand headline="Πες μας την πτήση σου. Τα υπόλοιπα τα αναλαμβάνουμε εμείς." cta={{ label: 'Στείλε λεπτομέρειες', href: '/el/contact/' }} />
+  <Footer slot="footer" locale="el" />
+</BaseLayout>

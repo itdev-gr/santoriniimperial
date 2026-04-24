@@ -25,13 +25,18 @@ const blogSchema = z.object({
   author: z.string().default('Santorini Imperial'),
 });
 
+// Default generateId uses the filename basename, which collides across locale
+// folders (e.g. en/wine-experience.md and el/wine-experience.md share id).
+// Use the full entry path (without extension) so both locales coexist.
+const generateId = ({ entry }: { entry: string }) => entry.replace(/\.[^./]+$/, '');
+
 export const collections = {
   tours: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/tours' }),
+    loader: glob({ pattern: '**/*.md', base: './src/content/tours', generateId }),
     schema: tourSchema,
   }),
   blog: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
+    loader: glob({ pattern: '**/*.md', base: './src/content/blog', generateId }),
     schema: blogSchema,
   }),
 };

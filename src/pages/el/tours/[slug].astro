@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/Hero.astro';
+import KickerHeading from '../../../components/KickerHeading.astro';
+import TourCard from '../../../components/TourCard.astro';
+import FaqAccordion from '../../../components/FaqAccordion.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tours = await getCollection('tours', (e) => e.data.locale === 'el');
+  return tours.map((t) => ({ params: { slug: t.data.slug }, props: { tour: t } }));
+}
+const { tour } = Astro.props;
+const { Content } = await render(tour);
+const others = (await getCollection('tours', (e) => e.data.locale === 'el' && e.data.slug !== tour.data.slug)).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={`${tour.data.title} — Santorini Imperial`} locale="el" pathname={`/el/tours/${tour.data.slug}/`} image={tour.data.hero_image}>
+  <Header slot="header" locale="el" pathname={`/el/tours/${tour.data.slug}/`} />
+
+  <Hero
+    image={tour.data.hero_image}
+    kicker={`${tour.data.format.toUpperCase()} · ${tour.data.duration_hours} ΩΡΕΣ`}
+    headline={tour.data.title}
+    sub=""
+    ctaPrimary={{ label: 'Κλείσε αυτή την εμπειρία', href: '/el/contact/' }}
+    minHeight="70vh"
+  />
+
+  <section class="bg-white py-section">
+    <div class="container-page max-w-4xl">
+      <div class="prose prose-ink max-w-none font-sans text-lead"><Content /></div>
+    </div>
+  </section>
+
+  <section class="bg-warm py-section">
+    <div class="container-page grid gap-12 md:grid-cols-2 max-w-4xl">
+      <div>
+        <KickerHeading kicker="ΤΙ ΠΕΡΙΛΑΜΒΑΝΕΙ" heading="" align="left" level="h3" />
+        <ul class="mt-4 space-y-2">
+          {tour.data.included.map((i: string) => <li class="flex gap-2"><span class="text-gold">✓</span><span>{i}</span></li>)}
+        </ul>
+      </div>
+      <div>
+        <KickerHeading kicker="ΠΡΟΓΡΑΜΜΑ" heading="" align="left" level="h3" />
+        <ul class="mt-4 space-y-2">
+          {tour.data.itinerary.map((it: { time: string; event: string }) => <li class="flex gap-3"><span class="font-display text-gold w-14">{it.time}</span><span>{it.event}</span></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-section">
+    <div class="container-page max-w-3xl">
+      <KickerHeading kicker="ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ" heading="Καλό να ξέρεις" level="h2" />
+      <div class="mt-8"><FaqAccordion items={tour.data.faq} /></div>
+    </div>
+  </section>
+
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker="ΣΥΝΔΥΑΣΕ ΜΕ" heading="Τρεις ακόμα τρόποι για τη μέρα σου" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {others.slice(0, 3).map(o => (
+          <TourCard href={`/el/tours/${o.data.slug}/`} image={o.data.hero_image} title={o.data.title} duration={`${o.data.duration_hours}h · ${o.data.format}`} summary="" priceFrom={null} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand headline={`Κλείσε: ${tour.data.title}`} cta={{ label: 'Ξεκίνα την κράτηση', href: '/el/contact/' }} />
+  <Footer slot="footer" locale="el" />
+</BaseLayout>

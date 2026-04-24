@@ -9,7 +9,6 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'el'],
     routing: { prefixDefaultLocale: false },
-    fallback: { el: 'en' },
   },
   redirects: {
     '/gr': '/el',

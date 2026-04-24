@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { createT } from '../../lib/i18n';
+import en from '../../content/i18n/en.json';
+import gr from '../../content/i18n/gr.json';
+const t = createT('el', { en, gr });
+const vehicles = gr.fleet.vehicles;
+const images = ['/images/fleet/e-class.jpg','/images/fleet/v-class.jpg','/images/fleet/v-class.jpg','/images/fleet/v-class.jpg'];
+---
+<BaseLayout title="Ο στόλος μας — Santorini Imperial" locale="el" pathname="/el/fleet/">
+  <Header slot="header" locale="el" pathname="/el/fleet/" />
+  <Hero image="/images/hero/hero-fleet.jpg" kicker={t('fleet.hero.kicker')} headline={t('fleet.hero.headline')} sub={t('fleet.hero.sub')}
+    ctaPrimary={{ label: 'Διάλεξε το όχημά σου', href: '/el/contact/' }} minHeight="70vh" />
+  <section class="py-section bg-white">
+    <div class="container-page flex flex-col gap-20">
+      {vehicles.map((v,i) => (
+        <article class={`grid md:grid-cols-2 gap-10 items-center ${i%2===1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+          <div class="aspect-[5/4] rounded-card overflow-hidden bg-warm shadow-card">
+            <img src={images[i]} alt={v.model} class="h-full w-full object-cover" />
+          </div>
+          <div>
+            <div class="kicker">0{i+1} · {v.capacity}</div>
+            <h2 class="font-display text-display-lg mt-3 text-ink">{v.model}</h2>
+            <p class="mt-4 text-ink/80 leading-relaxed">{v.note}</p>
+            <ul class="mt-5 space-y-2 text-sm text-ink/80">
+              <li><span class="text-gold">•</span> Αποσκευές: {v.luggage}</li>
+              <li><span class="text-gold">•</span> Ιδανικό για: {v.ideal}</li>
+            </ul>
+            <a href="/el/contact/" class="btn-primary mt-8">Κλείσε αυτό το όχημα →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <CtaBand headline="Δεν είσαι σίγουρος τι ταιριάζει; Σε βοηθάμε να διαλέξεις." cta={{ label: 'Ρώτα μας', href: '/el/contact/' }} />
+  <Footer slot="footer" locale="el" />
+</BaseLayout>

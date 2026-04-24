@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import KickerHeading from '../../components/KickerHeading.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import TourCard from '../../components/TourCard.astro';
+import FleetCard from '../../components/FleetCard.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { createT } from '../../lib/i18n';
+import en from '../../content/i18n/en.json';
+import gr from '../../content/i18n/gr.json';
+const locale = 'el' as const;
+const t = createT(locale, { en, gr });
+
+const icons = {
+  price: `<svg viewBox='0 0 24 24' fill='none' stroke='#C9A84C' stroke-width='2' class='h-6 w-6'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M3 10h18'/></svg>`,
+  clock: `<svg viewBox='0 0 24 24' fill='none' stroke='#C9A84C' stroke-width='2' class='h-6 w-6'><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/></svg>`,
+  shield: `<svg viewBox='0 0 24 24' fill='none' stroke='#C9A84C' stroke-width='2' class='h-6 w-6'><path d='M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z'/><path d='M9 12l2 2 4-4'/></svg>`,
+  card: `<svg viewBox='0 0 24 24' fill='none' stroke='#C9A84C' stroke-width='2' class='h-6 w-6'><rect x='2' y='5' width='20' height='14' rx='2'/><path d='M2 10h20'/></svg>`,
+};
+const whyItems = gr.home.why.items;
+
+const tours = [
+  { href: '/el/tours/wine-experience/', image: '/images/tours/wine.jpg', title: 'Εμπειρίες κρασιού', duration: '4 ώρες', summary: 'Τρία οινοποιεία, δώδεκα γευσιγνωσίες, ηλιοβασίλεμα στην Οία.', priceFrom: null },
+  { href: '/el/tours/sightseeing/', image: '/images/tours/sightseeing.jpg', title: 'Περιήγηση στα αξιοθέατα', duration: '6 ώρες', summary: 'Οία, Πύργος, Προφήτης Ηλίας, Ακρωτήρι, κόκκινη και μαύρη παραλία.', priceFrom: null },
+  { href: '/el/tours/full-day/', image: '/images/tours/wine.jpg', title: 'Ολοήμερος συνδυασμός', duration: '8 ώρες', summary: 'Όλα τα μεγάλα σημεία συν μια οινογευσία, σε μία ρέουσα μέρα.', priceFrom: null },
+  { href: '/el/tours/luxe-photo-tour/', image: '/images/tours/photo-tour.jpg', title: 'Luxe Photo Tour', duration: '2.5 ώρες', summary: 'Φωτογράφιση στην Οία με styling, 50-70 επεξεργασμένες εικόνες, δύο reels.', priceFrom: null },
+];
+
+// NB: fleet imagery — only e-class.jpg and v-class.jpg exist. Sprinter slots reuse v-class.jpg with a note.
+const fleet = [
+  { image: '/images/fleet/e-class.jpg', model: 'Mercedes-Benz E-Class', capacity: 'Έως 3 επιβάτες', note: 'Executive sedan. Ιδανικό για μεταφορές αεροδρομίου και ζευγάρια.' },
+  { image: '/images/fleet/v-class.jpg', model: 'Mercedes-Benz V-Class', capacity: 'Έως 7 επιβάτες', note: 'Luxury MPV. Ιδανικό για οικογένειες και μικρές ομάδες με αποσκευές.' },
+  { image: '/images/fleet/v-class.jpg', model: 'Mercedes-Benz Sprinter 12', capacity: 'Έως 12 επιβάτες', note: 'Bus class. Ιδανικό για γαμήλιες ομάδες και ιδιωτικά γκρουπ.' },
+  { image: '/images/fleet/v-class.jpg', model: 'Mercedes-Benz Sprinter 20', capacity: 'Έως 20 επιβάτες', note: 'Μεγάλη χωρητικότητα. Ιδανικό για εκτεταμένες οικογένειες κι εκδηλώσεις.' },
+];
+
+const testimonials = [
+  { quote: 'Ο οδηγός ήταν έξω απ\' τις αφίξεις με την πινακίδα μας πριν προλάβουμε να πάρουμε τις αποσκευές. Έδωσε τον τόνο για όλο το ταξίδι.', name: 'Adriana R.', trip: 'Μεταφορά αεροδρομίου, Μάιος 2025' },
+  { quote: 'Η οινογευσία ήταν στημένη υπέροχα — αρκετός χρόνος σε κάθε οινοποιείο για να δοκιμάσεις πραγματικά, χωρίς βιασύνη.', name: 'Daniel M.', trip: 'Εμπειρία κρασιού, Ιούλιος 2025' },
+  { quote: 'Η κράτηση απλή, το V-Class άψογο, και η τιμή που μας είπαν ήταν η τιμή που πληρώσαμε. Ακριβώς αυτό που θες.', name: 'Sofia K.', trip: 'Περιήγηση στα αξιοθέατα, Αύγουστος 2025' },
+];
+---
+<BaseLayout title="Santorini Imperial — Ιδιωτικές μεταφορές κι επιλεγμένες εμπειρίες" locale={locale} pathname="/el/">
+  <Header slot="header" locale={locale} pathname="/el/" />
+
+  <Hero
+    image="/images/hero/hero-home.jpg"
+    kicker={t('home.hero.kicker')}
+    headline={t('home.hero.headline')}
+    sub={t('home.hero.sub')}
+    ctaPrimary={{ label: t('home.hero.cta_primary'), href: '/el/contact/' }}
+    ctaSecondary={{ label: t('home.hero.cta_secondary'), href: 'tel:+306940355016' }}
+    stats={[
+      { value: '24', suffix: '/7', label: 'Εξυπηρέτηση' },
+      { value: '100', suffix: '%', label: 'Σταθερές τιμές' },
+    ]}
+  />
+
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker={t('home.why.kicker')} heading={t('home.why.heading')} />
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <FeatureCard icon={icons.price} title={whyItems[0].title} body={whyItems[0].body} />
+        <FeatureCard icon={icons.clock} title={whyItems[1].title} body={whyItems[1].body} />
+        <FeatureCard icon={icons.shield} title={whyItems[2].title} body={whyItems[2].body} />
+        <FeatureCard icon={icons.card} title={whyItems[3].title} body={whyItems[3].body} />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-section">
+    <div class="container-page">
+      <KickerHeading kicker={t('home.tours.kicker')} heading={t('home.tours.heading')} />
+      <p class="text-center max-w-2xl mx-auto mt-4 text-ink/70">{t('home.tours.sub')}</p>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {tours.map(tt => <TourCard href={tt.href} image={tt.image} title={tt.title} duration={tt.duration} summary={tt.summary} priceFrom={tt.priceFrom} />)}
+      </div>
+      <div class="mt-10 text-center"><a href="/el/tours/" class="text-gold font-medium">{t('home.tours.cta')} →</a></div>
+    </div>
+  </section>
+
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker={t('home.fleet.kicker')} heading={t('home.fleet.heading')} />
+      <p class="text-center max-w-2xl mx-auto mt-4 text-ink/70">{t('home.fleet.sub')}</p>
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {fleet.map(f => <FleetCard image={f.image} model={f.model} capacity={f.capacity} note={f.note} />)}
+      </div>
+      <div class="mt-10 text-center"><a href="/el/fleet/" class="text-gold font-medium">{t('home.fleet.cta')} →</a></div>
+    </div>
+  </section>
+
+  <section class="bg-white py-section">
+    <div class="container-page">
+      <KickerHeading kicker={t('home.testimonials.kicker')} heading={t('home.testimonials.heading')} />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {testimonials.map(tst => <TestimonialCard quote={tst.quote} name={tst.name} trip={tst.trip} />)}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand headline={t('home.cta_band.headline')} cta={{ label: t('home.cta_band.cta'), href: '/el/contact/' }} />
+
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

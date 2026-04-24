@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+import CtaBand from '../../components/CtaBand.astro';
+
+// Build the image list from /public/images/gallery/ at build time.
+const files = import.meta.glob('/public/images/gallery/*.{jpg,jpeg,png,webp}', { eager: false });
+const images = Object.keys(files)
+  .sort()
+  .map(p => {
+    const name = p.split('/').pop()!;
+    return { src: p.replace('/public', ''), alt: `Σαντορίνη — ${name.replace(/\..+$/, '')}` };
+  });
+---
+<BaseLayout title="Συλλογή — Santorini Imperial" locale="el" pathname="/el/gallery/">
+  <Header slot="header" locale="el" pathname="/el/gallery/" />
+  <Hero image="/images/hero/hero-gallery.jpg" kicker="Η ΔΟΥΛΕΙΑ ΜΑΣ" headline="Το νησί, μέσα απ' τον φακό μας" sub="Μια συνεχής συλλογή από εμπειρίες, στόλο και στιγμές της Σαντορίνης που σταθήκαμε τυχεροί να ζήσουμε."
+    ctaPrimary={{ label: 'Σχεδίασε μια μέρα μαζί μας', href: '/el/contact/' }} minHeight="60vh" />
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      {images.length > 0
+        ? <GalleryGrid images={images} />
+        : <p class="text-center text-ink/60">Οι εικόνες φορτώνονται από <code>/public/images/gallery/</code>.</p>}
+    </div>
+  </section>
+  <CtaBand headline="Φτιάξε το δικό σου άλμπουμ Σαντορίνης." cta={{ label: 'Κλείσε μια εμπειρία', href: '/el/tours/' }} />
+  <Footer slot="footer" locale="el" />
+</BaseLayout>
