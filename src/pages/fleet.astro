@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { createT } from '../lib/i18n';
+import en from '../content/i18n/en.json';
+import gr from '../content/i18n/gr.json';
+const t = createT('en', { en, gr });
+const vehicles = en.fleet.vehicles;
+const images = ['/images/fleet/e-class.jpg','/images/fleet/v-class.jpg','/images/fleet/v-class.jpg','/images/fleet/v-class.jpg'];
+---
+<BaseLayout title="Our Fleet — Santorini Imperial" locale="en" pathname="/fleet/">
+  <Header slot="header" locale="en" pathname="/fleet/" />
+  <Hero image="/images/hero/hero-fleet.jpg" kicker={t('fleet.hero.kicker')} headline={t('fleet.hero.headline')} sub={t('fleet.hero.sub')}
+    ctaPrimary={{ label: 'Pick Your Vehicle', href: '/contact/' }} minHeight="70vh" />
+  <section class="py-section bg-white">
+    <div class="container-page flex flex-col gap-20">
+      {vehicles.map((v,i) => (
+        <article class={`grid md:grid-cols-2 gap-10 items-center ${i%2===1 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+          <div class="aspect-[5/4] rounded-card overflow-hidden bg-warm shadow-card">
+            <img src={images[i]} alt={v.model} class="h-full w-full object-cover" />
+          </div>
+          <div>
+            <div class="kicker">0{i+1} · {v.capacity}</div>
+            <h2 class="font-display text-display-lg mt-3 text-ink">{v.model}</h2>
+            <p class="mt-4 text-ink/80 leading-relaxed">{v.note}</p>
+            <ul class="mt-5 space-y-2 text-sm text-ink/80">
+              <li><span class="text-gold">•</span> Luggage: {v.luggage}</li>
+              <li><span class="text-gold">•</span> Ideal for: {v.ideal}</li>
+            </ul>
+            <a href="/contact/" class="btn-primary mt-8">Reserve This Vehicle →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <CtaBand headline="Unsure which fits? We'll help you pick." cta={{ label: 'Ask Us', href: '/contact/' }} />
+  <Footer slot="footer" locale="en" />
+</BaseLayout>

@@ -31,5 +31,18 @@
       { "title": "[el] Beach & Evening", "body": "[el] Daytime beach runs, evening transfers, late-night returns." },
       { "title": "[el] 24-Hour Driver", "body": "[el] Your dedicated driver and Mercedes for the day." }
     ]
+  },
+  "fleet": {
+    "hero": {
+      "kicker": "[el] THE FLEET",
+      "headline": "[el] Mercedes-Benz, Across the Size Spectrum.",
+      "sub": "[el] Newly maintained, fully insured, climate-controlled. Chosen for comfort on narrow island roads."
+    },
+    "vehicles": [
+      { "model": "[el] Mercedes-Benz E-Class", "capacity": "[el] Up to 3 passengers", "luggage": "[el] 2 large + 2 carry-on", "ideal": "[el] Airport runs, couples, business travel.", "note": "[el] The default for singles and pairs. Leather, quiet cabin, generous legroom." },
+      { "model": "[el] Mercedes-Benz V-Class", "capacity": "[el] Up to 7 passengers", "luggage": "[el] 5 large + 5 carry-on", "ideal": "[el] Families, small groups, wedding-party rides.", "note": "[el] Luxury MPV. Walk-up entry, individual seats, huge boot." },
+      { "model": "[el] Mercedes-Benz Sprinter 12", "capacity": "[el] Up to 12 passengers", "luggage": "[el] 10+ large pieces", "ideal": "[el] Wedding groups, corporate arrivals, friend trips.", "note": "[el] Leather captain seats, air-conditioning, Wi-Fi available." },
+      { "model": "[el] Mercedes-Benz Sprinter 20", "capacity": "[el] Up to 20 passengers", "luggage": "[el] Full group capacity", "ideal": "[el] Extended families, events, conference shuttles.", "note": "[el] Our largest. Fleet-maintained, backed by a second vehicle if needed." }
+    ]
   }
 }
