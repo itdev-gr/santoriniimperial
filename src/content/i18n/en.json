@@ -42,5 +42,20 @@
     "contact": "Contact",
     "blog": "Blog",
     "book": "Book Now"
+  },
+  "transfers": {
+    "hero": {
+      "kicker": "GROUND TRANSPORT",
+      "headline": "Transfers Handled, Arrivals Felt.",
+      "sub": "Airport, port, hotel, wedding, or an all-day driver. Same fleet, same drivers, same fixed prices."
+    },
+    "services": [
+      { "title": "Airport Transfers", "body": "Meet-and-greet at JTR arrivals, luggage assistance, direct to your accommodation. Flight-tracked — no charge for reasonable delays." },
+      { "title": "Port Transfers", "body": "Coordinated with cruise arrivals at Athinios. Driver waits portside with a sign. Luggage and buggy room included." },
+      { "title": "Hotel-to-Hotel", "body": "Changing properties mid-stay? We move you and your bags door-to-door, same-day or scheduled." },
+      { "title": "Wedding Transfers", "body": "Full fleet available for wedding parties — coordinated timing, ribbons optional, group bookings discounted." },
+      { "title": "Beach & Evening", "body": "Daytime beach runs, evening club transfers, late-night returns. Safe, sober, on-time." },
+      { "title": "24-Hour Driver", "body": "Your dedicated driver and Mercedes for the day. Set the itinerary as you go, stop where you want, no meter running." }
+    ]
   }
 }

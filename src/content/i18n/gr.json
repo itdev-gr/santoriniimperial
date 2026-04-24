@@ -16,5 +16,20 @@
     "testimonials": { "kicker": "[el] CLIENT VOICES", "heading": "[el] What Travellers Say" },
     "cta_band": { "headline": "[el] Book Your Santorini Transfer Today", "cta": "[el] Start Your Booking" }
   },
-  "nav": { "home": "[el] Home", "tours": "[el] Tours", "transfers": "[el] Transfers", "fleet": "[el] Fleet", "gallery": "[el] Gallery", "about": "[el] About", "contact": "[el] Contact", "blog": "[el] Blog", "book": "[el] Book Now" }
+  "nav": { "home": "[el] Home", "tours": "[el] Tours", "transfers": "[el] Transfers", "fleet": "[el] Fleet", "gallery": "[el] Gallery", "about": "[el] About", "contact": "[el] Contact", "blog": "[el] Blog", "book": "[el] Book Now" },
+  "transfers": {
+    "hero": {
+      "kicker": "[el] GROUND TRANSPORT",
+      "headline": "[el] Transfers Handled, Arrivals Felt.",
+      "sub": "[el] Airport, port, hotel, wedding, or an all-day driver. Same fleet, same drivers, same fixed prices."
+    },
+    "services": [
+      { "title": "[el] Airport Transfers", "body": "[el] Meet-and-greet at JTR arrivals, luggage assistance, direct to your accommodation." },
+      { "title": "[el] Port Transfers", "body": "[el] Coordinated with cruise arrivals at Athinios." },
+      { "title": "[el] Hotel-to-Hotel", "body": "[el] Changing properties mid-stay? We move you and your bags door-to-door." },
+      { "title": "[el] Wedding Transfers", "body": "[el] Full fleet available for wedding parties." },
+      { "title": "[el] Beach & Evening", "body": "[el] Daytime beach runs, evening transfers, late-night returns." },
+      { "title": "[el] 24-Hour Driver", "body": "[el] Your dedicated driver and Mercedes for the day." }
+    ]
+  }
 }
