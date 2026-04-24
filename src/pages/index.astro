@@ -2,12 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import { createT } from '../lib/i18n';
+import en from '../content/i18n/en.json';
+import gr from '../content/i18n/gr.json';
+const t = createT('en', { en, gr });
 ---
-<BaseLayout title="Santorini Imperial" locale="en" pathname="/">
+<BaseLayout title="Santorini Imperial — Private Transfers & Curated Tours" locale="en" pathname="/">
   <Header slot="header" locale="en" pathname="/" />
-  <div style="height:100vh; background:linear-gradient(180deg,#0A0A0A,#1A1A1A);"></div>
+  <Hero
+    image="/images/hero/hero-home.jpg"
+    kicker={t('home.hero.kicker')}
+    headline={t('home.hero.headline')}
+    sub={t('home.hero.sub')}
+    ctaPrimary={{ label: t('home.hero.cta_primary'), href: '/contact/' }}
+    ctaSecondary={{ label: t('home.hero.cta_secondary'), href: 'tel:+306940355016' }}
+    stats={[
+      { value: '24', suffix: '/7', label: 'Service' },
+      { value: '100', suffix: '%', label: 'Fixed Prices' },
+    ]}
+  />
   <div class="container-page py-section">
-    <h2 class="font-display text-display-lg">Smoke test — Header + Footer.</h2>
+    <h2 class="font-display text-display-lg">Scroll past hero — header morphs.</h2>
   </div>
   <Footer slot="footer" locale="en" />
 </BaseLayout>

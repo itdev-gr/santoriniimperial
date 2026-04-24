@@ -1,0 +1,17 @@
+---
+export interface Props {
+  kicker: string;
+  heading: string;
+  align?: 'left' | 'center';
+  level?: 'h1' | 'h2' | 'h3';
+  id?: string;
+}
+const { kicker, heading, align = 'center', level = 'h2', id } = Astro.props;
+const Tag = level;
+const alignCls = align === 'center' ? 'text-center items-center' : 'text-left items-start';
+const sizeCls = level === 'h1' ? 'text-display-xl' : level === 'h2' ? 'text-display-lg' : 'text-2xl';
+---
+<div class={`flex flex-col gap-3 ${alignCls}`} id={id}>
+  <div class="kicker">{kicker}</div>
+  <Tag class={`font-display ${sizeCls} font-bold leading-[0.95]`}>{heading}</Tag>
+</div>
