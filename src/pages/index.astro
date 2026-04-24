@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
 import { createT } from '../lib/i18n';
 import en from '../content/i18n/en.json';
 import gr from '../content/i18n/gr.json';
@@ -25,5 +28,25 @@ const t = createT('en', { en, gr });
   <div class="container-page py-section">
     <h2 class="font-display text-display-lg">Scroll past hero — header morphs.</h2>
   </div>
+
+  <section class="bg-white py-section">
+    <div class="container-page grid gap-6 md:grid-cols-3">
+      <TestimonialCard quote="Driver was at arrivals before we had our bags." name="Adriana R." trip="Airport transfer, May 2025" />
+      <TestimonialCard quote="Wine tour paced beautifully — never rushed." name="Daniel M." trip="Wine Experience, July 2025" />
+      <TestimonialCard quote="The quote was the price, exactly." name="Sofia K." trip="Sightseeing, August 2025" />
+    </div>
+  </section>
+
+  <section class="bg-white py-section">
+    <div class="container-page max-w-3xl mx-auto">
+      <FaqAccordion items={[
+        { q: 'Do you offer meet-and-greet?', a: 'Yes, every transfer includes meet-and-greet at arrivals.' },
+        { q: 'Can I pay by card?', a: 'Yes — all major cards accepted, no processing fees.' },
+      ]} />
+    </div>
+  </section>
+
+  <CtaBand kicker="READY?" headline="Book Your Santorini Transfer Today" cta={{ label: 'Start Your Booking', href: '/contact/' }} />
+
   <Footer slot="footer" locale="en" />
 </BaseLayout>

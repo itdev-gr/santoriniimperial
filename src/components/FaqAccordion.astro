@@ -1,0 +1,17 @@
+---
+export interface Props { items: Array<{ q: string; a: string }>; }
+const { items } = Astro.props;
+---
+<ul class="divide-y divide-warm-border">
+  {items.map((it) => (
+    <li>
+      <details class="group py-5">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <span class="font-display text-lg text-ink">{it.q}</span>
+          <span class="h-8 w-8 rounded-full border border-warm-border flex items-center justify-center text-gold transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <p class="mt-3 text-ink/80 leading-relaxed">{it.a}</p>
+      </details>
+    </li>
+  ))}
+</ul>
