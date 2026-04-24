@@ -1,68 +1,81 @@
 {
   "home": {
-    "hero": { "kicker": "[el] PRIVATE TRANSFERS · CURATED TOURS", "headline": "[el] Santorini, Without the Logistics.", "sub": "[el] Mercedes-Benz transfers and curated tours of the island. Fixed prices, meet-and-greet service, available 24/7.", "cta_primary": "[el] Book Your Transfer", "cta_secondary": "[el] Call Now" },
+    "hero": {
+      "kicker": "ΙΔΙΩΤΙΚΕΣ ΜΕΤΑΦΟΡΕΣ · ΕΠΙΛΕΓΜΕΝΕΣ ΕΜΠΕΙΡΙΕΣ",
+      "headline": "Σαντορίνη, χωρίς τα logistics.",
+      "sub": "Ιδιωτικές μεταφορές με Mercedes-Benz κι επιλεγμένες εμπειρίες στο νησί. Σταθερές τιμές, υποδοχή στην άφιξη, 24 ώρες το εικοσιτετράωρο.",
+      "cta_primary": "Κλείσε τη μεταφορά σου",
+      "cta_secondary": "Κάλεσέ μας"
+    },
     "why": {
-      "kicker": "[el] WHY CHOOSE US",
-      "heading": "[el] Fixed Prices. Mercedes Fleet. Every Day of the Year.",
+      "kicker": "ΓΙΑΤΙ ΕΜΑΣ",
+      "heading": "Σταθερές τιμές. Στόλος Mercedes. Κάθε μέρα του χρόνου.",
       "items": [
-        { "title": "[el] Fixed Prices", "body": "[el] The price you're quoted is the price you pay." },
-        { "title": "[el] 24/7 Service", "body": "[el] Late-night ferry, 5am flight — we dispatch anytime." },
-        { "title": "[el] Licensed Drivers", "body": "[el] Professionally licensed, insured, fluent English." },
-        { "title": "[el] Card Payments", "body": "[el] All major cards accepted. No processing fees." }
+        { "title": "Σταθερές τιμές", "body": "Η τιμή που σου δίνουμε είναι η τιμή που πληρώνεις. Καμία προσαύξηση, καμία χρέωση για αποσκευές." },
+        { "title": "24 ώρες το εικοσιτετράωρο", "body": "Νυχτερινό πλοίο, πρωινή πτήση, μεσημεριανή αναχώρηση — βρισκόμαστε εκεί όποτε μας χρειαστείς." },
+        { "title": "Εξουσιοδοτημένοι οδηγοί", "body": "Επαγγελματίες, ασφαλισμένοι, με άνετα αγγλικά και γνώση του νησιού σαν να μεγάλωσαν εκεί — γιατί, συνήθως, εκεί μεγάλωσαν." },
+        { "title": "Πληρωμή με κάρτα", "body": "Όλες οι κάρτες δεκτές. Χωρίς επιβαρύνσεις. Τιμολόγιο κατόπιν ζήτησης." }
       ]
     },
-    "tours": { "kicker": "[el] CURATED EXPERIENCES", "heading": "[el] Four Ways to See the Island", "sub": "[el] Pair any of these with a transfer and we handle the day.", "cta": "[el] See all tours" },
-    "fleet": { "kicker": "[el] PREMIUM VEHICLES", "heading": "[el] Our Mercedes-Benz Lineup", "sub": "[el] Every vehicle climate-controlled and newly maintained.", "cta": "[el] View the full fleet" },
-    "testimonials": { "kicker": "[el] CLIENT VOICES", "heading": "[el] What Travellers Say" },
-    "cta_band": { "headline": "[el] Book Your Santorini Transfer Today", "cta": "[el] Start Your Booking" }
+    "tours": {
+      "kicker": "ΕΠΙΛΕΓΜΕΝΕΣ ΕΜΠΕΙΡΙΕΣ",
+      "heading": "Τέσσερις τρόποι να γνωρίσεις το νησί",
+      "sub": "Συνδύασε οποιαδήποτε εμπειρία με μεταφορά και φτιάχνουμε όλη σου τη μέρα.",
+      "cta": "Δες όλες τις εμπειρίες"
+    },
+    "fleet": { "kicker": "Ο ΣΤΟΛΟΣ", "heading": "Η γκάμα Mercedes-Benz", "sub": "Κάθε αυτοκίνητο κλιματιζόμενο, πρόσφατα συντηρημένο, φτιαγμένο για τους στενούς δρόμους της Σαντορίνης.", "cta": "Δες ολόκληρο τον στόλο" },
+    "testimonials": { "kicker": "ΤΑΞΙΔΙΩΤΕΣ ΛΕΝΕ", "heading": "Τι λένε όσοι ταξίδεψαν μαζί μας" },
+    "cta_band": { "headline": "Κλείσε τη μεταφορά σου για Σαντορίνη σήμερα", "cta": "Ξεκίνα την κράτηση" }
   },
-  "nav": { "home": "[el] Home", "tours": "[el] Tours", "transfers": "[el] Transfers", "fleet": "[el] Fleet", "gallery": "[el] Gallery", "about": "[el] About", "contact": "[el] Contact", "blog": "[el] Blog", "book": "[el] Book Now" },
+  "nav": {
+    "home": "Αρχική",
+    "tours": "Εμπειρίες",
+    "transfers": "Μεταφορές",
+    "fleet": "Στόλος",
+    "gallery": "Συλλογή",
+    "about": "Η εταιρεία",
+    "contact": "Επικοινωνία",
+    "blog": "Άρθρα",
+    "book": "Κλείσε τώρα"
+  },
   "transfers": {
     "hero": {
-      "kicker": "[el] GROUND TRANSPORT",
-      "headline": "[el] Transfers Handled, Arrivals Felt.",
-      "sub": "[el] Airport, port, hotel, wedding, or an all-day driver. Same fleet, same drivers, same fixed prices."
+      "kicker": "ΜΕΤΑΦΟΡΕΣ",
+      "headline": "Η άφιξη γίνεται από εμάς — εσύ ξεκουράζεσαι.",
+      "sub": "Αεροδρόμιο, λιμάνι, ξενοδοχείο, γάμος, ή δικός σου οδηγός για όλη τη μέρα. Ίδιος στόλος, ίδιοι οδηγοί, ίδιες σταθερές τιμές."
     },
     "services": [
-      { "title": "[el] Airport Transfers", "body": "[el] Meet-and-greet at JTR arrivals, luggage assistance, direct to your accommodation." },
-      { "title": "[el] Port Transfers", "body": "[el] Coordinated with cruise arrivals at Athinios." },
-      { "title": "[el] Hotel-to-Hotel", "body": "[el] Changing properties mid-stay? We move you and your bags door-to-door." },
-      { "title": "[el] Wedding Transfers", "body": "[el] Full fleet available for wedding parties." },
-      { "title": "[el] Beach & Evening", "body": "[el] Daytime beach runs, evening transfers, late-night returns." },
-      { "title": "[el] 24-Hour Driver", "body": "[el] Your dedicated driver and Mercedes for the day." }
+      { "title": "Μεταφορά από αεροδρόμιο", "body": "Σε περιμένουμε στις αφίξεις του JTR με όνομα. Βοηθάμε με τις αποσκευές, σε αφήνουμε στο κατάλυμα. Χωρίς χρέωση για εύλογες καθυστερήσεις πτήσης." },
+      { "title": "Μεταφορά από λιμάνι", "body": "Συντονισμένη με τις αφίξεις κρουαζιερόπλοιων στον Αθηνιό. Ο οδηγός περιμένει στην αποβάθρα με πινακίδα." },
+      { "title": "Αλλαγή καταλύματος", "body": "Αλλάζεις ξενοδοχείο μέσα στις διακοπές; Σε μεταφέρουμε με τα πράγματά σου, αυθημερόν ή με κλείσιμο." },
+      { "title": "Μεταφορές γάμου", "body": "Ολόκληρος ο στόλος διαθέσιμος για γαμήλια αυτοκινητοπομπή. Συντονισμός ωρών, εκπτώσεις για γκρουπ." },
+      { "title": "Παραλία & βραδινή έξοδος", "body": "Μέρες στην παραλία, βραδινές εξόδους, επιστροφές αργά. Ασφαλώς, νηφάλια, στην ώρα τους." },
+      { "title": "Οδηγός για 24 ώρες", "body": "Δικός σου οδηγός και Mercedes για όλη τη μέρα. Φτιάχνεις το πρόγραμμα στην πορεία, χωρίς ταξίμετρο." }
     ]
   },
   "fleet": {
-    "hero": {
-      "kicker": "[el] THE FLEET",
-      "headline": "[el] Mercedes-Benz, Across the Size Spectrum.",
-      "sub": "[el] Newly maintained, fully insured, climate-controlled. Chosen for comfort on narrow island roads."
-    },
+    "hero": { "kicker": "Ο ΣΤΟΛΟΣ", "headline": "Mercedes-Benz, σε κάθε μέγεθος.", "sub": "Πρόσφατα συντηρημένα, πλήρως ασφαλισμένα, με κλιματισμό. Επιλεγμένα για άνεση στους στενούς δρόμους του νησιού." },
     "vehicles": [
-      { "model": "[el] Mercedes-Benz E-Class", "capacity": "[el] Up to 3 passengers", "luggage": "[el] 2 large + 2 carry-on", "ideal": "[el] Airport runs, couples, business travel.", "note": "[el] The default for singles and pairs. Leather, quiet cabin, generous legroom." },
-      { "model": "[el] Mercedes-Benz V-Class", "capacity": "[el] Up to 7 passengers", "luggage": "[el] 5 large + 5 carry-on", "ideal": "[el] Families, small groups, wedding-party rides.", "note": "[el] Luxury MPV. Walk-up entry, individual seats, huge boot." },
-      { "model": "[el] Mercedes-Benz Sprinter 12", "capacity": "[el] Up to 12 passengers", "luggage": "[el] 10+ large pieces", "ideal": "[el] Wedding groups, corporate arrivals, friend trips.", "note": "[el] Leather captain seats, air-conditioning, Wi-Fi available." },
-      { "model": "[el] Mercedes-Benz Sprinter 20", "capacity": "[el] Up to 20 passengers", "luggage": "[el] Full group capacity", "ideal": "[el] Extended families, events, conference shuttles.", "note": "[el] Our largest. Fleet-maintained, backed by a second vehicle if needed." }
+      { "model": "Mercedes-Benz E-Class", "capacity": "Έως 3 επιβάτες", "luggage": "2 μεγάλες + 2 χειραποσκευές", "ideal": "Αφίξεις αεροδρομίου, ζευγάρια, ταξίδια εργασίας.", "note": "Η βασική επιλογή για μονά και ζευγάρια. Δερμάτινο σαλόνι, ησυχία, άνεση." },
+      { "model": "Mercedes-Benz V-Class", "capacity": "Έως 7 επιβάτες", "luggage": "5 μεγάλες + 5 χειραποσκευές", "ideal": "Οικογένειες, μικρές ομάδες, γαμήλιες μεταφορές.", "note": "Luxury MPV. Είσοδος όρθιος, ανεξάρτητα καθίσματα, μεγάλο πορτμπαγκάζ." },
+      { "model": "Mercedes-Benz Sprinter 12", "capacity": "Έως 12 επιβάτες", "luggage": "10+ μεγάλα κομμάτια", "ideal": "Γαμήλια γκρουπ, εταιρικές αφίξεις, ταξίδια με φίλους.", "note": "Δερμάτινα captain καθίσματα, κλιματισμός, Wi-Fi κατόπιν ζήτησης." },
+      { "model": "Mercedes-Benz Sprinter 20", "capacity": "Έως 20 επιβάτες", "luggage": "Πλήρης χωρητικότητα γκρουπ", "ideal": "Εκτεταμένες οικογένειες, εκδηλώσεις, συνεδριακές μεταφορές.", "note": "Το μεγαλύτερο όχημά μας. Πλήρως συντηρημένο, με δεύτερο όχημα υποστήριξης εφόσον χρειαστεί." }
     ]
   },
   "about": {
-    "hero": {
-      "kicker": "[el] ABOUT US",
-      "headline": "[el] Built on the Island. Run by Locals.",
-      "sub": "[el] Santorini Imperial is a small team of licensed operators who happen to love the island enough to show up at 3am so you don't have to worry about your ride."
-    },
+    "hero": { "kicker": "Η ΕΤΑΙΡΕΙΑ", "headline": "Χτισμένη στο νησί. Απ' τους ντόπιους.", "sub": "Η Santorini Imperial είναι μια μικρή ομάδα εξουσιοδοτημένων επαγγελματιών που αγαπάνε το νησί αρκετά ώστε να σηκώνονται στις 3 τα ξημερώματα για να μη σε νοιάζει η μεταφορά σου." },
     "pillars": [
-      { "title": "[el] Local", "body": "[el] We live here. Every driver, every guide, every booking confirmation. You are never routed through a foreign call centre." },
-      { "title": "[el] Mercedes only", "body": "[el] A single, maintained fleet — because consistency is what separates a ride from a transfer." },
-      { "title": "[el] Fixed-price, always", "body": "[el] The quote is the price. No surge hours, no surprise luggage fees, no change at the door." }
+      { "title": "Ντόπιοι", "body": "Εδώ ζούμε. Κάθε οδηγός, κάθε ξεναγός, κάθε επιβεβαίωση κράτησης. Δεν περνάς ποτέ από ξένο call centre." },
+      { "title": "Μόνο Mercedes", "body": "Ένας συντηρημένος στόλος — γιατί η συνέπεια είναι που κάνει μια μεταφορά μεταφορά." },
+      { "title": "Πάντα σταθερές τιμές", "body": "Η προσφορά είναι η τιμή. Χωρίς surge, χωρίς εκπλήξεις αποσκευών, χωρίς αλλαγή στην πόρτα." }
     ]
   },
   "contact": {
-    "hero": {
-      "kicker": "[el] GET IN TOUCH",
-      "headline": "[el] Tell Us Your Plan.",
-      "sub": "[el] Fill the form or reach us directly — we reply within the hour during daylight and within four hours overnight."
-    },
-    "channels": { "phone": "[el] Phone / WhatsApp / Viber", "email": "[el] Email", "socials": "[el] Socials" }
+    "hero": { "kicker": "ΕΠΙΚΟΙΝΩΝΙΑ", "headline": "Πες μας το πλάνο σου.", "sub": "Συμπλήρωσε τη φόρμα ή γράψε μας κατευθείαν — απαντάμε μέσα σε μία ώρα τη μέρα και τέσσερις τη νύχτα." },
+    "channels": {
+      "phone": "Τηλέφωνο / WhatsApp / Viber",
+      "email": "Email",
+      "socials": "Social media"
+    }
   }
 }
