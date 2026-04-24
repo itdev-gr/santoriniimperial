@@ -8,3 +8,4 @@ dist/
 .playwright-mcp/
 rhodes-hero.png
 rhodes-features.png
+lighthouse-home.json
