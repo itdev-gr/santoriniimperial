@@ -42,5 +42,8 @@ const elHref = pathname.startsWith('/el') ? pathname : '/el' + (pathname === '/'
     <main class="flex-1"><slot /></main>
     <slot name="footer" />
     <WhatsAppFab />
+    <script>
+      import('../lib/animations').then((m) => m.initAllAnimations?.());
+    </script>
   </body>
 </html>
