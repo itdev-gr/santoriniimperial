@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+// Build the image list from /public/images/gallery/ at build time.
+const files = import.meta.glob('/public/images/gallery/*.{jpg,jpeg,png,webp}', { eager: false });
+const images = Object.keys(files)
+  .sort()
+  .map(p => {
+    const name = p.split('/').pop()!;
+    return { src: p.replace('/public', ''), alt: `Santorini — ${name.replace(/\..+$/, '')}` };
+  });
+---
+<BaseLayout title="Gallery — Santorini Imperial" locale="en" pathname="/gallery/">
+  <Header slot="header" locale="en" pathname="/gallery/" />
+  <Hero image="/images/hero/hero-gallery.jpg" kicker="OUR WORK" headline="The Island, Through Our Lens" sub="A running collection of tours, fleet, and the Santorini moments we've been lucky enough to be part of."
+    ctaPrimary={{ label: 'Plan a Day With Us', href: '/contact/' }} minHeight="60vh" />
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      {images.length > 0
+        ? <GalleryGrid images={images} />
+        : <p class="text-center text-ink/60">Gallery images load from <code>/public/images/gallery/</code>.</p>}
+    </div>
+  </section>
+  <CtaBand headline="Make your own Santorini album." cta={{ label: 'Book a Tour', href: '/tours/' }} />
+  <Footer slot="footer" locale="en" />
+</BaseLayout>
