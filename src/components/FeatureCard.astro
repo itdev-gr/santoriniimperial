@@ -1,0 +1,11 @@
+---
+export interface Props { icon: string; title: string; body: string; }
+const { icon, title, body } = Astro.props;
+---
+<article class="group bg-white rounded-card border border-warm-border p-8 shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
+  <div class="h-12 w-12 rounded-lg bg-gold-wash flex items-center justify-center">
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class="mt-5 font-sans text-base font-semibold text-ink">{title}</h3>
+  <p class="mt-2 text-sm text-ink/70 leading-relaxed">{body}</p>
+</article>
