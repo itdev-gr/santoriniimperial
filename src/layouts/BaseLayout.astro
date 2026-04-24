@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import type { Locale } from '../lib/i18n';
+
+export interface Props {
+  title: string;
+  description?: string;
+  locale?: Locale;
+  image?: string;
+  pathname?: string;
+}
+const {
+  title,
+  description = 'Private transfers and curated tours of Santorini. Mercedes-Benz fleet, fixed prices, 24/7.',
+  locale = 'en',
+  image = '/images/hero/hero-home.jpg',
+  pathname = Astro.url.pathname,
+} = Astro.props;
+
+const htmlLang = locale === 'el' ? 'el' : 'en';
+const enHref = pathname.replace(/^\/el(?=\/|$)/, '') || '/';
+const elHref = pathname.startsWith('/el') ? pathname : '/el' + (pathname === '/' ? '/' : pathname);
+---
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={htmlLang === 'el' ? 'el_GR' : 'en_US'} />
+    <link rel="alternate" hreflang="en" href={`https://santoriniimperial.local${enHref}`} />
+    <link rel="alternate" hreflang="el" href={`https://santoriniimperial.local${elHref}`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <slot name="header" />
+    <main class="flex-1"><slot /></main>
+    <slot name="footer" />
+    <WhatsAppFab />
+  </body>
+</html>

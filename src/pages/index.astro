@@ -1,25 +1,10 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Token check</title>
-  </head>
-  <body class="bg-warm">
-    <main class="container-page py-section">
-      <div class="kicker">TOKEN CHECK</div>
-      <h1 class="font-display text-display-xl text-ink">Playfair loaded</h1>
-      <p class="text-lead mt-4">Body copy in Inter.</p>
-      <div class="mt-8 flex gap-4">
-        <a href="#" class="btn-primary">Primary CTA →</a>
-        <a href="#" class="btn-secondary">Secondary CTA</a>
-      </div>
-      <div class="mt-12 p-8 bg-white rounded-card border border-warm-border shadow-card hover:shadow-card-hover transition-shadow max-w-md">
-        <div class="kicker">FEATURE CARD</div>
-        <h3 class="font-sans text-base font-semibold mt-2">Shadow + border renders</h3>
-      </div>
-    </main>
-  </body>
-</html>
+<BaseLayout title="Santorini Imperial" locale="en" pathname="/">
+  <div class="container-page py-section">
+    <h1 class="font-display text-display-xl">Baseline check</h1>
+    <p class="text-lead mt-4">WhatsApp FAB should float bottom-right, green, with subtle pulse every 10 seconds.</p>
+    <div style="height: 200vh;"></div>
+  </div>
+</BaseLayout>
