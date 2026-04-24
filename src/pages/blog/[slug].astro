@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (e) => e.data.locale === 'en');
+  return posts.map(p => ({ params: { slug: p.data.slug }, props: { post: p } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={`${post.data.title} — Santorini Imperial`} locale="en" pathname={`/blog/${post.data.slug}/`} image={post.data.cover_image}>
+  <Header slot="header" locale="en" pathname={`/blog/${post.data.slug}/`} />
+  <article class="pt-[113px]">
+    <div class="container-page max-w-3xl py-section">
+      <div class="kicker">{new Date(post.data.published_at).toLocaleDateString('en', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+      <h1 class="font-display text-display-lg mt-3 text-ink">{post.data.title}</h1>
+      <p class="mt-4 text-lead text-ink/70">{post.data.excerpt}</p>
+      <div class="mt-10 prose max-w-none font-sans text-lead text-ink/80 leading-relaxed">
+        <Content />
+      </div>
+    </div>
+  </article>
+  <Footer slot="footer" locale="en" />
+</BaseLayout>
