@@ -1,0 +1,35 @@
+---
+export interface Meta { label: string; value: string }
+export interface Props {
+  index: string;        // "01" | "02" | "03"
+  name: string;         // "Santo Wines"
+  tagline: string;      // short H2 line
+  meta: Meta[];         // 2-4 items
+  bg?: 'white' | 'warm';
+}
+const { index, name, tagline, meta, bg = 'white' } = Astro.props;
+const sectionClass = bg === 'warm' ? 'bg-warm' : 'bg-white';
+---
+<section class={`${sectionClass} py-section`}>
+  <div class="container-page max-w-5xl">
+    <div class="grid grid-cols-12 gap-6 md:gap-10 items-start">
+      <div class="col-span-12 md:col-span-3">
+        <div class="font-display text-display-xl text-gold leading-none">{index}</div>
+      </div>
+      <div class="col-span-12 md:col-span-9">
+        <div class="kicker">{name}</div>
+        <h2 class="mt-3 font-display text-3xl md:text-4xl leading-tight text-ink">{tagline}</h2>
+        <div class="mt-6 prose prose-ink max-w-none font-sans text-lead">
+          <slot />
+        </div>
+        {meta.length > 0 && (
+          <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-xs uppercase tracking-wider text-ink/60">
+            {meta.map(m => (
+              <li><span class="text-gold">{m.label}</span> · <span>{m.value}</span></li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
