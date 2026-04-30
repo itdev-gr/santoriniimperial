@@ -10,7 +10,7 @@ import CtaBand from '../../../components/CtaBand.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const tours = await getCollection('tours', (e) => e.data.locale === 'el');
+  const tours = await getCollection('tours', (e) => e.data.locale === 'el' && e.data.slug !== 'wine-experience');
   return tours.map((t) => ({ params: { slug: t.data.slug }, props: { tour: t } }));
 }
 const { tour } = Astro.props;
