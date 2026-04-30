@@ -14,7 +14,7 @@ const sectionClass = bg === 'warm' ? 'bg-warm' : 'bg-white';
   <div class="container-page max-w-5xl">
     <div class="grid grid-cols-12 gap-6 md:gap-10 items-start">
       <div class="col-span-12 md:col-span-3">
-        <div class="font-display text-display-xl text-gold leading-none">{index}</div>
+        <div class="font-display text-display-xl text-gold leading-none" aria-hidden="true">{index}</div>
       </div>
       <div class="col-span-12 md:col-span-9">
         <div class="kicker">{name}</div>
@@ -25,7 +25,7 @@ const sectionClass = bg === 'warm' ? 'bg-warm' : 'bg-white';
         {meta.length > 0 && (
           <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-xs uppercase tracking-wider text-ink/60">
             {meta.map(m => (
-              <li><span class="text-gold">{m.label}</span> · <span>{m.value}</span></li>
+              <li><span class="text-gold">{m.label}</span><span class="mx-2 text-ink/30" aria-hidden="true">·</span><span>{m.value}</span></li>
             ))}
           </ul>
         )}
