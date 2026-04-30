@@ -1,28 +1,37 @@
 ---
 slug: luxe-photo-tour
-title: "Luxe Photo Tour"
+title: "Build Your Own Tour"
 locale: en
 hero_image: /images/tours/photo-tour.jpg
-duration_hours: 2.5
+duration_hours: 4
 format: "Private"
 price_from_eur: null
 included:
-  - "Professional photographer in Oia"
-  - "On-site styling and makeup assistant"
-  - "50-70 retouched photographs"
-  - "Two short video reels, vertical format"
-  - "Location scouting for the best light"
+  - "Private A/C luxury vehicle"
+  - "Hotel pickup & drop-off"
+  - "Cruise ship guest pickup at the cable car or Athinios port"
+  - "Itinerary built around your wishlist"
+  - "Flexible duration — half day or full day"
 itinerary:
-  - { time: "16:30", event: "Pickup or meet at Oia" }
-  - { time: "17:00", event: "Styling and first location" }
-  - { time: "18:00", event: "Blue hour shoot" }
-  - { time: "19:00", event: "Sunset reels" }
+  - { time: "1.", event: "Pickup from your hotel, villa, or cruise meeting point" }
+  - { time: "2.", event: "Stops of your choice — beaches, villages, wineries, viewpoints" }
+  - { time: "3.", event: "Lunch wherever suits the day" }
+  - { time: "4.", event: "Final stop — most guests choose Oia for sunset" }
+  - { time: "5.", event: "Return on your schedule" }
 faq:
-  - q: "How long until we get the photos?"
-    a: "Seven to ten days after the shoot, delivered via private gallery link."
-  - q: "Can we bring outfit changes?"
-    a: "Yes — two outfit changes fit comfortably in the time window."
+  - q: "How do we plan the itinerary?"
+    a: "Tell us what you'd like to see — beaches, wineries, villages, archaeology, sunset spots — and we'll shape a route that fits the time and the season."
+  - q: "What's the duration?"
+    a: "Flexible. Most guests choose a 4-hour or 7-8 hour day; we tailor pricing to the length and the route."
+  - q: "Is this tour private?"
+    a: "Fully private. Your party travels alone in a Mercedes-Benz with a dedicated chauffeur."
+  - q: "Can we change plans on the day?"
+    a: "Yes — your driver will adjust on the fly. A late start, a longer lunch, an unexpected favorite spot — we work around all of it."
 order: 4
 ---
 
-A shoot built around Santorini's best hour. We handle styling, locations, light, and delivery — you show up.
+A day shaped entirely around what you want to see. You give us the wishlist — beaches, wineries, villages, viewpoints, photo stops — and we put it on a map, in the right order, with the right light.
+
+We'll suggest the icons (Oia, Akrotiri, Santo Wines, Red Beach, Prophet Ilias) and the lesser-known spots (Megalochori, Vlychada, Pyrgos rooftops). You choose, we drive.
+
+*Tell us what you have in mind — we'll come back with a plan.*
