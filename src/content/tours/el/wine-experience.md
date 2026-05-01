@@ -1,6 +1,6 @@
 ---
 slug: wine-experience
-title: "Εμπειρία κρασιού"
+title: "Ιδιωτική Εμπειρία Κρασιού"
 locale: el
 hero_image: /images/tours/wine.jpg
 duration_hours: 4

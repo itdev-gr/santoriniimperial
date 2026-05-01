@@ -1,6 +1,6 @@
 ---
 slug: sightseeing
-title: "Sightseeing Tour"
+title: "Private Sightseeing Tour"
 locale: en
 hero_image: /images/tours/sightseeing.jpg
 duration_hours: 4

@@ -1,6 +1,6 @@
 ---
 slug: sightseeing
-title: "Ξενάγηση στο νησί"
+title: "Ιδιωτική Ξενάγηση στο νησί"
 locale: el
 hero_image: /images/tours/sightseeing.jpg
 duration_hours: 4

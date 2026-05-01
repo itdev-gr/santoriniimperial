@@ -1,6 +1,6 @@
 ---
 slug: wine-experience
-title: "Wine Tour"
+title: "Private Wine Tour"
 locale: en
 hero_image: /images/tours/wine.jpg
 duration_hours: 4

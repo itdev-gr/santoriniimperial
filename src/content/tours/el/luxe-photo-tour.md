@@ -1,6 +1,6 @@
 ---
 slug: luxe-photo-tour
-title: "Δημιούργησε το δικό σας Tour"
+title: "Δημιούργησε το δικό σας Ιδιωτικό Tour"
 locale: el
 hero_image: /images/tours/photo-tour.jpg
 duration_hours: 4

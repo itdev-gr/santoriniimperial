@@ -1,6 +1,6 @@
 ---
 slug: luxe-photo-tour
-title: "Build Your Own Tour"
+title: "Build Your Own Private Tour"
 locale: en
 hero_image: /images/tours/photo-tour.jpg
 duration_hours: 4
