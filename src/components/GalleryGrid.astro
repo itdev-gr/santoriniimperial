@@ -10,9 +10,9 @@ const { images } = Astro.props;
   ))}
 </div>
 
-<dialog id="lightbox" class="bg-transparent p-0 max-w-5xl w-full backdrop:bg-black/80">
+<dialog id="lightbox" class="bg-transparent p-0 max-w-[90vw] max-h-[90vh] backdrop:bg-black/80">
   <div class="relative">
-    <img id="lightbox-img" alt="" class="w-full h-auto rounded-card" />
+    <img id="lightbox-img" alt="" class="max-w-[90vw] max-h-[90vh] w-auto h-auto rounded-card" />
     <button type="button" id="lightbox-close" class="absolute top-3 right-3 bg-white/90 rounded-full h-10 w-10" aria-label="Close">×</button>
   </div>
 </dialog>
