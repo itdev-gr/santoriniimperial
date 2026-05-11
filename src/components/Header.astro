@@ -10,24 +10,22 @@ const t = createT(locale, { en, gr });
 const lp = (p: string) => localePath(locale, p);
 
 const links = [
-  { href: lp('/'), label: t('nav.home') },
   { href: lp('/tours/'), label: t('nav.tours') },
   { href: lp('/transfers/'), label: t('nav.transfers') },
   { href: lp('/fleet/'), label: t('nav.fleet') },
   { href: lp('/gallery/'), label: t('nav.gallery') },
   { href: lp('/about/'), label: t('nav.about') },
   { href: lp('/contact/'), label: t('nav.contact') },
-  { href: lp('/blog/'), label: t('nav.blog') },
 ];
 ---
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-30 h-[88px] flex items-center transition-[background-color,box-shadow] duration-500"
+  class="fixed inset-x-0 top-0 z-30 h-[120px] flex items-center transition-[background-color,box-shadow] duration-500"
   data-transparent="true"
 >
   <div class="container-page flex w-full items-center justify-between gap-8">
-    <a href={lp('/')} class="flex items-center gap-2 font-display text-lg tracking-wide">
-      <span class="site-logo transition-colors">SANTORINI <span class="text-gold">IMPERIAL</span></span>
+    <a href={lp('/')} class="flex items-center" aria-label="Santorini Imperial — Home">
+      <img src="/images/logo/si-logo-horizontal.svg" alt="Santorini Imperial" class="h-28 w-auto" width="140" height="140" />
     </a>
     <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
       {links.map(l => (
@@ -47,7 +45,6 @@ const links = [
 
 <style>
   header[data-transparent="true"] { background-color: transparent; }
-  header[data-transparent="true"] .site-logo { color: #FFFFFF; }
   header[data-transparent="true"] .nav-link { color: rgba(255,255,255,0.85); }
   header[data-transparent="true"] .nav-link:hover { color: #FFFFFF; }
   header[data-transparent="false"] {
@@ -55,7 +52,6 @@ const links = [
     backdrop-filter: saturate(1.1) blur(8px);
     box-shadow: 0 1px 0 #E5E0D6;
   }
-  header[data-transparent="false"] .site-logo { color: #0A0A0A; }
   header[data-transparent="false"] .nav-link { color: rgba(10,10,10,0.8); }
   .nav-link:hover .underline-fx { transform: scaleX(1); }
   .nav-link[data-active="true"] .underline-fx { transform: scaleX(1); }
