@@ -8,10 +8,24 @@ const { locale = 'en' } = Astro.props;
 const t = createT(locale, { en, gr });
 const lp = (p: string) => localePath(locale, p);
 const year = new Date().getFullYear();
+
+const tourLinks = locale === 'el'
+  ? [
+      { href: '/el/tours/full-day/', label: 'Ιδιωτική Ξενάγηση στο νησί' },
+      { href: '/el/tours/sightseeing/', label: 'Ιδιωτική Περιήγηση Σαντορίνης' },
+      { href: '/el/tours/wine-experience/', label: 'Ιδιωτική Εμπειρία Κρασιού' },
+      { href: '/el/tours/luxe-photo-tour/', label: 'Δημιούργησε το δικό σας Tour' },
+    ]
+  : [
+      { href: '/tours/full-day/', label: 'Private Tour Santorini Greece' },
+      { href: '/tours/sightseeing/', label: 'Private Sightseeing Tour' },
+      { href: '/tours/wine-experience/', label: 'Private Wine Tour' },
+      { href: '/tours/luxe-photo-tour/', label: 'Build Your Own Private Tour' },
+    ];
 ---
 <footer class="bg-footer-bg text-white/70">
-  <div class="container-page py-16 grid gap-12 md:grid-cols-4">
-    <div>
+  <div class="container-page py-16 grid gap-12 md:grid-cols-5 text-center md:text-left">
+    <div class="flex flex-col items-center md:items-start">
       <img src="/images/logo/si-logo.svg" alt="Santorini Imperial — Travel & Tours" class="h-[134px] w-auto" width="252" height="252" />
       <p class="mt-4 text-sm leading-relaxed">Private transfers and curated tours of Santorini. Mercedes-Benz fleet, fixed prices, 24/7 service.</p>
     </div>
@@ -22,6 +36,14 @@ const year = new Date().getFullYear();
         <li><a href={lp('/transfers/')} class="hover:text-white">Port transfers</a></li>
         <li><a href={lp('/tours/')} class="hover:text-white">Curated tours</a></li>
         <li><a href={lp('/fleet/')} class="hover:text-white">Our fleet</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="kicker !text-gold">Tours</div>
+      <ul class="mt-3 space-y-2 text-sm">
+        {tourLinks.map(tl => (
+          <li><a href={tl.href} class="hover:text-white">{tl.label}</a></li>
+        ))}
       </ul>
     </div>
     <div>
@@ -41,7 +63,7 @@ const year = new Date().getFullYear();
         <li class="text-white/55">WhatsApp · Viber · WeChat</li>
         <li><a href="mailto:imperialsantorini@gmail.com" class="hover:text-white">imperialsantorini@gmail.com</a></li>
         <li class="text-white/55">Open 24/7 · Year-round</li>
-        <li class="flex items-center gap-2">
+        <li class="flex items-center justify-center md:justify-start gap-2">
           <a href="https://instagram.com/santorini_imperial" target="_blank" rel="noopener" aria-label="Instagram — @santorini_imperial"
              class="inline-flex items-center justify-center h-9 w-9 rounded-full border border-white/20 hover:border-gold hover:text-gold transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">

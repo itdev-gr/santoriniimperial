@@ -47,12 +47,18 @@ const links = [
   header[data-transparent="true"] { background-color: transparent; }
   header[data-transparent="true"] .nav-link { color: rgba(255,255,255,0.85); }
   header[data-transparent="true"] .nav-link:hover { color: #FFFFFF; }
+  header[data-transparent="true"] .locale-sep { color: rgba(255,255,255,0.55); }
+  header[data-transparent="true"] .locale-alt { color: rgba(255,255,255,0.75); }
+  header[data-transparent="true"] .locale-alt:hover { color: #FFFFFF; }
   header[data-transparent="false"] {
     background-color: rgba(248,245,240,0.96);
     backdrop-filter: saturate(1.1) blur(8px);
     box-shadow: 0 1px 0 #E5E0D6;
   }
   header[data-transparent="false"] .nav-link { color: rgba(10,10,10,0.8); }
+  header[data-transparent="false"] .locale-sep { color: rgba(10,10,10,0.4); }
+  header[data-transparent="false"] .locale-alt { color: rgba(10,10,10,0.6); }
+  header[data-transparent="false"] .locale-alt:hover { color: #0A0A0A; }
   .nav-link:hover .underline-fx { transform: scaleX(1); }
   .nav-link[data-active="true"] .underline-fx { transform: scaleX(1); }
 </style>
