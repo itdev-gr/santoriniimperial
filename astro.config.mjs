@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://santoriniimperial.com',
+  site: 'https://www.imperialsantorini.com',
   vite: { plugins: [tailwindcss()] },
   integrations: [
     sitemap({
