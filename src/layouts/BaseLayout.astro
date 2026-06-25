@@ -58,6 +58,20 @@ const ogAlternates = LOCALES.filter((loc) => loc !== locale).map((loc) => OG_LOC
       gtag('js', new Date());
       gtag('config', 'G-8ZDSPWZNKP');
       gtag('config', 'AW-17444343036');
+
+      // Google Ads conversion helper — delay navigation until the event is sent.
+      function gtagSendEvent(url) {
+        var callback = function () {
+          if (typeof url === 'string') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion_event_outbound_click', {
+          'event_callback': callback,
+          'event_timeout': 2000,
+        });
+        return false;
+      }
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
@@ -67,6 +81,26 @@ const ogAlternates = LOCALES.filter((loc) => loc !== locale).map((loc) => OG_LOC
     <WhatsAppFab />
     <script>
       import('../lib/animations').then((m) => m.initAllAnimations?.());
+    </script>
+    <script is:inline>
+      // Fire the Google Ads conversion event on key actions (call, email, WhatsApp/Viber, booking).
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var isConversion =
+          /^tel:|^mailto:|wa\.me|api\.whatsapp\.com|whatsapp:\/\/|viber:\/\//i.test(href) ||
+          /\/book\/?($|[?#])/.test(href);
+        if (!isConversion || typeof gtag !== 'function') return;
+
+        var newTab = a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey;
+        if (newTab) {
+          gtag('event', 'conversion_event_outbound_click');
+          return;
+        }
+        e.preventDefault();
+        gtagSendEvent(href);
+      });
     </script>
   </body>
 </html>
