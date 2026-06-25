@@ -6,8 +6,9 @@ export interface Props {
   body: string;
   priceLabel: string;
   ctaLabel: string;
+  imageAlt?: string;
 }
-const { href, image, title, body, priceLabel, ctaLabel } = Astro.props;
+const { href, image, title, body, priceLabel, ctaLabel, imageAlt } = Astro.props;
 ---
 <a
   href={href}
@@ -15,8 +16,9 @@ const { href, image, title, body, priceLabel, ctaLabel } = Astro.props;
 >
   <img
     src={image}
-    alt=""
-    aria-hidden="true"
+    alt={imageAlt || `${title} in Santorini with Santorini Imperial`}
+    loading="lazy"
+    decoding="async"
     class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
   />
   <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/15"></div>

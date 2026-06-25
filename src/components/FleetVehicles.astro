@@ -26,7 +26,7 @@ const reserveLabel = ctaLabel ?? t('fleet.reserve_vehicle');
     {vehicles.map((vehicle, index) => (
       <article class={`fleet-vehicle ${index % 2 === 1 ? 'fleet-vehicle--reverse' : ''}`}>
         <div class="fleet-vehicle-media">
-          <img src={images[index]} alt={vehicle.model} loading="lazy" decoding="async" />
+          <img src={images[index]} alt={`${vehicle.model} — ${vehicle.capacity}, Santorini Imperial transfer vehicle`} loading="lazy" decoding="async" />
         </div>
 
         <div class="fleet-vehicle-copy">

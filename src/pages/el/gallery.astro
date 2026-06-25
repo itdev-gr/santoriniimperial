@@ -5,15 +5,9 @@ import Footer from '../../components/Footer.astro';
 import Hero from '../../components/Hero.astro';
 import GalleryGrid from '../../components/GalleryGrid.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import { galleryImages } from '../../lib/gallery';
 
-// Build the image list from /public/images/gallery/ at build time.
-const files = import.meta.glob('/public/images/gallery/*.{jpg,jpeg,png,webp}', { eager: false });
-const images = Object.keys(files)
-  .sort()
-  .map(p => {
-    const name = p.split('/').pop()!;
-    return { src: p.replace('/public', ''), alt: `Σαντορίνη — ${name.replace(/\..+$/, '')}` };
-  });
+const images = galleryImages();
 ---
 <BaseLayout title="Συλλογή — Μεταφορές & Περιηγήσεις Σαντορίνη | Santorini Imperial" description="Δείτε φωτογραφίες από τον στόλο Mercedes-Benz της Santorini Imperial, θέα στην καλντέρα, περιηγήσεις κρασιού και τα ομορφότερα σημεία της Σαντορίνης." locale="el" pathname="/el/gallery/">
   <Header slot="header" locale="el" pathname="/el/gallery/" />

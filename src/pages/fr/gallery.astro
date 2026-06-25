@@ -6,17 +6,12 @@ import Hero from '../../components/Hero.astro';
 import GalleryGrid from '../../components/GalleryGrid.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { createT, localePath } from '../../lib/i18n';
+import { galleryImages } from '../../lib/gallery';
 
 const locale = 'fr' as const;
 const t = createT(locale);
 const lp = (p: string) => localePath(locale, p);
-const files = import.meta.glob('/public/images/gallery/*.{jpg,jpeg,png,webp}', { eager: false });
-const images = Object.keys(files)
-  .sort()
-  .map((p) => {
-    const name = p.split('/').pop()!;
-    return { src: p.replace('/public', ''), alt: `Santorini — ${name.replace(/\..+$/, '')}` };
-  });
+const images = galleryImages();
 ---
 <BaseLayout title={t('pages.gallery_title')} description={t('pages.gallery_description')} locale={locale} pathname="/fr/gallery/">
   <Header slot="header" locale={locale} pathname="/fr/gallery/" />
