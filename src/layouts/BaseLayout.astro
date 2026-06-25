@@ -24,7 +24,7 @@ const t = createT(locale);
 const metaDescription = description ?? t('meta.default_description');
 
 const htmlLang = HTML_LANG[locale];
-const site = Astro.site?.href ?? 'https://www.imperialsantorini.com';
+const site = Astro.site?.href ?? 'https://imperialsantorini.com';
 const alternates = hreflangAlternates(site, pathname, locale);
 const ogImage = image.startsWith('http') ? image : absoluteUrl(site, image);
 const ogAlternates = LOCALES.filter((loc) => loc !== locale).map((loc) => OG_LOCALE[loc]);
