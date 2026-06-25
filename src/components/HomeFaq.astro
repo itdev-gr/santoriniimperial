@@ -6,7 +6,21 @@ export interface Props {
   items: FaqItem[];
 }
 const { kicker, heading, items } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
 ---
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <section class="home-faq bg-white py-section">
   <div class="container-page faq-inner">
     <div class="faq-head">

@@ -256,7 +256,36 @@
         "title": "24-Hour Driver",
         "body": "Your dedicated driver and Mercedes for the day. Set the itinerary as you go, stop where you want, no meter running."
       }
-    ]
+    ],
+    "faq": {
+      "heading": "Santorini Transfer FAQ",
+      "items": [
+        {
+          "q": "How much does a Santorini airport transfer cost?",
+          "a": "Every transfer is fixed-price and quoted up front based on your destination and group size. No meter, no surge pricing, no surprises. Tell us your route and we send the exact price before you book."
+        },
+        {
+          "q": "How long does the transfer from Santorini Airport (JTR) take?",
+          "a": "Most airport transfers take 15 to 30 minutes depending on your hotel. Fira is about 15 minutes, Oia around 30. Athinios port is roughly 20 to 25 minutes from the airport."
+        },
+        {
+          "q": "Do you offer meet-and-greet on arrival?",
+          "a": "Yes. Your driver waits inside the arrivals area, or portside at Athinios, holding a sign with your name, helps with your luggage, and walks you to the vehicle."
+        },
+        {
+          "q": "What happens if my flight or ferry is delayed?",
+          "a": "We track your flight or ferry in real time and adjust the pickup automatically. There is no extra charge for reasonable delays, so you never need to worry about waiting times."
+        },
+        {
+          "q": "Can you provide child and baby seats?",
+          "a": "Yes, free of charge. Just tell us the ages of the children when you book and we fit the appropriate child or booster seats."
+        },
+        {
+          "q": "How do I pay for my Santorini transfer?",
+          "a": "All major credit and debit cards, bank transfer, or cash. The price you are quoted is the price you pay, with no processing fees."
+        }
+      ]
+    }
   },
   "fleet": {
     "hero": {

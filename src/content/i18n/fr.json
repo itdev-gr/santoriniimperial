@@ -256,7 +256,36 @@
         "title": "Chauffeur 24h",
         "body": "Votre chauffeur et Mercedes pour la journée. Itinéraire au fil de l'eau, arrêts libres, pas de compteur."
       }
-    ]
+    ],
+    "faq": {
+      "heading": "Questions fréquentes sur les transferts",
+      "items": [
+        {
+          "q": "Combien coûte un transfert depuis l'aéroport de Santorin ?",
+          "a": "Chaque transfert est à prix fixe, communiqué à l'avance selon votre destination et le nombre de passagers. Pas de compteur, pas de majoration, pas de surprise. Indiquez-nous votre trajet et nous vous envoyons le prix exact avant la réservation."
+        },
+        {
+          "q": "Combien de temps dure le transfert depuis l'aéroport de Santorin (JTR) ?",
+          "a": "La plupart des transferts durent de 15 à 30 minutes selon votre hôtel. Fira est à environ 15 minutes, Oia à environ 30. Le port d'Athinios est à environ 20 à 25 minutes de l'aéroport."
+        },
+        {
+          "q": "Proposez-vous un accueil avec pancarte à l'arrivée ?",
+          "a": "Oui. Votre chauffeur vous attend dans la zone des arrivées, ou côté port à Athinios, avec une pancarte à votre nom, vous aide avec les bagages et vous accompagne au véhicule."
+        },
+        {
+          "q": "Que se passe-t-il si mon vol ou mon ferry est retardé ?",
+          "a": "Nous suivons votre vol ou votre ferry en temps réel et ajustons automatiquement la prise en charge. Aucun supplément n'est facturé pour les retards raisonnables."
+        },
+        {
+          "q": "Fournissez-vous des sièges enfant et bébé ?",
+          "a": "Oui, gratuitement. Indiquez-nous simplement l'âge des enfants lors de la réservation et nous installons les sièges enfant ou rehausseurs adaptés."
+        },
+        {
+          "q": "Comment payer mon transfert ?",
+          "a": "Toutes les principales cartes de crédit et de débit, virement bancaire ou espèces. Le prix annoncé est le prix que vous payez, sans frais supplémentaires."
+        }
+      ]
+    }
   },
   "fleet": {
     "hero": {

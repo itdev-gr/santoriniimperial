@@ -256,7 +256,36 @@
         "title": "24-Stunden-Chauffeur",
         "body": "Ihr persönlicher Fahrer und Mercedes für den Tag. Route nach Belieben, Stopps wann Sie wollen, kein Taxameter."
       }
-    ]
+    ],
+    "faq": {
+      "heading": "Häufige Fragen zu Transfers",
+      "items": [
+        {
+          "q": "Wie viel kostet ein Flughafentransfer auf Santorini?",
+          "a": "Jeder Transfer hat einen Festpreis, den wir vorab je nach Ziel und Gruppengröße nennen. Kein Taxameter, keine Aufschläge, keine Überraschungen. Nennen Sie uns Ihre Strecke und wir senden den genauen Preis vor der Buchung."
+        },
+        {
+          "q": "Wie lange dauert der Transfer vom Flughafen Santorini (JTR)?",
+          "a": "Die meisten Flughafentransfers dauern 15 bis 30 Minuten, je nach Hotel. Fira sind etwa 15 Minuten, Oia rund 30. Der Hafen Athinios ist etwa 20 bis 25 Minuten vom Flughafen entfernt."
+        },
+        {
+          "q": "Bieten Sie einen Meet-and-Greet-Empfang bei der Ankunft?",
+          "a": "Ja. Ihr Fahrer wartet im Ankunftsbereich, oder am Hafen in Athinios, mit einem Schild mit Ihrem Namen, hilft mit dem Gepäck und begleitet Sie zum Fahrzeug."
+        },
+        {
+          "q": "Was passiert, wenn mein Flug oder meine Fähre Verspätung hat?",
+          "a": "Wir verfolgen Ihren Flug oder Ihre Fähre in Echtzeit und passen die Abholung automatisch an. Für angemessene Verspätungen fällt kein Aufpreis an."
+        },
+        {
+          "q": "Stellen Sie Kindersitze zur Verfügung?",
+          "a": "Ja, kostenlos. Teilen Sie uns bei der Buchung einfach das Alter der Kinder mit und wir montieren die passenden Kinder- oder Sitzerhöhungen."
+        },
+        {
+          "q": "Wie bezahle ich meinen Transfer?",
+          "a": "Mit allen gängigen Kredit- und Debitkarten, per Überweisung oder bar. Der genannte Preis ist der Preis, den Sie zahlen, ohne Gebühren."
+        }
+      ]
+    }
   },
   "fleet": {
     "hero": {

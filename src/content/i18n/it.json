@@ -256,7 +256,36 @@
         "title": "Autista 24 ore",
         "body": "Il tuo autista e Mercedes per la giornata. Itinerario al volo, soste quando vuoi, niente tassametro."
       }
-    ]
+    ],
+    "faq": {
+      "heading": "Domande frequenti sui transfer",
+      "items": [
+        {
+          "q": "Quanto costa un transfer dall'aeroporto di Santorini?",
+          "a": "Ogni transfer ha un prezzo fisso comunicato in anticipo in base alla destinazione e al numero di passeggeri. Niente tassametro, niente sovrapprezzi, nessuna sorpresa. Indicaci il percorso e ti inviamo il prezzo esatto prima della prenotazione."
+        },
+        {
+          "q": "Quanto dura il transfer dall'aeroporto di Santorini (JTR)?",
+          "a": "La maggior parte dei transfer dura dai 15 ai 30 minuti a seconda dell'hotel. Fira è a circa 15 minuti, Oia circa 30. Il porto di Athinios è a circa 20-25 minuti dall'aeroporto."
+        },
+        {
+          "q": "Offrite l'accoglienza con cartello all'arrivo?",
+          "a": "Sì. Il tuo autista ti attende nell'area arrivi, o al porto di Athinios, con un cartello con il tuo nome, ti aiuta con i bagagli e ti accompagna al veicolo."
+        },
+        {
+          "q": "Cosa succede se il mio volo o traghetto è in ritardo?",
+          "a": "Monitoriamo il tuo volo o traghetto in tempo reale e adattiamo automaticamente il prelievo. Non c'è alcun costo aggiuntivo per ritardi ragionevoli."
+        },
+        {
+          "q": "Fornite seggiolini per bambini e neonati?",
+          "a": "Sì, gratuitamente. Comunicaci semplicemente l'età dei bambini al momento della prenotazione e montiamo i seggiolini o i rialzi adeguati."
+        },
+        {
+          "q": "Come pago il transfer?",
+          "a": "Tutte le principali carte di credito e debito, bonifico bancario o contanti. Il prezzo indicato è il prezzo che paghi, senza commissioni."
+        }
+      ]
+    }
   },
   "fleet": {
     "hero": {
