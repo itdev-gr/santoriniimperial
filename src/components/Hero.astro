@@ -30,7 +30,7 @@ const hasSplitHeadline = headlineLine1 && headlineLine2;
 ---
 <section class="hero-section relative flex items-center overflow-hidden" style={`--hero-min-height: ${minHeight}`}>
   <div class="absolute inset-0 -z-10">
-    <img src={image} alt="" aria-hidden="true" class="hero-bg h-full w-full object-cover" />
+    <img src={image} alt="" aria-hidden="true" fetchpriority="high" loading="eager" decoding="async" class="hero-bg h-full w-full object-cover" />
     <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
   </div>
 
