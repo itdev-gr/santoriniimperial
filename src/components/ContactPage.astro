@@ -1,0 +1,246 @@
+---
+import ContactForm from './ContactForm.astro';
+import { createT, type Locale } from '../lib/i18n';
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_DISPLAY,
+  GOOGLE_MAPS_EMBED_URL,
+  GOOGLE_MAPS_PLACE_URL,
+} from '../lib/contact';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = createT(locale);
+---
+<section class="contact-page">
+  <div class="contact-shell">
+    <div class="contact-main-row">
+      <div class="contact-info-col">
+        <h1 class="contact-title">{t('contact.page_title')}</h1>
+        <p class="contact-intro">{t('contact.intro')}</p>
+
+        <div class="contact-details">
+          <p class="contact-brand">{t('contact.business_name')}</p>
+          <p>{t('contact.location')}</p>
+          <p>
+            <span class="contact-detail-label">{t('contact.phone_label')}</span>
+            <a href={`tel:${CONTACT_PHONE}`} class="contact-link">{CONTACT_PHONE_DISPLAY}</a>
+          </p>
+          <p>
+            <span class="contact-detail-label">{t('contact.email_label')}</span>
+            <a href={`mailto:${CONTACT_EMAIL}`} class="contact-link">{CONTACT_EMAIL}</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-form-col">
+        <p class="contact-form-kicker">{t('contact.form_side_kicker')}</p>
+        <div class="contact-form-wrap">
+          <ContactForm locale={locale} flat />
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-map-block">
+      <div class="contact-map">
+        <iframe
+          src={GOOGLE_MAPS_EMBED_URL}
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          title={t('contact.map_title')}
+        ></iframe>
+      </div>
+      <p class="contact-map-link">
+        <a href={GOOGLE_MAPS_PLACE_URL} target="_blank" rel="noopener">{t('contact.maps_link')}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-page {
+    padding-top: 7.5rem;
+    background: #ffffff;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-page {
+      padding-top: 8.5rem;
+    }
+  }
+
+  .contact-shell {
+    width: 100%;
+    max-width: var(--container-container);
+    margin-inline: auto;
+    padding: 0 1.5rem 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-shell {
+      padding-inline: 2.5rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .contact-shell {
+      padding-inline: 4rem;
+      padding-bottom: 4.5rem;
+    }
+  }
+
+  .contact-main-row {
+    display: grid;
+    gap: 2.5rem;
+    padding-top: 2.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .contact-main-row {
+      padding-top: 3rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contact-main-row {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 2.5rem 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .contact-main-row {
+      gap: 3rem 4rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .contact-main-row {
+      gap: 3.5rem 5rem;
+    }
+  }
+
+  .contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-title {
+    font-size: clamp(2.75rem, 7vw, 4.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+  }
+
+  .contact-intro {
+    max-width: 34rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(10, 10, 10, 0.82);
+  }
+
+  .contact-brand {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-gold);
+  }
+
+  .contact-detail-label {
+    margin-right: 0.35rem;
+    color: rgba(10, 10, 10, 0.55);
+  }
+
+  .contact-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-gold);
+  }
+
+  .contact-form-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form-kicker {
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(10, 10, 10, 0.5);
+  }
+
+  .contact-form-wrap {
+    margin-top: 1rem;
+  }
+
+  .contact-map-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-map-block {
+      margin-top: 3.5rem;
+    }
+  }
+
+  .contact-map {
+    overflow: hidden;
+    border: 1px solid var(--color-warm-border);
+    aspect-ratio: 16 / 7;
+    width: 100%;
+  }
+
+  .contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+  }
+
+  @media (min-width: 768px) {
+    .contact-map iframe {
+      min-height: 320px;
+    }
+  }
+
+  .contact-map-link {
+    font-size: 0.875rem;
+  }
+
+  .contact-map-link a {
+    color: rgba(10, 10, 10, 0.55);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-map-link a:hover {
+    color: var(--color-gold);
+  }
+</style>

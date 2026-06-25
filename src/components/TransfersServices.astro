@@ -1,0 +1,50 @@
+---
+import TransferServiceCard from './TransferServiceCard.astro';
+import { createT, localePath, bundleForLocale, type Locale } from '../lib/i18n';
+import { transferServiceImages } from '../lib/transfer-services';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+const services = bundleForLocale(locale).transfers.services;
+const contactHref = lp('/contact/');
+---
+<section class="bg-white py-section">
+  <div class="container-page">
+    <div class="transfer-services-grid">
+      {services.map((service, index) => (
+        <TransferServiceCard
+          image={transferServiceImages[index] ?? transferServiceImages[0]}
+          title={service.title}
+          body={service.body}
+          href={contactHref}
+          ctaLabel={t('nav.book_transfer')}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .transfer-services-grid {
+    display: grid;
+    gap: 3.5rem 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .transfer-services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4.5rem 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .transfer-services-grid {
+      gap: 5rem 4rem;
+    }
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/Hero.astro';
+import { getCollection } from 'astro:content';
+import { createT, localePath } from '../../../lib/i18n';
+
+const locale = 'de' as const;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+const posts = (await getCollection('blog', (e) => e.data.locale === 'de')).sort((a, b) => +b.data.published_at - +a.data.published_at);
+---
+<BaseLayout title={t('pages.blog_title')} description={t('pages.blog_description')} locale={locale} pathname="/de/blog/">
+  <Header slot="header" locale={locale} pathname="/de/blog/" />
+  <Hero image="/images/hero/hero-home.jpg" kicker={t('nav.blog')} headline={t('pages.blog_title')} sub={t('meta.default_description')}
+    ctaPrimary={{ label: t('nav.contact'), href: lp('/contact/') }} minHeight="55vh" />
+  <section class="bg-white py-section">
+    <div class="container-page grid gap-8 md:grid-cols-2">
+      {posts.map((p) => (
+        <a href={lp(`/blog/${p.data.slug}/`)} class="group block bg-white rounded-card border border-warm-border shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all overflow-hidden">
+          <div class="aspect-[5/3] overflow-hidden">
+            <img src={p.data.cover_image} alt={p.data.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          </div>
+          <div class="p-6">
+            <div class="kicker">{new Date(p.data.published_at).toLocaleDateString('de', { month: 'long', year: 'numeric' })}</div>
+            <h2 class="mt-2 font-display text-2xl text-ink">{p.data.title}</h2>
+            <p class="mt-3 text-ink/70">{p.data.excerpt}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

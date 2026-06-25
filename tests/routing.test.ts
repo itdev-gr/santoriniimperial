@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { switchLocale } from '../src/lib/routing';
+import { switchLocale, stripLocalePrefix } from '../src/lib/routing';
 
 describe('switchLocale', () => {
   it('adds /el prefix when switching EN → EL', () => {
@@ -14,5 +14,16 @@ describe('switchLocale', () => {
   });
   it('returns the input untouched when locales are equal', () => {
     expect(switchLocale('/fleet', 'en', 'en')).toBe('/fleet');
+  });
+  it('switches between prefixed locales via stripped path', () => {
+    expect(switchLocale('/de/transfers/', 'de', 'fr')).toBe('/fr/transfers/');
+    expect(switchLocale('/it/tours/sightseeing/', 'it', 'en')).toBe('/tours/sightseeing/');
+  });
+});
+
+describe('stripLocalePrefix', () => {
+  it('removes known locale prefixes', () => {
+    expect(stripLocalePrefix('/fr/contact/')).toBe('/contact/');
+    expect(stripLocalePrefix('/el')).toBe('/');
   });
 });

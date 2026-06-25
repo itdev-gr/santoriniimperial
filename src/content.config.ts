@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 const tourSchema = z.object({
   slug: z.string(),
   title: z.string(),
-  locale: z.enum(['en', 'el']),
+  locale: z.enum(['en', 'el', 'de', 'fr', 'it']),
   hero_image: z.string(),
   duration_hours: z.number(),
   format: z.string(),
@@ -18,7 +18,7 @@ const tourSchema = z.object({
 const blogSchema = z.object({
   slug: z.string(),
   title: z.string(),
-  locale: z.enum(['en', 'el']),
+  locale: z.enum(['en', 'el', 'de', 'fr', 'it']),
   published_at: z.coerce.date(),
   cover_image: z.string(),
   excerpt: z.string(),

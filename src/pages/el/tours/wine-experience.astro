@@ -13,7 +13,7 @@ const entry = await getEntry('tours', 'el/wine-experience');
 if (!entry) throw new Error('Missing tours/el/wine-experience content entry');
 const tour = entry.data;
 ---
-<BaseLayout title={`${tour.title} — Santorini Imperial`} locale="el" pathname="/el/tours/wine-experience/" image={tour.hero_image}>
+<BaseLayout title={`${tour.title} | Santorini Imperial`} description={(entry.body ?? '').split(/\r?\n/).map((l) => l.trim()).find((l) => l && !l.startsWith('#')) ?? ''} locale="el" pathname="/el/tours/wine-experience/" image={tour.hero_image}>
   <Header slot="header" locale="el" pathname="/el/tours/wine-experience/" />
 
   <Hero

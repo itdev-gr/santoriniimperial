@@ -1,10 +1,3 @@
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
-@import '@fontsource/playfair-display/400.css';
-@import '@fontsource/playfair-display/700.css';
-
 @import "tailwindcss";
 
 /* DESIGN.md tokens — single source of truth */
@@ -21,9 +14,9 @@
   --color-footer-bg: #0F0F0F;
   --color-whatsapp: #25D366;
 
-  /* Fonts */
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: Inter, system-ui, sans-serif;
+  /* Fonts — single sans-serif stack site-wide */
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);
 
   /* Font sizes + line-heights */
   --text-display-xl: 60px;
@@ -53,10 +46,26 @@
 }
 
 @layer base {
-  html { font-family: var(--font-sans); color: var(--color-ink); }
-  body { background: #FFFFFF; }
-  h1, h2, h3 { font-family: var(--font-display); }
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+  }
+  body {
+    background: #FFFFFF;
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 500 !important;
+    letter-spacing: -0.01em;
+  }
   ::selection { background: var(--color-gold); color: #FFFFFF; }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-sans);
+  }
 }
 
 @layer components {
@@ -74,5 +83,29 @@
   }
   .container-page {
     @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .py-section {
+    padding-block: var(--spacing-section);
+  }
+  .py-section-cta {
+    padding-block: var(--spacing-section-cta);
+  }
+}
+
+/* Mobile: scale down oversized display headings */
+@media (max-width: 640px) {
+  .text-display-xl {
+    font-size: 2.125rem;
+    line-height: 1.1;
+  }
+  .text-display-lg {
+    font-size: 1.875rem;
+    line-height: 1.15;
+  }
+  /* Services heading: single full-width line on mobile */
+  #home-services-heading h2 {
+    white-space: nowrap;
+    font-size: 5vw;
+    line-height: 1.1;
   }
 }

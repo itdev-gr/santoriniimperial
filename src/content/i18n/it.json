@@ -1,0 +1,447 @@
+{
+  "meta": {
+    "default_description": "Transfer e tour privati a Santorini. Pick-up aeroporto, porto e hotel, percorsi su misura, prezzi fissi e servizio 24/7.",
+    "home_title": "Santorini Imperial | Transfer & Tour a Santorini",
+    "home_description": "Transfer privati e tour a Santorini con flotta Mercedes-Benz. Pick-up aeroporto, porto e hotel, prezzi fissi, autisti locali, tour enologici e sightseeing — 24/7."
+  },
+  "home": {
+    "hero": {
+      "badge": "Last-Minute & 24/7 Service",
+      "kicker": "SANTORINI IMPERIAL",
+      "headline": "Transfer & Tour a Santorini",
+      "sub": "Transfer e tour privati a Santorini. Aeroporto, porto, hotel e percorsi personalizzati lungo la caldera. Prezzi fissi, accoglienza all'arrivo e servizio 24/7.",
+      "cta_transfer": "Prenota un transfer",
+      "cta_tour": "Prenota un tour"
+    },
+    "services": {
+      "kicker": "COSA FACCIAMO",
+      "heading": "Transfer, Tour & Servizio Premium",
+      "sub": "Tutto ciò che serve per muoversi a Santorini, dal transfer aeroporto al tour privato di una giornata intera.",
+      "cta": "Scopri",
+      "items": [
+        {
+          "title": "Transfer",
+          "tag": "Aeroporto · Porto · Hotel",
+          "body": "Transfer Mercedes affidabili su tutta Santorini. Accoglienza all'arrivo, monitoraggio voli, prezzi fissi.",
+          "price": "Su richiesta",
+          "href": "/transfers/"
+        },
+        {
+          "title": "Tour",
+          "tag": "Privati & Su misura",
+          "body": "Percorsi enologici, sightseeing, giornate intere — al ritmo e alla luce che preferisci.",
+          "price": "Su richiesta",
+          "href": "/tours/"
+        },
+        {
+          "title": "Premium",
+          "tag": "Esperienza VIP",
+          "body": "Veicoli superiori, autista dedicato e itinerari completamente personalizzati.",
+          "price": "Su richiesta",
+          "href": "/contact/"
+        }
+      ]
+    },
+    "about_teaser": {
+      "kicker": "CHI SIAMO",
+      "heading": "Radicati sull'isola. Gestiti da locali.",
+      "body": "Santorini Imperial è un team di autisti autorizzati che ama l'isola abbastanza da presentarsi alle 3 del mattino — così non devi mai preoccuparti del transfer.",
+      "cta": "Scopri di più",
+      "stats": [
+        {
+          "value": "24/7",
+          "label": "Al vostro servizio"
+        },
+        {
+          "value": "5.0",
+          "label": "Valutazione Google"
+        },
+        {
+          "value": "100%",
+          "label": "Autorizzati & assicurati"
+        }
+      ]
+    },
+    "why": {
+      "kicker": "Perché noi",
+      "heading": "Prezzi fissi. Flotta Mercedes. Tutto l'anno.",
+      "items": [
+        {
+          "title": "Prezzi fissi",
+          "body": "Il prezzo indicato è quello che paghi. Nessun surge, nessun supplemento bagagli."
+        },
+        {
+          "title": "Servizio 24/7",
+          "body": "Traghetto notturno, volo mattutino, pick-up a mezzogiorno — siamo disponibili quando serve."
+        },
+        {
+          "title": "Autisti autorizzati",
+          "body": "Ogni autista è licenziato, assicurato e parla fluentemente inglese."
+        },
+        {
+          "title": "Pagamento con carta",
+          "body": "Tutte le carte accettate. Nessuna commissione. Fattura su richiesta."
+        }
+      ]
+    },
+    "tours": {
+      "kicker": "ESPERIENZE SELEZIONATE",
+      "heading": "Tours",
+      "sub": "Abbina qualsiasi esperienza a un transfer — gestiamo l'intera giornata.",
+      "cta": "Vedi tutti i tour",
+      "heading_aside": "Esperienze private",
+      "card_cta": "Vedi dettagli",
+      "private_label": "Privato"
+    },
+    "fleet": {
+      "heading": "La nostra gamma Mercedes-Benz",
+      "sub": "Ogni veicolo climatizzato, recentemente manutenuto, adatto alle strade strette di Santorini.",
+      "cta": "Vedi l'intera flotta"
+    },
+    "testimonials": {
+      "heading": "Cosa dicono i viaggiatori",
+      "google_reviews": "Leggi le recensioni Google"
+    },
+    "tour_cards": [
+      {
+        "slug": "wine-experience",
+        "title": "Tour enologico privato",
+        "duration": "4 ore",
+        "summary": "Santo Wines, Venetsanos ed Estate Argyros — degustazioni sulla caldera."
+      },
+      {
+        "slug": "sightseeing",
+        "title": "Tour privato dell'isola",
+        "duration": "4 ore",
+        "summary": "Red Beach, faro di Akrotiri, Santo Wines e Oia."
+      },
+      {
+        "slug": "full-day",
+        "title": "Tour privato giornata intera",
+        "duration": "7-8 ore",
+        "summary": "Sei tappe nella metà sud, chiusura al tramonto di Oia."
+      },
+      {
+        "slug": "luxe-photo-tour",
+        "title": "Crea il tuo tour privato",
+        "duration": "Flessibile",
+        "summary": "Tu ci dai la wishlist — noi costruiamo percorso, ordine e luce."
+      }
+    ],
+    "fleet_cards": [
+      {
+        "model": "Mercedes-Benz E-Class",
+        "capacity": "Fino a 3 passeggeri",
+        "note": "Berlina executive."
+      },
+      {
+        "model": "Mercedes-Benz V-Class",
+        "capacity": "Fino a 7 passeggeri",
+        "note": "MPV di lusso."
+      },
+      {
+        "model": "Mercedes-Benz Sprinter 12",
+        "capacity": "Fino a 12 passeggeri",
+        "note": "Sedili capitano in pelle, aria condizionata, Wi-Fi su richiesta."
+      },
+      {
+        "model": "Mercedes-Benz Sprinter 20",
+        "capacity": "Fino a 20 passeggeri",
+        "note": "Il nostro più grande."
+      }
+    ],
+    "testimonials_list": [
+      {
+        "quote": "L'autista ci aspettava agli arrivi con il nostro nome prima ancora dei bagagli. Ha dato il tono a tutto il viaggio.",
+        "name": "Adriana R.",
+        "trip": "Transfer aeroporto, maggio 2025"
+      },
+      {
+        "quote": "Il tour enologico era ben ritmato — tempo sufficiente in ogni cantina per assaggiare davvero, mai di fretta.",
+        "name": "Daniel M.",
+        "trip": "Esperienza vino, luglio 2025"
+      },
+      {
+        "quote": "Prenotazione semplice, V-Class impeccabile, e il prezzo indicato era quello pagato. Esattamente ciò che vuoi.",
+        "name": "Sofia K.",
+        "trip": "Tour sightseeing, agosto 2025"
+      }
+    ],
+    "cta_band": {
+      "headline": "Book Your Santorini Transfer Today",
+      "cta": "Start Your Booking"
+    },
+    "faq": {
+      "kicker": "FAQ",
+      "heading": "Domande & Risposte",
+      "items": [
+        {
+          "q": "Monitorate i voli in caso di ritardo?",
+          "a": "Sì, sempre. Monitoriamo il vostro volo in tempo reale e adattiamo l'orario di prelievo. Nessun costo aggiuntivo per ritardi ragionevoli."
+        },
+        {
+          "q": "Quali veicoli sono disponibili?",
+          "a": "La nostra flotta è interamente Mercedes-Benz: Classe E (fino a 3 passeggeri), Classe V (fino a 7), Sprinter 12 posti e Sprinter 20 posti."
+        },
+        {
+          "q": "Come si prenota?",
+          "a": "Tramite il modulo di prenotazione online, via e-mail o WhatsApp. Confermiamo entro un'ora di giorno e entro quattro ore di notte."
+        },
+        {
+          "q": "Posso combinare un tour e un transfer nello stesso giorno?",
+          "a": "Assolutamente. Molti ospiti atterrano, fanno un tour o una degustazione di vini e si trasferiscono in hotel in una sola prenotazione."
+        },
+        {
+          "q": "Siete disponibili 24 ore su 24?",
+          "a": "Sì, 24/7, ogni giorno dell'anno compresi i giorni festivi. Volo all'alba o traghetto notturno — ci siamo."
+        },
+        {
+          "q": "Quali metodi di pagamento accettate?",
+          "a": "Tutte le principali carte di credito e debito, bonifico bancario e contanti. Il prezzo indicato è il prezzo finale, senza sorprese."
+        },
+        {
+          "q": "Posso cancellare o modificare la prenotazione?",
+          "a": "Sì. Chiediamo almeno 24 ore di preavviso per un rimborso completo. Per le modifiche, contattateci il prima possibile."
+        }
+      ]
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "tours": "Tour",
+    "transfers": "Transfer",
+    "premium": "Premium Services",
+    "fleet": "Fleet",
+    "fleet_full": "La nostra flotta",
+    "gallery": "Galleria",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "blog": "Blog",
+    "book": "Book Now",
+    "book_transfer": "Prenota transfer",
+    "book_tour": "Prenota tour",
+    "brand_line1": "Santorini",
+    "brand_line2": "Transfers & Tours"
+  },
+  "transfers": {
+    "hero": {
+      "kicker": "TRASPORTO TERRESTRE",
+      "headline_line1": "Servizi transfer",
+      "headline_line2": "premium a Santorini",
+      "headline": "Servizi transfer premium a Santorini",
+      "sub": "Aeroporto, porto, hotel e autista privato — flotta Mercedes, autisti locali autorizzati, prezzi fissi, 24/7."
+    },
+    "services": [
+      {
+        "title": "Transfer aeroporto",
+        "body": "Accoglienza agli arrivi JTR, assistenza bagagli, diretto al tuo alloggio. Monitoraggio voli — nessun costo per ritardi ragionevoli."
+      },
+      {
+        "title": "Transfer porto",
+        "body": "Coordinato con gli arrivi delle crociere ad Athinios. Autista al molo con cartello. Bagagli e passeggini inclusi."
+      },
+      {
+        "title": "Hotel a hotel",
+        "body": "Cambi alloggio? Ti spostiamo porta a porta, lo stesso giorno o programmato."
+      },
+      {
+        "title": "Transfer matrimonio",
+        "body": "Flotta completa per matrimoni — orari coordinati, fiocchi opzionali, sconti gruppo."
+      },
+      {
+        "title": "Spiaggia & sera",
+        "body": "Gite in spiaggia, transfer serali, rientri tardivi. Sicuro, sobrio, puntuale."
+      },
+      {
+        "title": "Autista 24 ore",
+        "body": "Il tuo autista e Mercedes per la giornata. Itinerario al volo, soste quando vuoi, niente tassametro."
+      }
+    ]
+  },
+  "fleet": {
+    "hero": {
+      "kicker": "LA FLOTTA",
+      "headline": "Flotta",
+      "sub": "Recentemente manutenuti, assicurati, climatizzati — per il comfort sulle strade strette dell'isola."
+    },
+    "vehicles": [
+      {
+        "model": "Mercedes-Benz E-Class",
+        "capacity": "Fino a 3 passeggeri",
+        "luggage": "2 grandi + 2 a mano",
+        "ideal": "Aeroporto, coppie, viaggi d'affari.",
+        "note": "Berlina executive. Ideale per coppie e arrivi in aeroporto."
+      },
+      {
+        "model": "Mercedes-Benz V-Class",
+        "capacity": "Fino a 7 passeggeri",
+        "luggage": "5 grandi + 5 a mano",
+        "ideal": "Famiglie, piccoli gruppi, matrimoni.",
+        "note": "MPV di lusso. Accesso in piedi, sedili singoli, bagagliaio ampio."
+      },
+      {
+        "model": "Mercedes-Benz Sprinter 12",
+        "capacity": "Fino a 12 passeggeri",
+        "luggage": "10+ valigie grandi",
+        "ideal": "Gruppi matrimonio, arrivi corporate, amici.",
+        "note": "Sedili capitano in pelle, aria condizionata, Wi-Fi su richiesta."
+      },
+      {
+        "model": "Mercedes-Benz Sprinter 20",
+        "capacity": "Fino a 20 passeggeri",
+        "luggage": "Capacità gruppo completa",
+        "ideal": "Famiglie numerose, eventi, navette.",
+        "note": "Il nostro più grande. Manutenuto in flotta, veicolo di supporto se necessario."
+      }
+    ],
+    "luggage_label": "Bagagli",
+    "ideal_label": "Ideale per",
+    "reserve_vehicle": "Prenota questo veicolo"
+  },
+  "about": {
+    "hero": {
+      "kicker": "CHI SIAMO",
+      "headline": "Radicati sull'isola. Gestiti da locali.",
+      "sub": "Santorini Imperial è un piccolo team di professionisti autorizzati che ama l'isola abbastanza da alzarsi alle 3 del mattino — così non devi preoccuparti del transfer."
+    },
+    "pillars": [
+      {
+        "title": "Locali",
+        "body": "Viviamo qui. Ogni autista, ogni guida, ogni conferma — mai tramite un call center estero."
+      },
+      {
+        "title": "Solo Mercedes",
+        "body": "Una flotta curata — perché la coerenza fa la differenza tra un passaggio e un transfer."
+      },
+      {
+        "title": "Prezzo fisso, sempre",
+        "body": "Il preventivo è il prezzo. Niente surge, niente sorprese bagagli, niente cambi alla porta."
+      }
+    ],
+    "story": {
+      "heading": "Chi siamo",
+      "paragraphs": [
+        "Santorini Imperial nasce da una convinzione semplice: arrivare a Santorini dovrebbe essere semplice quanto l'isola è bella. Siamo un team locale a conduzione familiare di autisti e guide autorizzati, con oltre 12 anni di esperienza in transfer premium e tour privati in tutta la caldera di Santorini.",
+        "Dal momento in cui atterrate, ci occupiamo di ogni dettaglio. I nostri transfer dall'aeroporto e dal porto di Santorini sono a prezzo fisso, con accoglienza meet-and-greet e una moderna flotta Mercedes-Benz, che siate diretti a Oia, a Fira o a una villa a picco sul mare, il vostro tragitto è comodo, puntuale e senza stress, 24 ore su 24.",
+        "Oltre ai transfer, creiamo tour privati di Santorini costruiti interamente su di voi: itinerari al tramonto, visite alle cantine, punti panoramici vulcanici e gli angoli nascosti che la maggior parte dei visitatori non vede mai. Curiamo anche i transfer per matrimoni e gli itinerari su misura con la stessa attenzione, discrezione e cura del dettaglio.",
+        "Poiché Santorini è la nostra casa, conosciamo a memoria ogni villaggio, ogni vigneto e ogni punto panoramico. Viaggiate con noi e scoprite l'isola come i locali, con affidabilità, ospitalità autentica e un servizio di lusso all'altezza della vostra vacanza. Benvenuti a Santorini Imperial."
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "CONTATTI",
+      "headline": "Raccontaci il tuo piano.",
+      "sub": "Compila il modulo o contattaci direttamente — rispondiamo entro un'ora di giorno, entro quattro ore di notte."
+    },
+    "channels": {
+      "phone": "Telefono / WhatsApp / Viber",
+      "email": "Email",
+      "socials": "Social"
+    },
+    "form_kicker": "RICHIESTA PRENOTAZIONE",
+    "form_heading": "Raccontaci il tuo piano.",
+    "form_sub": "Rispondiamo entro un'ora di giorno, entro quattro ore di notte.",
+    "call_now": "Chiama ora",
+    "find_kicker": "DOVE SIAMO",
+    "find_heading": "Basati sull'isola.",
+    "maps_link": "Apri in Google Maps →",
+    "page_title": "Contatti",
+    "intro": "Contattaci per transfer e tour privati a Santorini. Siamo felici di rendere il tuo soggiorno comodo, semplice e indimenticabile.",
+    "business_name": "Santorini Imperial",
+    "location": "Santorini, Grecia",
+    "phone_label": "T:",
+    "email_label": "E:",
+    "instagram_cta": "Seguici su Instagram",
+    "map_title": "Santorini Imperial — posizione su Google Maps",
+    "form_side_kicker": "Inviaci un messaggio",
+    "form_side_heading": "Cosa possiamo fare per te?",
+    "send": "Invia messaggio",
+    "success_kicker": "Messaggio ricevuto",
+    "success_heading": "Grazie — ti risponderemo a breve.",
+    "success_sub": "Modulo dimostrativo — nessun messaggio è stato inviato.",
+    "fields": {
+      "name": "Il tuo nome",
+      "email": "La tua email",
+      "message": "Messaggio",
+      "name_placeholder": "Mario Rossi",
+      "email_placeholder": "email@esempio.com",
+      "message_placeholder": "Date, punto di pick-up e cosa ti serve..."
+    },
+    "whatsapp_alt": "oppure scrivici su WhatsApp",
+    "whatsapp_or": "oppure scrivici su",
+    "whatsapp_brand": "WhatsApp"
+  },
+  "gallery": {
+    "kicker": "IL NOSTRO LAVORO",
+    "headline": "L'isola, attraverso il nostro obiettivo",
+    "sub": "Una raccolta di tour, flotta e momenti santoriniani di cui siamo stati parte.",
+    "cta": "Pianifica una giornata con noi",
+    "cta_band_headline": "Crea il tuo album di Santorini.",
+    "cta_band_cta": "Prenota un tour"
+  },
+  "tours_page": {
+    "hours": "ORE",
+    "reserve": "Prenota questo tour",
+    "included_kicker": "INCLUSO",
+    "itinerary_kicker": "ITINERARIO",
+    "faq_kicker": "FAQ",
+    "faq_heading": "Da sapere",
+    "pair_kicker": "ABBINA CON",
+    "pair_heading": "Altri tre modi per trascorrere la giornata",
+    "book_headline_prefix": "Prenota",
+    "book_cta": "Inizia la prenotazione",
+    "hero_headline": "Tour a Santorini",
+    "tours_sub": "Tour privati esclusivi per il vostro gruppo. Costruiti attorno al vostro ritmo, orario e interessi."
+  },
+  "footer": {
+    "services": "Servizi",
+    "airport": "Transfer aeroporto",
+    "port": "Transfer porto",
+    "tours": "Tour selezionati",
+    "fleet": "La nostra flotta",
+    "tours_heading": "Tour",
+    "company": "Azienda",
+    "contact": "Contatti",
+    "location": "Santorini, Grecia",
+    "open": "Aperto 24/7",
+    "copyright": "Tutti i diritti riservati.",
+    "powered": "Powered by",
+    "tour_links": [
+      {
+        "slug": "wine-experience",
+        "label": "Tour enologico privato"
+      },
+      {
+        "slug": "sightseeing",
+        "label": "Tour privato dell'isola"
+      },
+      {
+        "slug": "full-day",
+        "label": "Tour privato giornata intera"
+      },
+      {
+        "slug": "luxe-photo-tour",
+        "label": "Crea il tuo tour privato"
+      }
+    ]
+  },
+  "pages": {
+    "transfers_title": "Transfer Santorini — Aeroporto & Porto | Santorini Imperial",
+    "about_title": "Chi siamo | Santorini Imperial Transfer & Tour",
+    "contact_title": "Contatti | Prenota Transfer & Tour — Santorini Imperial",
+    "fleet_title": "La nostra flotta Mercedes-Benz | Santorini Imperial",
+    "gallery_title": "Galleria — Transfer & Tour Santorini | Santorini Imperial",
+    "tours_title": "Tour Privati Santorini | Vino, Visite & Giornata Intera",
+    "blog_title": "Blog di Viaggio Santorini | Santorini Imperial",
+    "transfers_description": "Transfer privati a Santorini con flotta Mercedes-Benz. Prelievo in aeroporto (JTR) e al porto di Athinios, hotel-to-hotel, monitoraggio voli, prezzi fissi, 24/7.",
+    "about_description": "Santorini Imperial è un team locale autorizzato con oltre 12 anni di esperienza in transfer privati e tour dell'isola. Flotta Mercedes-Benz, prezzi fissi, 24/7.",
+    "contact_description": "Contatta Santorini Imperial per transfer privati e tour. Telefono, WhatsApp o email, prelievo in aeroporto e al porto, prezzi fissi, servizio 24/7.",
+    "fleet_description": "La flotta di Santorini Imperial: Mercedes-Benz Classe E, Classe V e Sprinter per transfer aeroportuali, prelievo al porto e tour privati, fino a 20 passeggeri.",
+    "gallery_description": "Sfoglia le foto della flotta Mercedes-Benz di Santorini Imperial, le viste sulla caldera, i tour del vino e i luoghi più belli dell'isola.",
+    "tours_description": "Tour privati a Santorini con autista-guida locale. Degustazione di vini, visite ai luoghi simbolo, giornate intere lungo la caldera e tour fotografici in Mercedes-Benz.",
+    "blog_description": "Consigli di viaggio, organizzazione dei transfer e guide ai tour di Santorini dal team locale di Santorini Imperial.",
+    "book_title": "Prenota Online — Transfer & Tour Santorini | Santorini Imperial",
+    "book_description": "Prenota online il tuo transfer o tour privato a Santorini. Prelievo in aeroporto e al porto, prezzi fissi e conferma 24/7 con Santorini Imperial."
+  }
+}

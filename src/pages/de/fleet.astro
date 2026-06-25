@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import FleetVehicles from '../../components/FleetVehicles.astro';
+import { createT, localePath, bundleForLocale } from '../../lib/i18n';
+
+const locale = 'de' as const;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+const vehicles = bundleForLocale(locale).fleet.vehicles;
+const images = ['/images/gallery/09.jpg', '/images/gallery/02.jpg', '/images/gallery/15.jpg', '/images/gallery/14.jpg'];
+---
+<BaseLayout title={t('pages.fleet_title')} description={t('pages.fleet_description')} locale={locale} pathname="/de/fleet/">
+  <Header slot="header" locale={locale} pathname="/de/fleet/" />
+  <Hero image="/images/hero/hero-fleet.jpg" headline={t('fleet.hero.headline')} minHeight="70vh" />
+  <FleetVehicles locale={locale} vehicles={vehicles} images={images} contactHref={lp('/contact/')} />
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

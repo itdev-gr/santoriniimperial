@@ -4,23 +4,22 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Hero from '../../components/Hero.astro';
 import TourCard from '../../components/TourCard.astro';
-import CtaBand from '../../components/CtaBand.astro';
+import { createT } from '../../lib/i18n';
 import { getCollection } from 'astro:content';
 
+const t = createT('en');
 const tours = (await getCollection('tours', (e) => e.data.locale === 'en')).sort((a, b) => a.data.order - b.data.order);
 ---
-<BaseLayout title="Curated Tours — Santorini Imperial" locale="en" pathname="/tours/">
+<BaseLayout title={t('pages.tours_title')} description={t('pages.tours_description')} locale="en" pathname="/tours/">
   <Header slot="header" locale="en" pathname="/tours/" />
   <Hero
     image="/images/hero/hero-tours.jpg"
-    kicker="CURATED EXPERIENCES"
-    headline="Four Ways to See the Island"
-    sub="Every tour is fully private — your party only. Mercedes-Benz vehicle and a licensed guide where relevant."
-    ctaPrimary={{ label: 'Plan Your Day', href: '/contact/' }}
+    headline={t('tours_page.hero_headline')}
+    sub={t('tours_page.tours_sub')}
     minHeight="70vh"
   />
   <section class="bg-white py-section">
-    <div class="container-page grid gap-6 md:grid-cols-2">
+    <div class="container-page grid gap-8 md:grid-cols-2">
       {tours.map(tt => (
         <TourCard
           href={`/tours/${tt.data.slug}/`}
@@ -29,10 +28,11 @@ const tours = (await getCollection('tours', (e) => e.data.locale === 'en')).sort
           duration={`${tt.data.duration_hours} hours · ${tt.data.format}`}
           summary={(tt.body ?? '').split('\n')[0] ?? ''}
           priceFrom={tt.data.price_from_eur ? `From €${tt.data.price_from_eur}` : 'By request'}
+          ctaLabel={t('home.tours.card_cta')}
+          privateLabel={t('home.tours.private_label')}
         />
       ))}
     </div>
   </section>
-  <CtaBand headline="Plan your day, end to end." cta={{ label: 'Start Planning', href: '/contact/' }} />
   <Footer slot="footer" locale="en" />
 </BaseLayout>

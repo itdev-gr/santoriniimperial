@@ -1,13 +1,43 @@
-export type Locale = 'en' | 'el';
+import { bundles, type BundleKey } from './bundles';
 
-export const LOCALES: Locale[] = ['en', 'el'];
+export type Locale = 'en' | 'el' | 'de' | 'fr' | 'it';
+
+export const LOCALES: Locale[] = ['en', 'el', 'de', 'fr', 'it'];
 export const DEFAULT_LOCALE: Locale = 'en';
-export const URL_PREFIX: Record<Locale, string> = { en: '', el: '/el' };
+
+export const URL_PREFIX: Record<Locale, string> = {
+  en: '',
+  el: '/el',
+  de: '/de',
+  fr: '/fr',
+  it: '/it',
+};
+
+export const HTML_LANG: Record<Locale, string> = {
+  en: 'en',
+  el: 'el',
+  de: 'de',
+  fr: 'fr',
+  it: 'it',
+};
+
+export const OG_LOCALE: Record<Locale, string> = {
+  en: 'en_US',
+  el: 'el_GR',
+  de: 'de_DE',
+  fr: 'fr_FR',
+  it: 'it_IT',
+};
+
+const BUNDLE_KEY: Record<Locale, BundleKey> = {
+  en: 'en',
+  el: 'gr',
+  de: 'de',
+  fr: 'fr',
+  it: 'it',
+};
 
 type Bundle = Record<string, unknown>;
-type Bundles = { en: Bundle; gr: Bundle };
-
-const BUNDLE_KEY: Record<Locale, keyof Bundles> = { en: 'en', el: 'gr' };
 
 function lookup(bundle: Bundle, key: string): string | undefined {
   const parts = key.split('.');
@@ -22,12 +52,12 @@ function lookup(bundle: Bundle, key: string): string | undefined {
   return typeof cur === 'string' ? cur : undefined;
 }
 
-export function createT(locale: Locale, bundles: Bundles) {
+export function createT(locale: Locale, bundleMap: Record<BundleKey, Bundle> = bundles) {
   return (key: string): string => {
-    const primary = lookup(bundles[BUNDLE_KEY[locale]], key);
+    const primary = lookup(bundleMap[BUNDLE_KEY[locale]], key);
     if (primary !== undefined) return primary;
     if (locale !== 'en') {
-      const fallback = lookup(bundles.en, key);
+      const fallback = lookup(bundleMap.en, key);
       if (fallback !== undefined) return fallback;
     }
     console.warn(`[i18n] missing key: ${key}`);
@@ -38,5 +68,11 @@ export function createT(locale: Locale, bundles: Bundles) {
 export function localePath(locale: Locale, path: string): string {
   const prefix = URL_PREFIX[locale];
   if (!path.startsWith('/')) path = '/' + path;
+  if (prefix === '') return path;
+  if (path === '/') return `${prefix}/`;
   return prefix + path;
+}
+
+export function bundleForLocale(locale: Locale): Bundle {
+  return bundles[BUNDLE_KEY[locale]];
 }

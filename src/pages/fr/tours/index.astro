@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/Hero.astro';
+import TourCard from '../../../components/TourCard.astro';
+import { getCollection } from 'astro:content';
+import { createT, localePath } from '../../../lib/i18n';
+
+const locale = 'fr' as const;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+const tours = (await getCollection('tours', (e) => e.data.locale === 'fr')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={t('pages.tours_title')} description={t('pages.tours_description')} locale={locale} pathname="/fr/tours/">
+  <Header slot="header" locale={locale} pathname="/fr/tours/" />
+  <Hero
+    image="/images/hero/hero-tours.jpg"
+    headline={t('tours_page.hero_headline')}
+    sub={t('tours_page.tours_sub')}
+    minHeight="70vh"
+  />
+  <section class="bg-white py-section">
+    <div class="container-page grid gap-8 md:grid-cols-2">
+      {tours.map((tt) => (
+        <TourCard
+          href={lp(`/tours/${tt.data.slug}/`)}
+          image={tt.data.hero_image}
+          title={tt.data.title}
+          duration={`${tt.data.duration_hours} · ${tt.data.format}`}
+          summary={(tt.body ?? '').split('\n')[0] ?? ''}
+          priceFrom={tt.data.price_from_eur ? `€${tt.data.price_from_eur}+` : null}
+        />
+      ))}
+    </div>
+  </section>
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

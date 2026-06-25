@@ -1,48 +1,136 @@
 ---
 export interface Props {
   image: string;
-  kicker: string;
-  headline: string;
-  sub: string;
-  ctaPrimary: { label: string; href: string };
+  kicker?: string;
+  headline?: string;
+  headlineLine1?: string;
+  headlineLine2?: string;
+  sub?: string;
+  badge?: string;
+  ctaPrimary?: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
   stats?: Array<{ value: string; suffix?: string; label: string }>;
   minHeight?: string;
 }
 const {
-  image, kicker, headline, sub,
-  ctaPrimary, ctaSecondary,
+  image,
+  kicker,
+  headline,
+  headlineLine1,
+  headlineLine2,
+  sub,
+  badge,
+  ctaPrimary,
+  ctaSecondary,
   stats,
   minHeight = '100vh',
 } = Astro.props;
+
+const hasSplitHeadline = headlineLine1 && headlineLine2;
 ---
-<section class="relative overflow-hidden flex items-center" style={`min-height:${minHeight}`}>
+<section class="hero-section relative flex items-center overflow-hidden" style={`--hero-min-height: ${minHeight}`}>
   <div class="absolute inset-0 -z-10">
     <img src={image} alt="" aria-hidden="true" class="hero-bg h-full w-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/60"></div>
+    <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
   </div>
-  <div class="container-page py-40 text-white flex flex-col items-center text-center max-w-measure mx-auto">
-    <div class="kicker text-gold">{kicker}</div>
-    <h1 class="hero-h1 mt-4 font-display text-display-xl font-bold leading-[0.95]">{headline}</h1>
-    <p class="hero-sub mt-6 text-lead text-white/88">{sub}</p>
-    <div class="hero-ctas mt-10 flex flex-col sm:flex-row gap-3">
-      <a href={ctaPrimary.href} class="btn-primary">{ctaPrimary.label} <span aria-hidden>→</span></a>
-      {ctaSecondary && <a href={ctaSecondary.href} class="btn-secondary">☎ {ctaSecondary.label}</a>}
-    </div>
+
+  <div class="hero-inner mx-auto flex w-full flex-col items-center px-4 py-20 text-center text-white sm:px-6 sm:py-28 md:py-40 lg:px-8 xl:px-10">
+    {badge && (
+      <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-pill border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/90 backdrop-blur-md">
+        <span class="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true"></span>
+        {badge}
+      </div>
+    )}
+
+    {kicker && <div class="kicker text-gold">{kicker}</div>}
+
+    {hasSplitHeadline ? (
+      <h1 class="hero-h1 mt-4 w-full max-w-none font-display text-[clamp(3rem,11vw,6rem)] font-bold leading-[0.9] tracking-tight">
+        <span class="hero-h1-line block w-full">{headlineLine1}</span>
+        <span class="hero-h1-line block w-full text-white/95">{headlineLine2}</span>
+      </h1>
+    ) : (
+      <h1 class="hero-h1 mt-4 w-full max-w-none font-display text-[clamp(2rem,min(7.5vw,8.5vh),5.75rem)] font-bold leading-none tracking-tight sm:whitespace-nowrap">
+        {headline}
+      </h1>
+    )}
+
+    {sub && <p class="hero-sub mt-6 w-full max-w-none px-0 text-lead text-white/88">{sub}</p>}
+
+    {(ctaPrimary || ctaSecondary) && (
+      <div class="hero-ctas mt-10 flex w-full max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
+        {ctaPrimary && (
+          <a href={ctaPrimary.href} class="btn-primary min-w-[180px] justify-center">{ctaPrimary.label} <span aria-hidden>→</span></a>
+        )}
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class="btn-secondary min-w-[180px] justify-center">{ctaSecondary.label} <span aria-hidden>→</span></a>
+        )}
+      </div>
+    )}
+
     {stats && stats.length > 0 && (
-      <div class="mt-16 w-full">
-        <div class="flex items-center justify-center gap-12 pt-10 border-t border-white/30">
-          {stats.map(i => (
+      <div class="hero-stats mt-16 w-full max-w-lg">
+        <div class="grid grid-cols-2 gap-4 rounded-card border border-white/15 bg-white/5 p-6 backdrop-blur-md sm:flex sm:items-center sm:justify-center sm:gap-12 sm:p-8">
+          {stats.map((i) => (
             <div class="flex flex-col items-center">
               <div class="font-display text-4xl leading-none">
                 {i.value}{i.suffix && <sup class="text-xl font-normal">{i.suffix}</sup>}
               </div>
-              <div class="mt-1 text-xs uppercase tracking-wider text-white/80">{i.label}</div>
+              <div class="mt-1 text-xs uppercase tracking-wider text-white/75">{i.label}</div>
             </div>
           ))}
         </div>
       </div>
     )}
   </div>
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-xs tracking-widest">SCROLL</div>
 </section>
+
+<style>
+  .hero-section {
+    min-height: var(--hero-min-height, 100vh);
+  }
+
+  .hero-bg {
+    object-position: center center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      145deg,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(10, 10, 10, 0.62) 42%,
+      rgba(201, 168, 76, 0.48) 100%
+    );
+  }
+
+  @media (max-width: 767px) {
+    .hero-section {
+      min-height: clamp(19rem, calc(var(--hero-min-height, 100vh) * 0.52), 26rem);
+    }
+
+    .hero-bg {
+      object-position: center 68%;
+    }
+
+    .hero-inner {
+      padding-top: 7.5rem;
+      padding-bottom: 2rem;
+    }
+
+    .hero-h1 {
+      font-size: clamp(1.5rem, 7vw, 1.95rem) !important;
+      line-height: 1.08 !important;
+      white-space: normal !important;
+    }
+
+    .hero-sub {
+      margin-top: 1rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .hero-ctas {
+      margin-top: 1.5rem;
+    }
+  }
+</style>

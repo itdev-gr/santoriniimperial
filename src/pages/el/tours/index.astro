@@ -4,23 +4,22 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Hero from '../../../components/Hero.astro';
 import TourCard from '../../../components/TourCard.astro';
-import CtaBand from '../../../components/CtaBand.astro';
+import { createT } from '../../../lib/i18n';
 import { getCollection } from 'astro:content';
 
+const t = createT('el');
 const tours = (await getCollection('tours', (e) => e.data.locale === 'el')).sort((a, b) => a.data.order - b.data.order);
 ---
-<BaseLayout title="Εμπειρίες — Santorini Imperial" locale="el" pathname="/el/tours/">
+<BaseLayout title={t('pages.tours_title')} description={t('pages.tours_description')} locale="el" pathname="/el/tours/">
   <Header slot="header" locale="el" pathname="/el/tours/" />
   <Hero
     image="/images/hero/hero-tours.jpg"
-    kicker="ΕΠΙΛΕΓΜΕΝΕΣ ΕΜΠΕΙΡΙΕΣ"
-    headline="Τέσσερις τρόποι να γνωρίσεις το νησί"
-    sub="Κάθε εμπειρία είναι πλήρως ιδιωτική — μόνο η παρέα σου. Όχημα Mercedes-Benz κι εξουσιοδοτημένος ξεναγός όπου χρειάζεται."
-    ctaPrimary={{ label: 'Σχεδίασε τη μέρα σου', href: '/el/contact/' }}
+    headline={t('tours_page.hero_headline')}
+    sub={t('tours_page.tours_sub')}
     minHeight="70vh"
   />
   <section class="bg-white py-section">
-    <div class="container-page grid gap-6 md:grid-cols-2">
+    <div class="container-page grid gap-8 md:grid-cols-2">
       {tours.map(tt => (
         <TourCard
           href={`/el/tours/${tt.data.slug}/`}
@@ -33,6 +32,5 @@ const tours = (await getCollection('tours', (e) => e.data.locale === 'el')).sort
       ))}
     </div>
   </section>
-  <CtaBand headline="Σχεδίασε τη μέρα σου, από την αρχή ως το τέλος." cta={{ label: 'Ξεκίνα τον σχεδιασμό', href: '/el/contact/' }} />
   <Footer slot="footer" locale="el" />
 </BaseLayout>

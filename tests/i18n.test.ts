@@ -1,37 +1,41 @@
 import { describe, it, expect, vi } from 'vitest';
-import { createT, type Locale } from '../src/lib/i18n';
-import en from '../src/content/i18n/en.json';
-import gr from '../src/content/i18n/gr.json';
+import { createT, LOCALES, type Locale } from '../src/lib/i18n';
+import { bundles } from '../src/lib/bundles';
 
 describe('createT', () => {
   it('returns the EN value for a dot-notation key when locale is en', () => {
-    const t = createT('en', { en, gr });
-    expect(t('home.hero.headline')).toBe((en as any).home.hero.headline);
+    const t = createT('en');
+    expect(t('home.hero.headline')).toBe((bundles.en as any).home.hero.headline);
   });
 
   it('returns the GR value when locale is el', () => {
-    const t = createT('el', { en, gr });
-    expect(t('home.hero.headline')).toBe((gr as any).home.hero.headline);
+    const t = createT('el');
+    expect(t('home.hero.headline')).toBe((bundles.gr as any).home.hero.headline);
+  });
+
+  it('returns DE value when locale is de', () => {
+    const t = createT('de');
+    expect(t('nav.home')).toBe('Startseite');
   });
 
   it('falls back to EN when the GR key is missing', () => {
-    const bundles = { en: { foo: 'bar' }, gr: {} } as any;
-    const t = createT('el', bundles);
-    expect(t('foo')).toBe('bar');
+    const bundleMap = { ...bundles, gr: {} } as typeof bundles;
+    const t = createT('el', bundleMap);
+    expect(t('meta.home_title')).toBe((bundles.en as any).meta.home_title);
   });
 
   it('returns the key itself when missing in both bundles (and warns)', () => {
-    const t = createT('en', { en: {}, gr: {} } as any);
+    const empty = { en: {}, gr: {}, de: {}, fr: {}, it: {} } as typeof bundles;
+    const t = createT('en', empty);
     const spy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     expect(t('missing.key')).toBe('missing.key');
     expect(spy).toHaveBeenCalled();
     spy.mockRestore();
   });
 
-  it('narrows Locale type to "en" | "el"', () => {
-    const valid: Locale[] = ['en', 'el'];
-    // @ts-expect-error — "fr" is not a valid locale
-    const _invalid: Locale = 'fr';
-    expect(valid).toHaveLength(2);
+  it('includes five locales', () => {
+    const valid: Locale[] = ['en', 'el', 'de', 'fr', 'it'];
+    expect(LOCALES).toEqual(valid);
+    expect(valid).toHaveLength(5);
   });
 });

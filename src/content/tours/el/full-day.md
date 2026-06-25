@@ -2,7 +2,7 @@
 slug: full-day
 title: "Ιδιωτική Περιήγηση Σαντορίνης"
 locale: el
-hero_image: /images/tours/wine.jpg
+hero_image: /images/gallery/16.jpg
 duration_hours: 8
 format: "Ιδιωτική"
 price_from_eur: null

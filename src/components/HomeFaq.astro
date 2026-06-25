@@ -1,0 +1,196 @@
+---
+export interface FaqItem { q: string; a: string; }
+export interface Props {
+  kicker?: string;
+  heading: string;
+  items: FaqItem[];
+}
+const { kicker, heading, items } = Astro.props;
+---
+<section class="home-faq bg-white py-section">
+  <div class="container-page faq-inner">
+    <div class="faq-head">
+      {kicker && <div class="kicker">{kicker}</div>}
+      <h2 class="faq-heading">{heading}</h2>
+    </div>
+
+    <div class="faq-list">
+      {items.map((item, i) => (
+        <div class="faq-item" data-idx={i}>
+          <button
+            type="button"
+            class="faq-trigger"
+            aria-expanded="false"
+            aria-controls={`faq-body-${i}`}
+          >
+            <span class="faq-question">{item.q}</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path class="faq-icon-v" d="M12 5v14" />
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div id={`faq-body-${i}`} class="faq-body" hidden>
+            <p class="faq-answer">{item.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-inner {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-inner {
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      gap: 4rem;
+      align-items: start;
+    }
+  }
+
+  .faq-head {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-head {
+      position: sticky;
+      top: 8rem;
+    }
+  }
+
+  .faq-heading {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--color-ink);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-warm-border);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-warm-border);
+  }
+
+  .faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 1.375rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    transition: color 0.2s ease;
+  }
+
+  .faq-trigger:focus-visible {
+    outline: 2px solid rgba(201, 168, 76, 0.45);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  .faq-trigger[aria-expanded='true'] .faq-icon-v {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  .faq-trigger[aria-expanded='true'] .faq-icon {
+    color: var(--color-gold);
+  }
+
+  .faq-question {
+    font-size: clamp(1rem, 1.8vw, 1.125rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-ink);
+    transition: color 0.2s ease;
+  }
+
+  .faq-trigger:hover .faq-question {
+    color: var(--color-gold);
+  }
+
+  .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    border: 1.5px solid var(--color-warm-border);
+    color: var(--color-ink);
+    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .faq-trigger:hover .faq-icon,
+  .faq-trigger[aria-expanded='true'] .faq-icon {
+    border-color: var(--color-gold);
+    background-color: rgba(201, 168, 76, 0.06);
+    color: var(--color-gold);
+  }
+
+  .faq-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .faq-icon-v {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform-origin: center;
+  }
+
+  .faq-body {
+    overflow: hidden;
+  }
+
+  .faq-body[hidden] {
+    display: none;
+  }
+
+  .faq-answer {
+    padding-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(10, 10, 10, 0.68);
+    max-width: 44rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq-trigger').forEach((btn) => {
+    const bodyId = btn.getAttribute('aria-controls');
+    const body = bodyId ? document.getElementById(bodyId) : null;
+    if (!body) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        btn.setAttribute('aria-expanded', 'false');
+        body.hidden = true;
+      } else {
+        btn.setAttribute('aria-expanded', 'true');
+        body.hidden = false;
+      }
+    });
+  });
+</script>

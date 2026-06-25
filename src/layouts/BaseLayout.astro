@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css';
 import WhatsAppFab from '../components/WhatsAppFab.astro';
+import { hreflangAlternates, absoluteUrl } from '../lib/seo';
 import type { Locale } from '../lib/i18n';
+import { createT, HTML_LANG, OG_LOCALE, LOCALES } from '../lib/i18n';
 
 export interface Props {
   title: string;
@@ -12,15 +14,20 @@ export interface Props {
 }
 const {
   title,
-  description = 'Private transfers and curated tours of Santorini. Mercedes-Benz fleet, fixed prices, 24/7.',
+  description,
   locale = 'en',
   image = '/images/hero/hero-home.jpg',
   pathname = Astro.url.pathname,
 } = Astro.props;
 
-const htmlLang = locale === 'el' ? 'el' : 'en';
-const enHref = pathname.replace(/^\/el(?=\/|$)/, '') || '/';
-const elHref = pathname.startsWith('/el') ? pathname : '/el' + (pathname === '/' ? '/' : pathname);
+const t = createT(locale);
+const metaDescription = description ?? t('meta.default_description');
+
+const htmlLang = HTML_LANG[locale];
+const site = Astro.site?.href ?? 'https://santoriniimperial.com';
+const alternates = hreflangAlternates(site, pathname, locale);
+const ogImage = image.startsWith('http') ? image : absoluteUrl(site, image);
+const ogAlternates = LOCALES.filter((loc) => loc !== locale).map((loc) => OG_LOCALE[loc]);
 ---
 <!doctype html>
 <html lang={htmlLang}>
@@ -28,14 +35,30 @@ const elHref = pathname.startsWith('/el') ? pathname : '/el' + (pathname === '/'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={alternates.canonical} />
+    {LOCALES.map((loc) => (
+      <link rel="alternate" hreflang={loc} href={alternates.alternates[loc]} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={alternates.xDefault} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:locale" content={htmlLang === 'el' ? 'el_GR' : 'en_US'} />
-    <link rel="alternate" hreflang="en" href={`https://santoriniimperial.local${enHref}`} />
-    <link rel="alternate" hreflang="el" href={`https://santoriniimperial.local${elHref}`} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={alternates.canonical} />
+    <meta property="og:locale" content={OG_LOCALE[locale]} />
+    {ogAlternates.map((alt) => (
+      <meta property="og:locale:alternate" content={alt} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZDSPWZNKP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8ZDSPWZNKP');
+      gtag('config', 'AW-17444343036');
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot name="header" />

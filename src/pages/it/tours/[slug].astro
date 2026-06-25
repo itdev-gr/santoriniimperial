@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Hero from '../../../components/Hero.astro';
+import KickerHeading from '../../../components/KickerHeading.astro';
+import TourCard from '../../../components/TourCard.astro';
+import FaqAccordion from '../../../components/FaqAccordion.astro';
+import CtaBand from '../../../components/CtaBand.astro';
+import { getCollection, render } from 'astro:content';
+import { createT, localePath, bundleForLocale } from '../../../lib/i18n';
+
+const locale = 'it' as const;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+
+export async function getStaticPaths() {
+  const tours = await getCollection('tours', (e) => e.data.locale === 'it' && e.data.slug !== 'wine-experience');
+  return tours.map((tour) => ({ params: { slug: tour.data.slug }, props: { tour } }));
+}
+const { tour } = Astro.props;
+const { Content } = await render(tour);
+const others = (await getCollection('tours', (e) => e.data.locale === 'it' && e.data.slug !== tour.data.slug)).sort((a, b) => a.data.order - b.data.order);
+const pagePath = `/it/tours/${tour.data.slug}/`;
+---
+<BaseLayout title={`${tour.data.title} | Santorini Imperial`} description={(tour.body ?? '').split(/\r?\n/).map((l) => l.trim()).find((l) => l && !l.startsWith('#')) ?? ''} locale={locale} pathname={pagePath} image={tour.data.hero_image}>
+  <Header slot="header" locale={locale} pathname={pagePath} />
+
+  <Hero
+    image={tour.data.hero_image}
+    kicker={`${tour.data.format.toUpperCase()} · ${tour.data.duration_hours} ${t('tours_page.hours')}`}
+    headline={tour.data.title}
+    sub=""
+    ctaPrimary={{ label: t('tours_page.reserve'), href: lp('/contact/') }}
+    minHeight="70vh"
+  />
+
+  <section class="bg-white py-section">
+    <div class="container-page max-w-4xl">
+      <div class="prose prose-ink max-w-none font-sans text-lead"><Content /></div>
+    </div>
+  </section>
+
+  <section class="bg-warm py-section">
+    <div class="container-page grid gap-12 md:grid-cols-2 max-w-4xl">
+      <div>
+        <KickerHeading kicker={t('tours_page.included_kicker')} heading="" align="left" level="h3" />
+        <ul class="mt-4 space-y-2">
+          {tour.data.included.map((i: string) => <li class="flex gap-2"><span class="text-gold">✓</span><span>{i}</span></li>)}
+        </ul>
+      </div>
+      <div>
+        <KickerHeading kicker={t('tours_page.itinerary_kicker')} heading="" align="left" level="h3" />
+        <ul class="mt-4 space-y-2">
+          {tour.data.itinerary.map((it: { time: string; event: string }) => <li class="flex gap-3"><span class="font-display text-gold w-14">{it.time}</span><span>{it.event}</span></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-section">
+    <div class="container-page max-w-3xl">
+      <KickerHeading kicker={t('tours_page.faq_kicker')} heading={t('tours_page.faq_heading')} level="h2" />
+      <div class="mt-8"><FaqAccordion items={tour.data.faq} /></div>
+    </div>
+  </section>
+
+  <section class="bg-warm py-section">
+    <div class="container-page">
+      <KickerHeading kicker={t('tours_page.pair_kicker')} heading={t('tours_page.pair_heading')} />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {others.slice(0, 3).map(o => (
+          <TourCard href={lp(`/tours/${o.data.slug}/`)} image={o.data.hero_image} title={o.data.title} duration={`${o.data.duration_hours}h · ${o.data.format}`} summary="" priceFrom={null} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand headline={`${t('tours_page.book_headline_prefix')} ${tour.data.title}`} cta={{ label: t('tours_page.book_cta'), href: lp('/contact/') }} />
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

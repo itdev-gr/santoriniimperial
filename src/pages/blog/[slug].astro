@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
-<BaseLayout title={`${post.data.title} — Santorini Imperial`} locale="en" pathname={`/blog/${post.data.slug}/`} image={post.data.cover_image}>
+<BaseLayout title={`${post.data.title} | Santorini Imperial`} description={post.data.excerpt} locale="en" pathname={`/blog/${post.data.slug}/`} image={post.data.cover_image}>
   <Header slot="header" locale="en" pathname={`/blog/${post.data.slug}/`} />
   <article class="pt-[113px]">
     <div class="container-page max-w-3xl py-section">

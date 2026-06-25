@@ -1,73 +1,563 @@
 ---
 import { createT, localePath, type Locale } from '../lib/i18n';
-import en from '../content/i18n/en.json';
-import gr from '../content/i18n/gr.json';
+import { stripLocalePrefix } from '../lib/routing';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 
-export interface Props { locale?: Locale; pathname?: string; }
-const { locale = 'en', pathname = Astro.url.pathname } = Astro.props;
-const t = createT(locale, { en, gr });
+export interface Props { locale?: Locale; pathname?: string; solid?: boolean; }
+const { locale = 'en', pathname = Astro.url.pathname, solid = false } = Astro.props;
+const t = createT(locale);
 const lp = (p: string) => localePath(locale, p);
+const homeHref = lp('/');
 
 const links = [
+  { href: homeHref, label: t('nav.home') },
   { href: lp('/tours/'), label: t('nav.tours') },
   { href: lp('/transfers/'), label: t('nav.transfers') },
-  { href: lp('/fleet/'), label: t('nav.fleet') },
-  { href: lp('/gallery/'), label: t('nav.gallery') },
-  { href: lp('/about/'), label: t('nav.about') },
+  { href: lp('/fleet/'), label: t('nav.fleet_full') },
   { href: lp('/contact/'), label: t('nav.contact') },
 ];
+
+const pathBase = stripLocalePrefix(pathname.endsWith('/') ? pathname : `${pathname}/`);
+const isActive = (href: string) => {
+  const hrefBase = stripLocalePrefix(href.endsWith('/') ? href : `${href}/`);
+  if (href === homeHref) return pathBase === '/';
+  return pathBase === hrefBase || pathBase.startsWith(hrefBase);
+};
 ---
 <header
   id="site-header"
-  class="fixed inset-x-0 top-0 z-30 h-[120px] flex items-center transition-[background-color,box-shadow] duration-500"
-  data-transparent="true"
+  class="fixed inset-x-0 top-0 z-30 w-full transition-[background-color,box-shadow] duration-500"
+  data-transparent={solid ? 'false' : 'true'}
+  data-solid={solid ? 'true' : 'false'}
 >
-  <div class="container-page flex w-full items-center justify-between gap-8">
-    <a href={lp('/')} class="flex items-center" aria-label="Santorini Imperial — Home">
-      <img src="/images/logo/si-logo-horizontal.svg" alt="Santorini Imperial" class="h-28 w-auto" width="140" height="140" />
-    </a>
-    <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
-      {links.map(l => (
-        <a href={l.href} class="nav-link relative text-sm font-medium text-ink/80 hover:text-ink transition-colors"
-           data-active={pathname === l.href ? 'true' : 'false'}>
-          {l.label}
-          <span class="underline-fx absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300"></span>
-        </a>
-      ))}
-    </nav>
-    <div class="flex items-center gap-4">
-      <LocaleSwitcher currentLocale={locale} pathname={pathname} />
-      <a href={lp('/contact/')} class="btn-primary text-sm !py-2 !px-4">{t('nav.book')}</a>
+  <div class="header-shell w-full px-4 sm:px-6 lg:px-8 xl:px-10">
+    <div class="header-grid grid w-full items-center gap-4">
+      <a href={homeHref} class="brand-logo justify-self-start" aria-label="Santorini Imperial — Home">
+        <img
+          src="/images/logo/si-logo-horizontal.svg"
+          alt="Santorini Imperial — Transfers & Tours"
+          class="brand-logo-img"
+          width="200"
+          height="200"
+        />
+      </a>
+
+      <nav aria-label="Primary" class="header-nav hidden items-center justify-center gap-5 xl:flex xl:gap-7">
+        {links.map((l) => (
+          <a
+            href={l.href}
+            class="nav-link"
+            data-active={isActive(l.href) ? 'true' : 'false'}
+          >
+            {l.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="header-actions flex items-center justify-self-end gap-2.5 sm:gap-3 lg:gap-4">
+        <div class="header-ctas hidden items-center gap-2 md:flex lg:gap-2.5">
+          <a href={lp('/contact/')} class="btn-ghost-header">{t('nav.book_transfer')}</a>
+          <a href={lp('/tours/')} class="btn-ghost-header">{t('nav.book_tour')}</a>
+        </div>
+
+        <div class="header-locale hidden xl:block">
+          <LocaleSwitcher currentLocale={locale} pathname={pathname} />
+        </div>
+
+        <button
+          type="button"
+          id="menu-toggle"
+          class="menu-toggle xl:hidden"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open menu"
+        >
+          <svg class="menu-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path class="menu-line menu-line-top" d="M4 7h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path class="menu-line menu-line-mid" d="M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path class="menu-line menu-line-bot" d="M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
 
+<div
+  id="mobile-nav"
+  class="mobile-menu xl:hidden"
+  aria-hidden="true"
+  data-open="false"
+>
+    <div class="mobile-menu-panel">
+    <nav aria-label="Mobile" class="mobile-menu-nav">
+      {links.map((l, i) => (
+        <a
+          href={l.href}
+          class="mobile-menu-link"
+          data-active={isActive(l.href) ? 'true' : 'false'}
+          style={`--i:${i}`}
+        >
+          {l.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="mobile-menu-locale">
+      <LocaleSwitcher currentLocale={locale} pathname={pathname} variant="menu" />
+    </div>
+  </div>
+</div>
+
 <style>
-  header[data-transparent="true"] { background-color: transparent; }
-  header[data-transparent="true"] .nav-link { color: rgba(255,255,255,0.85); }
-  header[data-transparent="true"] .nav-link:hover { color: #FFFFFF; }
-  header[data-transparent="true"] .locale-sep { color: rgba(255,255,255,0.55); }
-  header[data-transparent="true"] .locale-alt { color: rgba(255,255,255,0.75); }
-  header[data-transparent="true"] .locale-alt:hover { color: #FFFFFF; }
-  header[data-transparent="false"] {
-    background-color: rgba(248,245,240,0.96);
-    backdrop-filter: saturate(1.1) blur(8px);
-    box-shadow: 0 1px 0 #E5E0D6;
+  .header-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    transition: padding 0.35s ease;
   }
-  header[data-transparent="false"] .nav-link { color: rgba(10,10,10,0.8); }
-  header[data-transparent="false"] .locale-sep { color: rgba(10,10,10,0.4); }
-  header[data-transparent="false"] .locale-alt { color: rgba(10,10,10,0.6); }
-  header[data-transparent="false"] .locale-alt:hover { color: #0A0A0A; }
-  .nav-link:hover .underline-fx { transform: scaleX(1); }
-  .nav-link[data-active="true"] .underline-fx { transform: scaleX(1); }
+
+  @media (min-width: 1024px) {
+    .header-grid {
+      padding-top: 1.15rem;
+      padding-bottom: 1.15rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    header[data-transparent='true'] .header-grid {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+  }
+
+  header[data-transparent='false'] .header-grid {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  @media (min-width: 1024px) {
+    header[data-transparent='false'] .header-grid {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .brand-logo-img {
+    display: block;
+    width: auto;
+    height: 7rem;
+    transition: height 0.35s ease;
+  }
+
+  @media (min-width: 640px) {
+    .brand-logo-img {
+      height: 7.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .brand-logo-img {
+      height: 10.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .brand-logo-img {
+      height: 11.75rem;
+    }
+  }
+
+  header[data-transparent='false'] .brand-logo-img {
+    height: 3.75rem;
+  }
+
+  @media (min-width: 640px) {
+    header[data-transparent='false'] .brand-logo-img {
+      height: 4rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    header[data-transparent='false'] .brand-logo-img {
+      height: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .header-grid {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    }
+
+    .header-nav {
+      grid-column: 2;
+    }
+
+    .header-actions {
+      grid-column: 3;
+    }
+  }
+
+  header[data-transparent='true'] {
+    background-color: transparent;
+  }
+
+  header[data-transparent='false'] {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: saturate(1.1) blur(12px);
+    box-shadow: 0 1px 0 rgba(10, 10, 10, 0.06), 0 8px 30px rgba(10, 10, 10, 0.08);
+  }
+
+  header[data-transparent='true'] .nav-link,
+  header[data-transparent='true'] .menu-toggle {
+    color: #ffffff;
+  }
+
+  header[data-transparent='true'] .btn-ghost-header {
+    border-color: rgba(255, 255, 255, 0.65);
+    color: #ffffff;
+  }
+
+  header[data-transparent='true'] .btn-ghost-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  header[data-transparent='true'] .nav-link {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  header[data-transparent='true'] .nav-link:hover,
+  header[data-transparent='true'] .nav-link[data-active='true'] {
+    color: #ffffff;
+  }
+
+  header[data-transparent='false'] .nav-link,
+  header[data-transparent='false'] .menu-toggle {
+    color: rgba(10, 10, 10, 0.88);
+  }
+
+  header[data-transparent='false'] .btn-ghost-header {
+    border-color: rgba(10, 10, 10, 0.22);
+    color: rgba(10, 10, 10, 0.85);
+  }
+
+  header[data-transparent='false'] .btn-ghost-header:hover {
+    background-color: rgba(10, 10, 10, 0.05);
+  }
+
+  header[data-transparent='false'] .nav-link {
+    color: rgba(10, 10, 10, 0.72);
+  }
+
+  header[data-transparent='false'] .nav-link:hover,
+  header[data-transparent='false'] .nav-link[data-active='true'] {
+    color: #0a0a0a;
+  }
+
+  header[data-transparent='false'] :global(.header-locale .locale-trigger) {
+    color: #0a0a0a;
+  }
+
+  header[data-menu-open='true'] {
+    z-index: 50;
+  }
+
+  header[data-menu-open='true'] .menu-toggle {
+    color: var(--color-gold);
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 51;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: color 0.25s ease, transform 0.25s ease;
+  }
+
+  .menu-toggle:focus-visible {
+    outline: 2px solid rgba(201, 168, 76, 0.45);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 1279px) {
+    .menu-toggle {
+      display: inline-flex;
+    }
+  }
+
+  .menu-svg {
+    width: 2.375rem;
+    height: 2.375rem;
+    overflow: visible;
+  }
+
+  header[data-transparent='true'] .menu-svg {
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+  }
+
+  .menu-line {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+  }
+
+  .menu-toggle[data-open='true'] .menu-line-top {
+    transform: translateY(5px) rotate(45deg);
+  }
+
+  .menu-toggle[data-open='true'] .menu-line-mid {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .menu-toggle[data-open='true'] .menu-line-bot {
+    transform: translateY(-5px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: none;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  @media (max-width: 1279px) {
+    .mobile-menu {
+      display: flex;
+    }
+  }
+
+  .mobile-menu[data-open='true'] {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .mobile-menu-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    padding: 6.5rem 1.75rem 2.5rem;
+    background: #000000;
+    transform: translateY(100%);
+    opacity: 0;
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.35s ease;
+  }
+
+  .mobile-menu[data-open='true'] .mobile-menu-panel {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    text-align: center;
+  }
+
+  .mobile-menu-link {
+    display: block;
+    padding: 0.55rem 0;
+    font-size: clamp(1.25rem, 5.5vw, 1.65rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-gold);
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition: color 0.2s ease, opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i) * 55ms + 120ms);
+  }
+
+  .mobile-menu[data-open='true'] .mobile-menu-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-link:hover,
+  .mobile-menu-link[data-active='true'] {
+    color: #ffffff;
+  }
+
+  .mobile-menu-locale {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.75rem;
+    padding-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity 0.4s ease 0.3s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+  }
+
+  .mobile-menu[data-open='true'] .mobile-menu-locale {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-locale :global(.locale-flags-menu) {
+    gap: 1rem;
+  }
+
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  header[data-transparent='true'] :global(.header-locale .locale-trigger) {
+    color: #ffffff;
+  }
+
+  .brand-logo {
+    display: block;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .btn-ghost-header {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, padding 0.35s ease, font-size 0.35s ease;
+  }
+
+  header[data-transparent='false'] .btn-ghost-header {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.58rem;
+  }
+
+  @media (min-width: 1024px) {
+    .btn-ghost-header {
+      padding: 0.55rem 0.95rem;
+      font-size: 0.68rem;
+    }
+
+    header[data-transparent='false'] .btn-ghost-header {
+      padding: 0.42rem 0.75rem;
+      font-size: 0.62rem;
+    }
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: color 0.25s ease, font-size 0.35s ease;
+  }
+
+  header[data-transparent='false'] .nav-link {
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media (min-width: 1280px) {
+    .nav-link {
+      font-size: 0.9375rem;
+    }
+
+    header[data-transparent='false'] .nav-link {
+      font-size: 0.8125rem;
+    }
+  }
 </style>
 
 <script>
-  const h = document.getElementById('site-header');
-  if (h) {
-    const update = () => h.setAttribute('data-transparent', String(window.scrollY < 16));
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-  }
+  let headerObserver: IntersectionObserver | undefined;
+
+  const setMobileMenuOpen = (open: boolean) => {
+    const header = document.getElementById('site-header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (!menuToggle || !mobileNav) return;
+    if (open && window.matchMedia('(min-width: 1280px)').matches) return;
+
+    menuToggle.setAttribute('data-open', String(open));
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    mobileNav.setAttribute('data-open', String(open));
+    mobileNav.setAttribute('aria-hidden', String(!open));
+    header?.setAttribute('data-menu-open', String(open));
+    document.body.classList.toggle('mobile-menu-open', open);
+  };
+
+  const initHeaderScroll = () => {
+    headerObserver?.disconnect();
+
+    const header = document.getElementById('site-header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (header) {
+      const heroSection = header.dataset.solid === 'true'
+        ? null
+        : (document.querySelector('section:has(.hero-bg)') ??
+           document.querySelector('.hero-bg')?.closest('section'));
+
+      if (heroSection) {
+        headerObserver = new IntersectionObserver(
+          ([entry]) => {
+            header.setAttribute('data-transparent', String(entry.isIntersecting));
+          },
+          {
+            threshold: 0,
+            rootMargin: '-72px 0px 0px 0px',
+          },
+        );
+        headerObserver.observe(heroSection);
+      } else {
+        header.setAttribute('data-transparent', 'false');
+      }
+    }
+
+    if (menuToggle && mobileNav && menuToggle.dataset.bound !== 'true') {
+      menuToggle.dataset.bound = 'true';
+
+      menuToggle.addEventListener('click', () => {
+        const open = menuToggle.getAttribute('data-open') !== 'true';
+        setMobileMenuOpen(open);
+      });
+
+      mobileNav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMobileMenuOpen(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileNav.getAttribute('data-open') === 'true') {
+          setMobileMenuOpen(false);
+        }
+      });
+
+      window.matchMedia('(min-width: 1280px)').addEventListener('change', (event) => {
+        if (event.matches) setMobileMenuOpen(false);
+      });
+    }
+  };
+
+  initHeaderScroll();
+  document.addEventListener('astro:page-load', initHeaderScroll);
 </script>

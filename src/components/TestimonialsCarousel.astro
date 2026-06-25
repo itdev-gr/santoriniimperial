@@ -1,0 +1,295 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  trip: string;
+}
+
+export interface Props {
+  heading: string;
+  testimonials: Testimonial[];
+  googleLabel: string;
+  googleUrl: string;
+}
+
+const { heading, testimonials, googleLabel, googleUrl } = Astro.props;
+const carouselId = `testimonials-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section class="testimonials-section bg-warm py-section">
+  <div class="container-page">
+    <div class="testimonials-header">
+      <h2 class="text-center font-display text-display-lg font-bold">{heading}</h2>
+    </div>
+
+    <div class="testimonials-carousel" data-carousel={carouselId}>
+      <button
+        type="button"
+        class="carousel-nav carousel-nav-prev"
+        aria-label="Previous review"
+        data-carousel-prev
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div class="carousel-viewport">
+        <div class="carousel-track" data-carousel-track tabindex="0" role="region" aria-label={heading}>
+          {testimonials.map((tst, i) => (
+            <div class="carousel-slide" data-carousel-slide={i}>
+              <TestimonialCard quote={tst.quote} name={tst.name} trip={tst.trip} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="carousel-nav carousel-nav-next"
+        aria-label="Next review"
+        data-carousel-next
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div class="carousel-dots" data-carousel-dots role="tablist" aria-label="Review slides">
+        {testimonials.map((_, i) => (
+          <button
+            type="button"
+            class="carousel-dot"
+            data-carousel-dot={i}
+            role="tab"
+            aria-label={`Review ${i + 1}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+          />
+        ))}
+      </div>
+    </div>
+
+    <div class="testimonials-cta">
+      <a href={googleUrl} target="_blank" rel="noopener" class="btn-google">
+        <svg class="google-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        {googleLabel}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-header {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .testimonials-carousel {
+    position: relative;
+    margin-top: 3rem;
+  }
+
+  .carousel-viewport {
+    overflow: hidden;
+    margin-inline: 2.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-viewport {
+      margin-inline: 3.25rem;
+    }
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-block: 0.25rem 1rem;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-slide {
+    flex: 0 0 calc(100% - 2rem);
+    scroll-snap-align: center;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  @media (min-width: 640px) {
+    .carousel-slide {
+      flex-basis: calc(50% - 0.625rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-slide {
+      flex-basis: calc(33.333% - 0.834rem);
+    }
+  }
+
+  .carousel-nav {
+    position: absolute;
+    top: 42%;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--color-warm-border);
+    border-radius: 9999px;
+    background: #ffffff;
+    color: var(--color-ink);
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .carousel-nav:hover {
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-1px);
+  }
+
+  .carousel-nav svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .carousel-nav-prev {
+    left: 0;
+  }
+
+  .carousel-nav-next {
+    right: 0;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .carousel-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: none;
+    border-radius: 9999px;
+    background: rgba(10, 10, 10, 0.18);
+    transition: width 0.25s ease, background-color 0.25s ease;
+    cursor: pointer;
+  }
+
+  .carousel-dot[aria-selected='true'] {
+    width: 1.75rem;
+    background: var(--color-gold);
+  }
+
+  .testimonials-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .btn-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.35rem;
+    border: 1px solid var(--color-warm-border);
+    border-radius: var(--radius-pill);
+    background: #ffffff;
+    color: var(--color-ink);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-google:hover {
+    border-color: rgba(10, 10, 10, 0.12);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-1px);
+  }
+
+  .google-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  function initTestimonialCarousels() {
+    document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+      const track = root.querySelector<HTMLElement>('[data-carousel-track]');
+      const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-carousel-slide]'));
+      const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-carousel-dot]'));
+      const prev = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+      const next = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+
+      if (!track || slides.length === 0) return;
+
+      let activeIndex = 0;
+
+      const getSlideOffset = (index: number) => {
+        const slide = slides[index];
+        if (!slide) return 0;
+        return slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
+      };
+
+      const setActive = (index: number) => {
+        activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+        track.scrollTo({ left: getSlideOffset(activeIndex), behavior: 'smooth' });
+        dots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === activeIndex)));
+      };
+
+      const syncFromScroll = () => {
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0;
+        let minDistance = Number.POSITIVE_INFINITY;
+
+        slides.forEach((slide, i) => {
+          const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+          const distance = Math.abs(center - slideCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closest = i;
+          }
+        });
+
+        activeIndex = closest;
+        dots.forEach((dot, i) => dot.setAttribute('aria-selected', String(i === activeIndex)));
+      };
+
+      prev?.addEventListener('click', () => setActive(activeIndex - 1));
+      next?.addEventListener('click', () => setActive(activeIndex + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
+
+      let scrollTimer: ReturnType<typeof setTimeout> | undefined;
+      track.addEventListener('scroll', () => {
+        window.clearTimeout(scrollTimer);
+        scrollTimer = window.setTimeout(syncFromScroll, 80);
+      }, { passive: true });
+
+      window.addEventListener('resize', () => setActive(activeIndex));
+    });
+  }
+
+  initTestimonialCarousels();
+  document.addEventListener('astro:page-load', initTestimonialCarousels);
+</script>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ContactPage from '../../components/ContactPage.astro';
+import { createT } from '../../lib/i18n';
+
+const locale = 'fr' as const;
+const t = createT(locale);
+---
+<BaseLayout title={t('pages.contact_title')} description={t('pages.contact_description')} locale={locale} pathname="/fr/contact/">
+  <Header slot="header" locale={locale} pathname="/fr/contact/" />
+  <ContactPage locale={locale} />
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

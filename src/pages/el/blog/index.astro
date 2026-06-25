@@ -8,7 +8,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', (e) => e.data.locale === 'el'))
   .sort((a, b) => +b.data.published_at - +a.data.published_at);
 ---
-<BaseLayout title="Άρθρα — Santorini Imperial" locale="el" pathname="/el/blog/">
+<BaseLayout title="Blog Ταξιδιού Σαντορίνη | Santorini Imperial" description="Ταξιδιωτικές συμβουλές, οργάνωση μεταφορών και οδηγοί περιηγήσεων για τη Σαντορίνη από την τοπική ομάδα της Santorini Imperial." locale="el" pathname="/el/blog/">
   <Header slot="header" locale="el" pathname="/el/blog/" />
   <Hero image="/images/hero/hero-home.jpg" kicker="ΣΗΜΕΙΩΣΕΙΣ ΑΠΟ ΤΟ ΝΗΣΙ" headline="Ήρεμες σκέψεις απ' τη Σαντορίνη" sub="Οδηγοί χρονισμού, εποχικές σημειώσεις, συμβουλές οχημάτων — γραμμένα καθώς πάμε."
     ctaPrimary={{ label: 'Σχεδίασε ένα ταξίδι', href: '/el/contact/' }} minHeight="55vh" />

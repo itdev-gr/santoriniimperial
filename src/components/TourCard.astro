@@ -6,20 +6,167 @@ export interface Props {
   duration: string;
   summary: string;
   priceFrom?: string | null;
+  ctaLabel?: string;
+  privateLabel?: string;
 }
-const { href, image, title, duration, summary, priceFrom } = Astro.props;
+const { href, image, title, duration, summary, priceFrom, ctaLabel = 'View Details', privateLabel } = Astro.props;
 ---
-<a href={href} class="group block bg-white rounded-card border border-warm-border shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-  <div class="relative aspect-[5/3] overflow-hidden">
-    <img src={image} alt={title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-    <span class="absolute top-3 left-3 bg-white/90 text-ink text-xs font-medium px-3 py-1 rounded-pill">{duration}</span>
+<a href={href} class="tour-card group">
+  <div class="tour-card-media">
+    <img src={image} alt={title} loading="lazy" decoding="async" class="tour-card-img" />
+    {priceFrom && priceFrom !== 'By request' && <span class="tour-card-price">{priceFrom}</span>}
   </div>
-  <div class="p-6">
-    <h3 class="font-display text-2xl text-ink">{title}</h3>
-    <p class="mt-2 text-sm text-ink/70 leading-relaxed">{summary}</p>
-    <div class="mt-5 flex items-center justify-between">
-      <span class="text-sm text-ink/60">{priceFrom ?? 'By request'}</span>
-      <span class="text-gold text-sm font-medium">Explore →</span>
+
+  <div class="tour-card-body">
+    <h3 class="tour-card-title">{title}</h3>
+
+    <div class="tour-card-meta">
+      <span class="tour-card-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+        </svg>
+        <span>{duration}</span>
+      </span>
+      {privateLabel && (
+        <span class="tour-card-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 18a4 4 0 0 0-8 0" /><circle cx="12" cy="8" r="3.2" />
+          </svg>
+          <span>{privateLabel}</span>
+        </span>
+      )}
     </div>
+
+    <p class="tour-card-summary">{summary}</p>
+
+    <span class="tour-card-cta">{ctaLabel}<span aria-hidden="true">→</span></span>
   </div>
 </a>
+
+<style>
+  .tour-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-charcoal);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+  }
+
+  .tour-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .tour-card-media {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+
+  .tour-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tour-card:hover .tour-card-img {
+    transform: scale(1.06);
+  }
+
+  .tour-card-price {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.95rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-gold);
+    color: var(--color-ink);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  .tour-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.75rem;
+    color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .tour-card-body {
+      padding: 2rem;
+    }
+  }
+
+  .tour-card-title {
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .tour-card-meta {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .tour-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .tour-card-meta-item svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--color-gold);
+  }
+
+  .tour-card-summary {
+    margin-top: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  .tour-card-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1.75rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-gold);
+    color: var(--color-ink);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+  }
+
+  .tour-card-cta span {
+    transition: transform 0.25s ease;
+  }
+
+  .tour-card:hover .tour-card-cta {
+    box-shadow: var(--shadow-gold-halo);
+  }
+
+  .tour-card:hover .tour-card-cta span {
+    transform: translateX(3px);
+  }
+</style>

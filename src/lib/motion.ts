@@ -26,12 +26,16 @@ export function splitWords(el: Element): HTMLSpanElement[] {
   el.textContent = '';
   const spans: HTMLSpanElement[] = [];
   for (const p of parts) {
+    if (/^\s+$/.test(p)) {
+      el.appendChild(document.createTextNode(p));
+      continue;
+    }
     const s = document.createElement('span');
     s.textContent = p;
     s.style.display = 'inline-block';
     s.style.willChange = 'transform, opacity';
     el.appendChild(s);
-    if (p.trim().length > 0) spans.push(s);
+    spans.push(s);
   }
   return spans;
 }

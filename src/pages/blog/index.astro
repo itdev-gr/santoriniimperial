@@ -8,7 +8,7 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog', (e) => e.data.locale === 'en'))
   .sort((a, b) => +b.data.published_at - +a.data.published_at);
 ---
-<BaseLayout title="Blog — Santorini Imperial" locale="en" pathname="/blog/">
+<BaseLayout title="Santorini Travel Blog | Tips, Transfers & Tours" description="Santorini travel tips, transfer planning and private tour guides from the local team at Santorini Imperial." locale="en" pathname="/blog/">
   <Header slot="header" locale="en" pathname="/blog/" />
   <Hero image="/images/hero/hero-home.jpg" kicker="FIELD NOTES" headline="Slow Thoughts From the Island" sub="Pacing guides, seasonal notes, vehicle tips — written as we go."
     ctaPrimary={{ label: 'Plan a Trip', href: '/contact/' }} minHeight="55vh" />

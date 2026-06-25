@@ -2,7 +2,7 @@
 slug: full-day
 title: "Private Tour Santorini Greece"
 locale: en
-hero_image: /images/tours/wine.jpg
+hero_image: /images/gallery/16.jpg
 duration_hours: 8
 format: "Private"
 price_from_eur: null

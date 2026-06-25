@@ -1,0 +1,288 @@
+---
+import { createT, type Locale } from '../lib/i18n';
+
+export interface Props {
+  locale?: Locale;
+  flat?: boolean;
+}
+
+const { locale = 'en', flat = false } = Astro.props;
+const t = createT(locale);
+---
+<form id="contact-form" novalidate class="contact-form" data-flat={flat ? 'true' : 'false'}>
+  <div class="contact-form-card">
+    <div class="contact-form-grid">
+      <label class="contact-field">
+        <span class="contact-label">{t('contact.fields.name')}</span>
+        <input
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          placeholder={t('contact.fields.name_placeholder')}
+          class="contact-input"
+        />
+        <span class="contact-error" data-for="name"></span>
+      </label>
+
+      <label class="contact-field">
+        <span class="contact-label">{t('contact.fields.email')}</span>
+        <input
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder={t('contact.fields.email_placeholder')}
+          class="contact-input"
+        />
+        <span class="contact-error" data-for="email"></span>
+      </label>
+
+      <label class="contact-field contact-field--full">
+        <span class="contact-label">{t('contact.fields.message')}</span>
+        <textarea
+          name="message"
+          rows="5"
+          required
+          placeholder={t('contact.fields.message_placeholder')}
+          class="contact-input contact-textarea"
+        ></textarea>
+        <span class="contact-error" data-for="message"></span>
+      </label>
+    </div>
+
+    <div class="contact-form-actions">
+      <button type="submit" class="contact-submit">
+        {t('contact.send')}
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="contact-success" hidden class="contact-success">
+    <div class="kicker">{t('contact.success_kicker')}</div>
+    <h3 class="mt-2 font-display text-2xl text-ink">{t('contact.success_heading')}</h3>
+    <p class="mt-2 text-sm text-ink/65">{t('contact.success_sub')}</p>
+  </div>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-form-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(10, 10, 10, 0.06);
+    border-radius: var(--radius-card);
+    background: #ffffff;
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 640px) {
+    .contact-form-card {
+      padding: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .contact-form-card {
+      padding: 2rem;
+    }
+  }
+
+  .contact-form[data-flat='true'] .contact-form-card {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .contact-form[data-flat='true'] .contact-form-actions {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .contact-form-grid {
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  @media (min-width: 640px) {
+    .contact-form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem 1rem;
+    }
+  }
+
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .contact-field--full {
+    grid-column: 1 / -1;
+  }
+
+  .contact-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .contact-input {
+    width: 100%;
+    border: 1px solid var(--color-warm-border);
+    border-radius: 0.75rem;
+    background: #ffffff;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--color-ink);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .contact-input::placeholder {
+    color: rgba(10, 10, 10, 0.38);
+  }
+
+  .contact-input:hover {
+    border-color: rgba(10, 10, 10, 0.18);
+  }
+
+  .contact-input:focus {
+    border-color: var(--color-gold);
+    box-shadow: var(--shadow-gold-halo);
+  }
+
+  .contact-input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .contact-textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
+
+  .contact-error {
+    min-height: 1rem;
+    font-size: 0.8125rem;
+    color: #b42318;
+  }
+
+  .contact-form-actions {
+    display: flex;
+    margin-top: 1.35rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid rgba(10, 10, 10, 0.06);
+  }
+
+  .contact-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-gold);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #ffffff;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .contact-submit {
+      width: auto;
+      min-width: 12.5rem;
+      flex-shrink: 0;
+    }
+  }
+
+  .contact-submit:hover {
+    box-shadow: var(--shadow-gold-halo);
+    transform: translateY(-1px);
+  }
+
+  .contact-submit:focus-visible {
+    outline: 2px solid rgba(201, 168, 76, 0.45);
+    outline-offset: 3px;
+  }
+
+  .contact-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .contact-success {
+    padding: 1.5rem;
+    border: 1px solid rgba(201, 168, 76, 0.28);
+    border-radius: var(--radius-card);
+    background: var(--color-gold-wash);
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form) return;
+
+    form.querySelectorAll<HTMLElement>('.contact-error').forEach((el) => {
+      el.textContent = '';
+    });
+
+    form.querySelectorAll<HTMLElement>('.contact-input').forEach((el) => {
+      el.removeAttribute('data-invalid');
+    });
+
+    const fd = new FormData(form);
+    const name = String(fd.get('name') ?? '').trim();
+    const email = String(fd.get('email') ?? '').trim();
+    const message = String(fd.get('message') ?? '').trim();
+    let valid = true;
+
+    const setError = (field: string, text: string) => {
+      const el = form.querySelector<HTMLElement>(`.contact-error[data-for="${field}"]`);
+      const input = form.querySelector<HTMLElement>(`.contact-input[name="${field}"]`);
+      if (el) el.textContent = text;
+      if (input) input.setAttribute('data-invalid', 'true');
+      valid = false;
+    };
+
+    if (!name) setError('name', 'Required');
+    if (!email) setError('email', 'Required');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) setError('email', 'Invalid email');
+    if (!message) setError('message', 'Required');
+
+    if (!valid) return;
+
+    form.querySelectorAll<HTMLElement>('input, textarea, button').forEach((el) => {
+      (el as HTMLInputElement).disabled = true;
+    });
+
+    const card = form.querySelector<HTMLElement>('.contact-form-card');
+    if (card) card.hidden = true;
+
+    const success = document.getElementById('contact-success');
+    if (success) success.hidden = false;
+  });
+</script>
+
+<style>
+  .contact-input[data-invalid='true'] {
+    border-color: #b42318;
+    box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+  }
+</style>

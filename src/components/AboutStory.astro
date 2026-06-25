@@ -1,0 +1,148 @@
+---
+export interface Props {
+  heading: string;
+  paragraphs: string[];
+  image: string;
+  imageAlt?: string;
+  kicker?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const { heading, paragraphs, image, kicker, ctaLabel, ctaHref } = Astro.props;
+const lead = paragraphs[0] ?? '';
+---
+<section class="about-full">
+  <img class="about-full-bg" src={image} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  <div class="about-full-overlay" aria-hidden="true"></div>
+
+  <div class="container-page about-full-inner">
+    <div class="about-full-content">
+      {kicker && (
+        <div class="about-full-kicker">
+          <span class="about-full-kicker-line" aria-hidden="true"></span>
+          <span>{kicker}</span>
+        </div>
+      )}
+      <h2 class="about-full-heading">{heading}</h2>
+      <p class="about-full-text">{lead}</p>
+      {ctaLabel && ctaHref && (
+        <a href={ctaHref} class="about-full-cta">
+          <span>{ctaLabel}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-full {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    min-height: clamp(30rem, 72vh, 46rem);
+    overflow: hidden;
+  }
+
+  .about-full-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .about-full-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(105deg, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0.7) 38%, rgba(8, 8, 8, 0.25) 72%, rgba(8, 8, 8, 0.15) 100%),
+      linear-gradient(to top, rgba(8, 8, 8, 0.55) 0%, rgba(8, 8, 8, 0) 45%);
+  }
+
+  .about-full-inner {
+    width: 100%;
+    padding-block: 4rem;
+  }
+
+  .about-full-content {
+    max-width: 38rem;
+    color: #ffffff;
+  }
+
+  .about-full-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: var(--text-kicker);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .about-full-kicker-line {
+    width: 2.5rem;
+    height: 1px;
+    background: var(--color-gold);
+  }
+
+  .about-full-heading {
+    margin-top: 1.5rem;
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+
+  .about-full-text {
+    margin-top: 1.75rem;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .about-full-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    padding: 0.95rem 2rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .about-full-cta svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    transition: transform 0.25s ease;
+  }
+
+  .about-full-cta:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: #ffffff;
+    box-shadow: var(--shadow-gold-halo);
+  }
+
+  .about-full-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  .about-full-cta:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-gold-halo);
+  }
+</style>

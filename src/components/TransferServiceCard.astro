@@ -1,0 +1,108 @@
+---
+export interface Props {
+  image: string;
+  title: string;
+  body: string;
+  href: string;
+  ctaLabel: string;
+  imageAlt?: string;
+}
+
+const { image, title, body, href, ctaLabel, imageAlt = '' } = Astro.props;
+---
+<article class="transfer-service-card">
+  <div class="transfer-service-media">
+    <img src={image} alt={imageAlt || title} loading="lazy" decoding="async" />
+  </div>
+
+  <div class="transfer-service-content">
+    <h3 class="transfer-service-title">{title}</h3>
+    <p class="transfer-service-body">{body}</p>
+    <a href={href} class="transfer-service-cta">{ctaLabel}</a>
+  </div>
+</article>
+
+<style>
+  .transfer-service-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .transfer-service-media {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-warm);
+  }
+
+  .transfer-service-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .transfer-service-card:hover .transfer-service-media img {
+    transform: scale(1.04);
+  }
+
+  .transfer-service-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 1.75rem;
+  }
+
+  @media (min-width: 768px) {
+    .transfer-service-content {
+      padding-top: 2rem;
+    }
+  }
+
+  .transfer-service-title {
+    font-size: clamp(1.625rem, 2.8vw, 2.125rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--color-ink);
+  }
+
+  .transfer-service-body {
+    margin-top: 1rem;
+    max-width: 34rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(10, 10, 10, 0.58);
+  }
+
+  .transfer-service-cta {
+    align-self: flex-start;
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 11.5rem;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid rgba(10, 10, 10, 0.82);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-ink);
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .transfer-service-cta:hover {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: #ffffff;
+  }
+
+  .transfer-service-cta:focus-visible {
+    outline: 2px solid rgba(201, 168, 76, 0.45);
+    outline-offset: 3px;
+  }
+</style>

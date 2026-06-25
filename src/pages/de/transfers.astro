@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import TransfersServices from '../../components/TransfersServices.astro';
+import { createT, localePath } from '../../lib/i18n';
+
+const locale = 'de' as const;
+const t = createT(locale);
+const lp = (p: string) => localePath(locale, p);
+---
+<BaseLayout title={t('pages.transfers_title')} description={t('pages.transfers_description')} locale={locale} pathname="/de/transfers/">
+  <Header slot="header" locale={locale} pathname="/de/transfers/" />
+  <Hero image="/images/hero/hero-transfers.jpg" headlineLine1={t('transfers.hero.headline_line1')} headlineLine2={t('transfers.hero.headline_line2')} sub={t('transfers.hero.sub')} minHeight="70vh" />
+  <TransfersServices locale={locale} />
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>

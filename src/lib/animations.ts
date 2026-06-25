@@ -7,14 +7,27 @@ export async function initAllAnimations() {
   // Hero H1 word-by-word reveal
   const h1 = document.querySelector<HTMLElement>('.hero-h1');
   if (h1) {
-    const spans = splitWords(h1);
-    gsap.set(spans, { y: 24, opacity: 0 });
-    gsap.to(spans, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.06 });
+    const lines = h1.querySelectorAll<HTMLElement>('.hero-h1-line');
+    if (lines.length > 0) {
+      lines.forEach((line, i) => {
+        const spans = splitWords(line);
+        gsap.set(spans, { y: 24, opacity: 0 });
+        gsap.to(spans, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.06, delay: i * 0.12 });
+      });
+    } else {
+      const spans = splitWords(h1);
+      gsap.set(spans, { y: 24, opacity: 0 });
+      gsap.to(spans, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out', stagger: 0.06 });
+    }
   }
+  const heroBadge = document.querySelector<HTMLElement>('.hero-badge');
   const heroSub = document.querySelector<HTMLElement>('.hero-sub');
   const heroCtas = document.querySelector<HTMLElement>('.hero-ctas');
-  if (heroSub) gsap.fromTo(heroSub, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.3 });
-  if (heroCtas) gsap.fromTo(heroCtas, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.5 });
+  const heroStats = document.querySelector<HTMLElement>('.hero-stats');
+  if (heroBadge) gsap.fromTo(heroBadge, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 });
+  if (heroSub) gsap.fromTo(heroSub, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.35 });
+  if (heroCtas) gsap.fromTo(heroCtas, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.55 });
+  if (heroStats) gsap.fromTo(heroStats, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, delay: 0.75 });
 
   // Hero parallax
   const heroBg = document.querySelector<HTMLElement>('.hero-bg');

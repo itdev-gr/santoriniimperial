@@ -1,0 +1,195 @@
+---
+import { createT, type Locale } from '../lib/i18n';
+
+export interface Vehicle {
+  model: string;
+  capacity: string;
+  luggage: string;
+  ideal: string;
+  note: string;
+}
+
+export interface Props {
+  locale: Locale;
+  vehicles: Vehicle[];
+  images: string[];
+  contactHref: string;
+  ctaLabel?: string;
+}
+
+const { locale, vehicles, images, contactHref, ctaLabel } = Astro.props;
+const t = createT(locale);
+const reserveLabel = ctaLabel ?? t('fleet.reserve_vehicle');
+---
+<section class="fleet-vehicles py-section bg-white">
+  <div class="container-page fleet-vehicles-list">
+    {vehicles.map((vehicle, index) => (
+      <article class={`fleet-vehicle ${index % 2 === 1 ? 'fleet-vehicle--reverse' : ''}`}>
+        <div class="fleet-vehicle-media">
+          <img src={images[index]} alt={vehicle.model} loading="lazy" decoding="async" />
+        </div>
+
+        <div class="fleet-vehicle-copy">
+          <div class="kicker">0{index + 1} · {vehicle.capacity}</div>
+          <h2 class="fleet-vehicle-title">{vehicle.model}</h2>
+          <p class="fleet-vehicle-note">{vehicle.note}</p>
+
+          <ul class="fleet-vehicle-specs">
+            <li class="fleet-spec">
+              <span class="fleet-spec-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <rect x="5" y="8" width="14" height="11" rx="1.5"></rect>
+                  <path d="M9 8V6.5A1.5 1.5 0 0 1 10.5 5h3A1.5 1.5 0 0 1 15 6.5V8"></path>
+                  <path d="M5 12h14"></path>
+                </svg>
+              </span>
+              <span class="fleet-spec-text">
+                <span class="fleet-spec-label">{t('fleet.luggage_label')}</span>
+                <span class="fleet-spec-value">{vehicle.luggage}</span>
+              </span>
+            </li>
+
+            <li class="fleet-spec">
+              <span class="fleet-spec-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <path d="M12 21s6-5.2 6-10a6 6 0 1 0-12 0c0 4.8 6 10 6 10z"></path>
+                  <circle cx="12" cy="11" r="2.25"></circle>
+                </svg>
+              </span>
+              <span class="fleet-spec-text">
+                <span class="fleet-spec-label">{t('fleet.ideal_label')}</span>
+                <span class="fleet-spec-value">{vehicle.ideal}</span>
+              </span>
+            </li>
+          </ul>
+
+          <a href={contactHref} class="btn-primary fleet-vehicle-cta">{reserveLabel} <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .fleet-vehicles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .fleet-vehicles-list {
+      gap: 6rem;
+    }
+  }
+
+  .fleet-vehicle {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .fleet-vehicle {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem;
+    }
+  }
+
+  .fleet-vehicle--reverse .fleet-vehicle-media {
+    order: 2;
+  }
+
+  @media (max-width: 767px) {
+    .fleet-vehicle--reverse .fleet-vehicle-media {
+      order: 0;
+    }
+  }
+
+  .fleet-vehicle-media {
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-warm);
+    box-shadow: var(--shadow-card);
+  }
+
+  .fleet-vehicle-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .fleet-vehicle-title {
+    margin-top: 0.75rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--color-ink);
+  }
+
+  .fleet-vehicle-note {
+    margin-top: 1.25rem;
+    font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+    line-height: 1.75;
+    color: rgba(10, 10, 10, 0.82);
+  }
+
+  .fleet-vehicle-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .fleet-spec {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .fleet-spec-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: var(--color-gold-wash);
+    color: var(--color-gold);
+  }
+
+  .fleet-spec-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .fleet-spec-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-top: 0.15rem;
+  }
+
+  .fleet-spec-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(10, 10, 10, 0.52);
+  }
+
+  .fleet-spec-value {
+    font-size: clamp(1rem, 1.6vw, 1.125rem);
+    line-height: 1.55;
+    color: rgba(10, 10, 10, 0.86);
+  }
+
+  .fleet-vehicle-cta {
+    margin-top: 2rem;
+  }
+</style>

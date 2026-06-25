@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AboutSplit from '../../components/AboutSplit.astro';
+import { createT, bundleForLocale } from '../../lib/i18n';
+
+const locale = 'fr' as const;
+const t = createT(locale);
+const story = (bundleForLocale(locale) as any).about.story;
+---
+<BaseLayout title={t('pages.about_title')} description={t('pages.about_description')} locale={locale} pathname="/fr/about/">
+  <Header slot="header" locale={locale} pathname="/fr/about/" solid />
+  <AboutSplit
+    heading={story.heading}
+    paragraphs={story.paragraphs}
+    image="/images/gallery/15.jpg"
+    imageAlt="Van Mercedes-Benz de Santorini Imperial au coucher du soleil"
+  />
+  <Footer slot="footer" locale={locale} />
+</BaseLayout>
