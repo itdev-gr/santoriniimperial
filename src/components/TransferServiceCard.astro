@@ -10,99 +10,103 @@ export interface Props {
 
 const { image, title, body, href, ctaLabel, imageAlt = '' } = Astro.props;
 ---
-<article class="transfer-service-card">
-  <div class="transfer-service-media">
-    <img src={image} alt={imageAlt || title} loading="lazy" decoding="async" />
+<a href={href} class="transfer-card group">
+  <div class="transfer-card-media">
+    <img src={image} alt={imageAlt || title} loading="lazy" decoding="async" class="transfer-card-img" />
   </div>
 
-  <div class="transfer-service-content">
-    <h3 class="transfer-service-title">{title}</h3>
-    <p class="transfer-service-body">{body}</p>
-    <a href={href} class="transfer-service-cta">{ctaLabel}</a>
+  <div class="transfer-card-body">
+    <h3 class="transfer-card-title">{title}</h3>
+    <p class="transfer-card-summary">{body}</p>
+    <span class="transfer-card-cta">{ctaLabel}<span aria-hidden="true">→</span></span>
   </div>
-</article>
+</a>
 
 <style>
-  .transfer-service-card {
+  .transfer-card {
     display: flex;
     flex-direction: column;
-  }
-
-  .transfer-service-media {
-    aspect-ratio: 4 / 3;
     overflow: hidden;
-    background: var(--color-warm);
+    border-radius: var(--radius-card);
+    background: var(--color-charcoal);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
   }
 
-  .transfer-service-media img {
-    display: block;
+  .transfer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .transfer-card-media {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+
+  .transfer-card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .transfer-service-card:hover .transfer-service-media img {
-    transform: scale(1.04);
+  .transfer-card:hover .transfer-card-img {
+    transform: scale(1.06);
   }
 
-  .transfer-service-content {
+  .transfer-card-body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding-top: 1.75rem;
-  }
-
-  @media (min-width: 768px) {
-    .transfer-service-content {
-      padding-top: 2rem;
-    }
-  }
-
-  .transfer-service-title {
-    font-size: clamp(1.625rem, 2.8vw, 2.125rem);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--color-ink);
-  }
-
-  .transfer-service-body {
-    margin-top: 1rem;
-    max-width: 34rem;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: rgba(10, 10, 10, 0.58);
-  }
-
-  .transfer-service-cta {
-    align-self: flex-start;
-    margin-top: 2rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 11.5rem;
-    padding: 0.9rem 1.6rem;
-    border: 1px solid rgba(10, 10, 10, 0.82);
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--color-ink);
-    transition:
-      background-color 0.25s ease,
-      color 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .transfer-service-cta:hover {
-    background: var(--color-ink);
-    border-color: var(--color-ink);
+    padding: 1.75rem;
     color: #ffffff;
   }
 
-  .transfer-service-cta:focus-visible {
-    outline: 2px solid rgba(201, 168, 76, 0.45);
-    outline-offset: 3px;
+  @media (min-width: 768px) {
+    .transfer-card-body {
+      padding: 2rem;
+    }
+  }
+
+  .transfer-card-title {
+    font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .transfer-card-summary {
+    margin-top: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.66);
+  }
+
+  .transfer-card-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 1.75rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-gold);
+    color: var(--color-ink);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: box-shadow 0.3s ease, transform 0.25s ease;
+  }
+
+  .transfer-card-cta span {
+    transition: transform 0.25s ease;
+  }
+
+  .transfer-card:hover .transfer-card-cta {
+    box-shadow: var(--shadow-gold-halo);
+  }
+
+  .transfer-card:hover .transfer-card-cta span {
+    transform: translateX(3px);
   }
 </style>

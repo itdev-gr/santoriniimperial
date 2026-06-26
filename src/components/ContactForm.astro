@@ -10,6 +10,10 @@ const { locale = 'en', flat = false } = Astro.props;
 const t = createT(locale);
 ---
 <form id="contact-form" novalidate class="contact-form" data-flat={flat ? 'true' : 'false'}>
+  <input type="hidden" name="access_key" value="9d2681de-0be2-414c-be2a-0db06afc66f2" />
+  <input type="hidden" name="subject" value="New enquiry — Santorini Imperial" />
+  <input type="hidden" name="from_name" value="Santorini Imperial Website" />
+  <input type="checkbox" name="botcheck" class="contact-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
   <div class="contact-form-card">
     <div class="contact-form-grid">
       <label class="contact-field">
@@ -230,12 +234,22 @@ const t = createT(locale);
     border-radius: var(--radius-card);
     background: var(--color-gold-wash);
   }
+
+  .contact-botcheck {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 </style>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
 
-  form?.addEventListener('submit', (event) => {
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!form) return;
 
@@ -268,15 +282,43 @@ const t = createT(locale);
 
     if (!valid) return;
 
+    const submitBtn = form.querySelector<HTMLButtonElement>('.contact-submit');
+    const originalBtnHtml = submitBtn?.innerHTML ?? '';
+
     form.querySelectorAll<HTMLElement>('input, textarea, button').forEach((el) => {
       (el as HTMLInputElement).disabled = true;
     });
+    if (submitBtn) submitBtn.textContent = 'Sending…';
 
-    const card = form.querySelector<HTMLElement>('.contact-form-card');
-    if (card) card.hidden = true;
+    const restore = (errorText: string) => {
+      form.querySelectorAll<HTMLElement>('input, textarea, button').forEach((el) => {
+        (el as HTMLInputElement).disabled = false;
+      });
+      if (submitBtn) submitBtn.innerHTML = originalBtnHtml;
+      const el = form.querySelector<HTMLElement>('.contact-error[data-for="message"]');
+      if (el) el.textContent = errorText;
+    };
 
-    const success = document.getElementById('contact-success');
-    if (success) success.hidden = false;
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: fd,
+      });
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        const card = form.querySelector<HTMLElement>('.contact-form-card');
+        if (card) card.hidden = true;
+        const success = document.getElementById('contact-success');
+        if (success) success.hidden = false;
+        form.reset();
+      } else {
+        restore('Something went wrong. Please try again or contact us directly.');
+      }
+    } catch {
+      restore('Network error. Please try again or contact us directly.');
+    }
   });
 </script>
 

@@ -10,7 +10,7 @@ const locale = 'fr' as const;
 const t = createT(locale);
 const lp = (p: string) => localePath(locale, p);
 const vehicles = bundleForLocale(locale).fleet.vehicles;
-const images = ['/images/gallery/09.jpg', '/images/gallery/02.jpg', '/images/gallery/15.jpg', '/images/gallery/14.jpg'];
+const images = ['/images/fleet/e-class.png', '/images/fleet/v-class.png', '/images/fleet/sprinter-12.png', '/images/fleet/sprinter-20.png'];
 ---
 <BaseLayout title={t('pages.fleet_title')} description={t('pages.fleet_description')} locale={locale} pathname="/fr/fleet/">
   <Header slot="header" locale={locale} pathname="/fr/fleet/" />

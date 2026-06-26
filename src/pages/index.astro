@@ -32,11 +32,10 @@ const icons = {
   card: `<svg viewBox='0 0 24 24' fill='none' stroke='#C9A84C' stroke-width='2' class='h-6 w-6'><rect x='2' y='5' width='20' height='14' rx='2'/><path d='M2 10h20'/></svg>`,
 };
 const serviceImages = [
-  '/images/hero/hero-transfers.jpg',
-  '/images/hero/hero-tours.jpg',
-  '/images/gallery/09.jpg',
+  '/images/home-transfers-card.png',
+  '/images/home-tours-card.png',
 ];
-const serviceItems = bundle.home.services.items;
+const serviceItems = bundle.home.services.items.slice(0, 2);
 const whyItems = bundle.home.why.items;
 
 const tours = bundle.home.tour_cards.map((tt) => ({
@@ -66,8 +65,7 @@ const aboutStory = (bundleForLocale(locale) as any).about.story;
   <section class="bg-white py-section">
     <div class="container-page">
       <KickerHeading heading={t('home.services.heading')} id="home-services-heading" />
-      <p class="mx-auto mt-4 max-w-2xl text-center text-ink/70">{t('home.services.sub')}</p>
-      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      <div class="mx-auto mt-12 grid max-w-5xl gap-8 sm:grid-cols-2">
         {serviceItems.map((item, i) => (
           <ServiceShowcaseCard
             href={lp(item.href)}
@@ -86,7 +84,7 @@ const aboutStory = (bundleForLocale(locale) as any).about.story;
   <AboutStory
       heading={aboutStory.heading}
       paragraphs={aboutStory.paragraphs}
-      image="/images/gallery/08.jpg"
+      image="/images/about-chauffeur.png"
       ctaLabel={t('home.about_teaser.cta')}
       ctaHref={lp('/about/')}
     />
